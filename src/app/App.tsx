@@ -559,7 +559,7 @@ function SiteHeader({
       {/* ── MAIN HEADER ────────────────────────────────────────────────── */}
       <header
         ref={headerRef}
-        className="fixed top-0 inset-x-0 z-50 bg-white"
+        className="rn-safe-top fixed top-0 inset-x-0 z-50 bg-white"
         style={{ borderBottom: "1px solid rgba(37,61,54,0.09)" }}
       >
         {/* Primary bar */}
@@ -738,7 +738,13 @@ function SiteHeader({
                                           if (el) dropdownRowRefs.current[item.id][idx + 1] = el;
                                         }}
                                         href={sub.href}
+                                        target={sub.href.startsWith("http") ? "_blank" : undefined}
+                                        rel={sub.href.startsWith("http") ? "noopener noreferrer" : undefined}
                                         onClick={(e) => {
+                                          if (sub.href.startsWith("http")) {
+                                            closeDropdownMenu();
+                                            return;
+                                          }
                                           e.preventDefault();
                                           closeDropdownMenu();
                                           onNavigate?.(sub.href);
@@ -856,8 +862,8 @@ function SiteHeader({
           <div className="flex lg:hidden items-center gap-1">
             <button
               aria-label="Abrir búsqueda"
-              className="p-3 rounded-sm transition-colors hover:bg-[#253D36]/6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400]"
-              style={{ color: "rgba(37,61,54,0.55)" }}
+              className="rn-tap flex items-center justify-center rounded-sm transition-colors hover:bg-[#253D36]/6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400]"
+              style={{ color: "rgba(37,61,54,0.55)", minWidth: 44, minHeight: 44 }}
               onClick={openSearch}
             >
               <Search className="w-5 h-5" aria-hidden="true" />
@@ -868,8 +874,8 @@ function SiteHeader({
               aria-expanded={mobileOpen}
               aria-controls="mobile-drawer"
               onClick={openMobileMenu}
-              className="p-3 rounded-sm transition-colors hover:bg-[#253D36]/6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400]"
-              style={{ color: "rgba(37,61,54,0.55)" }}
+              className="rn-tap flex items-center justify-center rounded-sm transition-colors hover:bg-[#253D36]/6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400]"
+              style={{ color: "rgba(37,61,54,0.55)", minWidth: 44, minHeight: 44 }}
             >
               <Menu className="w-5 h-5" aria-hidden="true" />
             </button>
@@ -920,7 +926,7 @@ function SiteHeader({
       {/* ── MOBILE SEARCH OVERLAY (shown when search triggered on mobile) ── */}
       {searchOpen && (
         <div
-          className="fixed top-0 inset-x-0 z-[60] lg:hidden bg-white p-4 flex items-center gap-3"
+          className="rn-safe-top fixed top-0 inset-x-0 z-[60] lg:hidden bg-white p-4 flex items-center gap-3"
           style={{
             borderBottom: "1px solid rgba(37,61,54,0.09)",
             boxShadow: "0 4px 12px rgba(37,61,54,0.08)",
@@ -945,10 +951,10 @@ function SiteHeader({
           <button
             onClick={closeSearch}
             aria-label="Cerrar búsqueda"
-            className="p-2 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400]"
-            style={{ color: "rgba(37,61,54,0.50)" }}
+            className="rn-tap flex items-center justify-center rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400]"
+            style={{ color: "rgba(37,61,54,0.50)", minWidth: 44, minHeight: 44 }}
           >
-            <X className="w-4 h-4" aria-hidden="true" />
+            <X className="w-5 h-5" aria-hidden="true" />
           </button>
         </div>
       )}
@@ -965,11 +971,11 @@ function SiteHeader({
       >
         {/* Drawer header */}
         <div
-          className="flex items-center justify-between px-6"
+          className="rn-safe-top flex items-center justify-between px-6"
           style={{
-            height: 64,
             borderBottom: "1px solid rgba(37,61,54,0.09)",
             flexShrink: 0,
+            minHeight: 64,
           }}
         >
           <a
@@ -1004,7 +1010,7 @@ function SiteHeader({
         </div>
 
         {/* Drawer body */}
-        <div className="flex-1 overflow-y-auto">
+        <div className="rn-drawer-scroll flex-1 overflow-y-auto">
           {/* Search inside drawer */}
           <div className="px-6 pt-5 pb-3">
             <div
@@ -1045,7 +1051,7 @@ function SiteHeader({
                         onClick={() => toggleMobileAccordion(item.id)}
                         aria-expanded={mobileAccordion === item.id}
                         aria-controls={`mob-acc-${item.id}`}
-                        className="flex items-center justify-between w-full py-4 px-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#C0D400] rounded-sm"
+                        className="rn-tap flex items-center justify-between w-full py-4 px-2 transition-colors hover:bg-[#253D36]/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#C0D400] rounded-sm"
                         style={{ minHeight: 52 }}
                       >
                         <span
@@ -1081,19 +1087,17 @@ function SiteHeader({
                             <li key={sub.href}>
                               <a
                                 href={sub.href}
-                                onClick={() => {
+                                target={sub.href.startsWith("http") ? "_blank" : undefined}
+                                rel={sub.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                                onClick={(e) => {
+                                  if (!sub.href.startsWith("http")) {
+                                    e.preventDefault();
+                                    onNavigate?.(sub.href);
+                                  }
                                   closeMobileMenu();
-                                  onNavigate?.(sub.href);
                                 }}
-                                className="flex items-start gap-3 py-3 px-2 rounded-sm group transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#C0D400]"
+                                className="rn-tap flex items-start gap-3 py-3 px-2 rounded-sm group transition-colors hover:bg-[#253D36]/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#C0D400]"
                                 style={{ minHeight: 52 }}
-                                onMouseEnter={(e) =>
-                                  (e.currentTarget.style.background =
-                                    "rgba(37,61,54,0.04)")
-                                }
-                                onMouseLeave={(e) =>
-                                  (e.currentTarget.style.background = "")
-                                }
                               >
                                 <ArrowRight
                                   className="w-3.5 h-3.5 text-[#C0D400] shrink-0 mt-1"
@@ -1136,7 +1140,7 @@ function SiteHeader({
                         onNavigate?.(item.href);
                       }}
                       aria-current={activePage === item.href ? "page" : undefined}
-                      className="flex items-center px-2 py-4 text-[15px] font-semibold text-[#253D36] transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#C0D400]"
+                      className="rn-tap flex items-center px-2 py-4 text-[15px] font-semibold text-[#253D36] transition-colors rounded-sm hover:bg-[#253D36]/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#C0D400]"
                       style={{
                         minHeight: 52,
                         fontFamily:
@@ -1154,7 +1158,7 @@ function SiteHeader({
 
         {/* Drawer footer — newsletter CTA */}
         <div
-          className="px-6 py-5 shrink-0"
+          className="rn-safe-bottom px-6 py-5 shrink-0"
           style={{ borderTop: "1px solid rgba(37,61,54,0.09)" }}
         >
           <a
@@ -1163,7 +1167,7 @@ function SiteHeader({
               closeMobileMenu();
               onNavigate?.("#newsletter");
             }}
-            className="flex items-center justify-center w-full font-bold text-sm text-[#253D36] bg-[#C0D400] rounded-[4px] transition-colors hover:bg-[#AABC00] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#253D36]"
+            className="rn-tap-cta flex items-center justify-center w-full font-bold text-sm text-[#253D36] bg-[#C0D400] rounded-[4px] transition-colors hover:bg-[#AABC00] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#253D36]"
             style={{
               minHeight: 48,
               fontFamily:
@@ -2089,31 +2093,31 @@ function BlogSection() {
   useEffect(() => {
     if (reduced.current || !sectionRef.current || !headerRef.current || !gridRef.current) return;
 
-    if (!gsap.plugins.ScrollTrigger) {
-      gsap.registerPlugin(ScrollTrigger);
-    }
-
-    gsap.fromTo(headerRef.current,
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1, y: 0, duration: 0.8, ease: "power2.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
+    const ctx = gsap.context(() => {
+      gsap.fromTo(headerRef.current,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1, y: 0, duration: 0.8, ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+          }
         }
-      }
-    );
+      );
 
-    gsap.fromTo(gridRef.current.children,
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: "power2.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 70%",
+      gsap.fromTo(gridRef.current!.children,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 70%",
+          }
         }
-      }
-    );
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   const handleTabChange = (tab: TabId) => {
@@ -2819,25 +2823,25 @@ function NewsletterSection() {
   useEffect(() => {
     if (reduced.current || !sectionRef.current || !leftColRef.current || !rightColRef.current) return;
 
-    if (!gsap.plugins.ScrollTrigger) {
-      gsap.registerPlugin(ScrollTrigger);
-    }
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%",
+        }
+      });
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top 75%",
-      }
-    });
+      tl.fromTo(leftColRef.current,
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
+      ).fromTo(rightColRef.current,
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
+        "-=0.6"
+      );
+    }, sectionRef);
 
-    tl.fromTo(leftColRef.current,
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
-    ).fromTo(rightColRef.current,
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" },
-      "-=0.6"
-    );
+    return () => ctx.revert();
   }, []);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -3125,17 +3129,23 @@ function SiteFooter() {
           
           {/* Identidad */}
           <div className="flex flex-col">
-            <h3 
+            <h3
               className="text-lg font-bold text-[#253D36] mb-4"
-              style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Helvetica Neue',Arial,sans-serif", letterSpacing: "-0.01em" }}
+              style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Helvetica Neue',Arial,sans-serif", letterSpacing: "-0.01em", lineHeight: 1.25 }}
             >
-              Centro de Pensamiento — Ruta N Medellín
+              Centro de Pensamiento<br />Ruta N Medellín
             </h3>
-            <p 
+            <p
               className="text-sm"
               style={{ color: "rgba(37,61,54,0.7)", fontFamily: "'Source Sans 3','Source Sans Pro',Arial,sans-serif", lineHeight: 1.6 }}
             >
-              La evidencia detrás de las decisiones que transforman la ciudad.
+              Contacto:{" "}
+              <a
+                href="mailto:centrodepensamiento@rutanmedellin.org"
+                className="font-semibold text-[#0068FF] underline hover:text-[#253D36] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] rounded-sm"
+              >
+                centrodepensamiento@rutanmedellin.org
+              </a>
             </p>
           </div>
 
@@ -3244,6 +3254,29 @@ function RootLayout() {
         *::-webkit-scrollbar-thumb { background: rgba(37,61,54,0.18); border-radius: 4px; }
         ::selection { background: #C0D400; color: #111111; }
         [data-focus-visible] { outline: 2px solid #C0D400; outline-offset: 2px; }
+
+        /* ── Mobile interaction polish ─────────────────────────────────── */
+        /* Prevent iOS auto-inflating text on rotation / avoid layout jumps */
+        html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+        /* Remove the default grey/blue tap flash; we provide our own feedback */
+        a, button, [role="button"], input, select, textarea, label {
+          -webkit-tap-highlight-color: transparent;
+        }
+        /* Kill the 300ms tap delay on interactive elements */
+        a, button, [role="button"] { touch-action: manipulation; }
+        /* Branded, instant touch feedback on tap (works where :hover doesn't) */
+        @media (hover: none) and (pointer: coarse) {
+          .rn-tap:active { background: rgba(37,61,54,0.10) !important; }
+          .rn-tap-cta:active { background: #AABC00 !important; transform: scale(0.985); }
+        }
+        /* Native-feeling scroll inside the mobile drawer, no scroll chaining */
+        .rn-drawer-scroll {
+          -webkit-overflow-scrolling: touch;
+          overscroll-behavior: contain;
+        }
+        /* Respect notches / home indicators when viewport-fit=cover is active */
+        .rn-safe-top { padding-top: env(safe-area-inset-top, 0px); }
+        .rn-safe-bottom { padding-bottom: max(env(safe-area-inset-bottom, 0px), 0px); }
       `}</style>
 
       <SiteHeader activePage={location.pathname} onNavigate={(path) => {
@@ -3473,25 +3506,25 @@ function RadarCTIDescription() {
 
   useEffect(() => {
     if (reduced.current || !sectionRef.current || !contentRef.current) return;
-    
-    if (!gsap.plugins.ScrollTrigger) {
-      gsap.registerPlugin(ScrollTrigger);
-    }
 
-    gsap.fromTo(contentRef.current.children,
-      { opacity: 0, y: 20 },
-      { 
-        opacity: 1, 
-        y: 0, 
-        duration: 0.8, 
-        stagger: 0.1, 
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
+    const ctx = gsap.context(() => {
+      gsap.fromTo(contentRef.current!.children,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+          }
         }
-      }
-    );
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -4233,10 +4266,12 @@ function RadarCTIPulseBand() {
         aria-label="Fotografía del ecosistema de innovación de Medellín"
         role="img"
       >
-        <img 
-          src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1200" 
-          alt="Personas colaborando en un laboratorio de tecnología" 
+        <img
+          src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1200"
+          alt="Personas colaborando en un laboratorio de tecnología"
           className="absolute inset-0 w-full h-full object-cover opacity-90"
+          decoding="async"
+          fetchPriority="high"
         />
         {/* Subtle overlay to ensure the brand tone is maintained */}
         <div className="absolute inset-0 bg-[#253D36]/20 mix-blend-multiply" />

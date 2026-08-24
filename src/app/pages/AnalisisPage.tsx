@@ -355,7 +355,7 @@ function AnalisisCTILibrary() {
         </div>
 
         {/* ── ACTIVE FILTERS & RESULTS HEADER ── */}
-        <div className="library-fade-up sticky top-[88px] z-30 bg-[#FAFAF8] py-4" style={{ borderBottom: "1px solid rgba(37,61,54,0.1)" }}>
+        <div className="library-fade-up bg-[#FAFAF8] py-4" style={{ borderBottom: "1px solid rgba(37,61,54,0.1)" }}>
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
 
             <div className="flex flex-col gap-3">
@@ -938,7 +938,7 @@ function AnalisisCTINova() {
   return (
     <section
       ref={sectionRef}
-      className="py-24 lg:py-32 bg-[#111111] relative overflow-hidden"
+      className="py-14 lg:py-20 bg-[#111111] relative overflow-hidden"
       aria-labelledby="nova-heading"
     >
       {/* Background Image */}
@@ -947,7 +947,7 @@ function AnalisisCTINova() {
         style={{ 
           backgroundImage: `url(${novaBg})`,
           backgroundSize: "cover",
-          backgroundPosition: "60% center", // Desplazado ligeramente a la derecha
+          backgroundPosition: "calc(60% + 110px) center", // Desplazado ~110px a la derecha
           backgroundRepeat: "no-repeat",
           opacity: 0.35 // Reducimos la opacidad para que se mezcle mejor con el fondo negro
         }} 
@@ -960,8 +960,8 @@ function AnalisisCTINova() {
       <div className="max-w-[1440px] mx-auto px-6 lg:px-10 xl:px-12 relative z-10 flex flex-col items-center">
 
         {/* ── Section header ── */}
-        <div className="text-center max-w-3xl mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 mb-6 rounded-full"
+        <div className="text-center max-w-3xl mb-8">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 mb-4 rounded-full"
             style={{ background: "rgba(192,212,0,0.08)", border: "1px solid rgba(192,212,0,0.2)" }}>
             <Sparkles className="w-3.5 h-3.5 text-[#C0D400]" aria-hidden="true" />
             <span className="text-[11px] font-bold tracking-[0.18em] uppercase text-[#C0D400]"
@@ -971,12 +971,12 @@ function AnalisisCTINova() {
           </div>
           <h2
             id="nova-heading"
-            className="text-white mb-6"
-            style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif", fontSize: "clamp(2rem,4vw,3.5rem)", fontWeight: 900, letterSpacing: "-0.02em", lineHeight: 1.1 }}
+            className="text-white mb-4"
+            style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif", fontSize: "clamp(1.75rem,3.2vw,2.75rem)", fontWeight: 900, letterSpacing: "-0.02em", lineHeight: 1.1 }}
           >
             ¿Y si pudieras preguntarle directamente al archivo?
           </h2>
-          <p className="text-lg" style={{ color: "rgba(255,255,255,0.60)", fontFamily: "'Source Sans 3',Arial,sans-serif", lineHeight: 1.6 }}>
+          <p style={{ fontSize: "1.0625rem", color: "rgba(255,255,255,0.60)", fontFamily: "'Source Sans 3',Arial,sans-serif", lineHeight: 1.55 }}>
             Puedo consultar por ti los informes, planes y reportes de gestión de Ruta N y responderte en lenguaje natural, citando siempre el documento del que salió la respuesta. Si algo no está en mis fuentes, te lo digo: prefiero un "no lo sé" honesto a un dato inventado.
           </p>
         </div>
@@ -987,7 +987,7 @@ function AnalisisCTINova() {
           className="w-full max-w-4xl flex flex-col relative z-10"
         >
           {/* ── Interface header bar ── */}
-          <div className="flex items-center justify-between px-2 py-3.5 mb-2">
+          <div className="flex items-center justify-between px-2 py-2.5 mb-1">
             <div className="flex items-center gap-2.5">
               <div className="w-2 h-2 rounded-full bg-[#C0D400]" style={{ boxShadow: isSpeaking ? "0 0 8px #C0D400" : "none", transition: "box-shadow 0.5s" }} aria-hidden="true" />
               <span className="text-[12px] font-bold text-white/70 tracking-[0.12em] uppercase"
@@ -1010,10 +1010,10 @@ function AnalisisCTINova() {
           </div>
 
           {/* ── Wave canvas zone ── */}
-          <div 
-            className="relative" 
-            style={{ 
-              height: 90, 
+          <div
+            className="relative"
+            style={{
+              height: 64,
               maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
               WebkitMaskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)"
             }}
@@ -1038,8 +1038,8 @@ function AnalisisCTINova() {
           {/* ── Chat body ── */}
           <div
             ref={chatBodyRef}
-            className="flex flex-col gap-6 px-2 py-6 overflow-y-auto"
-            style={{ minHeight: 220, maxHeight: 360 }}
+            className="flex flex-col gap-5 px-2 py-4 overflow-y-auto"
+            style={{ minHeight: 170, maxHeight: 300 }}
             aria-live="polite"
             aria-label="Conversación con Nova"
           >
@@ -1192,7 +1192,7 @@ function AnalisisCTINova() {
           </div>
 
           {/* ── Input bar ── */}
-          <div className="px-2 pb-2 pt-6">
+          <div className="px-2 pb-2 pt-4">
             <form onSubmit={handleAsk} className="relative flex items-center gap-3">
               <input
                 ref={inputRef}
@@ -1236,7 +1236,7 @@ function AnalisisCTINova() {
                 <Send className="w-5 h-5" aria-hidden="true" />
               </button>
             </form>
-            <p className="text-center text-[11px] mt-4"
+            <p className="text-center text-[11px] mt-3"
               style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Source Sans 3',Arial,sans-serif", lineHeight: 1.5 }}>
               Las respuestas se generan a partir de los documentos públicos del Centro de Pensamiento. Verifica siempre en la fuente citada.
             </p>
