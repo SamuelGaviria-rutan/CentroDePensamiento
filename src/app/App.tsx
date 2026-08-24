@@ -83,53 +83,43 @@ interface SiteHeaderProps {
 
 const NAV_CONFIG: NavItem[] = [
   {
-    id: "radar-cti",
+    id: "mapeo",
     label: "Mapeo",
     descriptor: "Datos, rankings y pulso del ecosistema",
-    href: "/radar-cti",
+    href: "/analisis-cti",
     submenu: [
-      {
-        label: "Mapeo",
-        description: "Inicio de la sección",
-        href: "/radar-cti",
-      },
       {
         label: "Repositorio",
         description: "Explora documentos y recursos",
-        href: "/radar-cti/repositorio",
+        href: "/analisis-cti",
       },
       {
         label: "Oportunidades",
         description: "Encuentra convocatorias y proyectos",
-        href: "/radar-cti/oportunidades",
+        href: "/analisis-cti/oportunidades",
+      },
+    ],
+  },
+  {
+    id: "medicion",
+    label: "Medición",
+    descriptor: "Análisis a profundidad y prospectiva",
+    href: "/radar-cti",
+    submenu: [
+      {
+        label: "Pulso CTI",
+        description: "Ir a la página de Ruta N",
+        href: "https://rutanmedellin.org/pulso-cti-rutan",
+      },
+      {
+        label: "Radar",
+        description: "Tableros, series y reportes",
+        href: "/radar-cti/data",
       },
       {
         label: "Rankings",
         description: "Medellín en el mapa global",
         href: "/radar-cti/rankings",
-      },
-      {
-        label: "Data",
-        description: "Tableros, series y reportes",
-        href: "/radar-cti/data",
-      },
-    ],
-  },
-  {
-    id: "analisis-cti",
-    label: "Medición",
-    descriptor: "Análisis a profundidad y prospectiva",
-    href: "/analisis-cti",
-    submenu: [
-      {
-        label: "Medición",
-        description: "Inicio de la sección",
-        href: "/analisis-cti",
-      },
-      {
-        label: "Pulso CTI",
-        description: "Ir a la página de Ruta N",
-        href: "https://www.rutanmedellin.org",
       },
     ],
   },
@@ -3400,7 +3390,7 @@ function RadarCTIHero() {
               className="text-[10px] tracking-[0.32em] uppercase mb-6"
               style={{ color: "#C0D400", fontFamily: "'Source Sans 3','Source Sans Pro',Arial,sans-serif" }}
             >
-              RADAR CTI · MEDICIÓN
+              MEDICIÓN · RADAR CTI
             </p>
             
             <h1
@@ -4612,6 +4602,7 @@ const router = createBrowserRouter([
       { path: "radar-cti/rankings", element: <RankingsPage /> },
       { path: "radar-cti/data", element: <DataPage /> },
       { path: "radar-cti/*", element: <RadarCTIPage /> },
+      { path: "analisis-cti/oportunidades", element: <BlankPage title="Oportunidades" desc="Esta sección está en construcción." /> },
       { path: "analisis-cti/*", element: <AnalisisCTIPage /> },
       { path: "lab-de-politicas/documentacion", element: <DocumentacionPage /> },
       { path: "lab-de-politicas/compras", element: <ComprasPage /> },

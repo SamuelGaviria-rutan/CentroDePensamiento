@@ -59,7 +59,7 @@ function AnalisisCTIHero() {
               className="text-[10px] tracking-[0.32em] uppercase mb-6"
               style={{ color: "#00B8A3", fontFamily: "'Source Sans 3','Source Sans Pro',Arial,sans-serif", fontWeight: "bold" }}
             >
-              ANÁLISIS CTI · INVESTIGACIÓN
+              MAPEO · REPOSITORIO
             </p>
 
             <h1
