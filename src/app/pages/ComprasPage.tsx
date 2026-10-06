@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { FloatingNav } from "../components/FloatingNav";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { X, Download, ArrowRight, ArrowUpRight, Globe, TrendingUp, ClipboardList, Activity } from "lucide-react";
@@ -279,7 +280,7 @@ function TestCPI({ onClose }: TestCPIProps) {
               {step > 0 && (
                 <button
                   onClick={goBack}
-                  className="mt-5 text-xs text-[#253D36]/40 hover:text-[#253D36] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#253D36] rounded-sm"
+                  className="mt-5 inline-flex items-center min-h-11 px-2 text-xs text-[#253D36]/40 hover:text-[#253D36] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#253D36] rounded-sm"
                   style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
                 >
                   ← Volver a la pregunta anterior
@@ -403,6 +404,7 @@ function ComprasBanner({ onOpenTest }: { onOpenTest: () => void }) {
   return (
     <section
       ref={sectionRef}
+      id="compras-hero"
       className="bg-[#253D36] text-white pt-32 pb-20 px-6 lg:px-10 xl:px-12 relative overflow-hidden"
     >
       {/* Decorative diagonal line pattern */}
@@ -516,7 +518,8 @@ function ComprasDosCAMINOS() {
   return (
     <section
       ref={sectionRef}
-      className="bg-[#F7F7F5] px-6 py-24 lg:py-28"
+      id="compras-caminos"
+      className="bg-[#F7F7F5] px-6 py-24 lg:py-28 relative"
       aria-labelledby="dos-caminos-heading"
     >
       <div className="max-w-[1200px] mx-auto">
@@ -675,7 +678,8 @@ function ComprasComoEmpezar({ onOpenTest }: { onOpenTest: () => void }) {
   return (
     <section
       ref={sectionRef}
-      className="bg-white px-6 py-24 lg:py-28"
+      id="compras-como-empezar"
+      className="bg-white px-6 py-24 lg:py-28 relative"
       aria-labelledby="como-empezar-heading"
     >
       <div className="max-w-[1200px] mx-auto">
@@ -948,7 +952,8 @@ function ComprasResultados() {
   return (
     <section
       ref={sectionRef}
-      className="bg-[#253D36] px-6 py-24 lg:py-28"
+      id="compras-resultados"
+      className="bg-[#253D36] px-6 py-24 lg:py-28 relative"
       aria-labelledby="resultados-heading"
     >
       <div className="max-w-[1200px] mx-auto">
@@ -1074,7 +1079,7 @@ function ComprasMesas() {
     <section
       ref={sectionRef}
       id="mesas"
-      className="bg-[#F7F7F5] px-6 py-24 lg:py-28"
+      className="bg-[#F7F7F5] px-6 py-24 lg:py-28 relative"
       aria-labelledby="mesas-heading"
     >
       <div className="max-w-[1200px] mx-auto lg:grid lg:grid-cols-12 lg:gap-16">
@@ -1207,7 +1212,7 @@ function ComprasMesas() {
                 <a
                   href="#"
                   onClick={(e) => e.preventDefault()}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#253D36]/50 hover:text-[#253D36] hover:bg-[rgba(37,61,54,0.08)] px-3 py-2 rounded-[3px] transition-all shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#253D36]"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#253D36]/50 hover:text-[#253D36] hover:bg-[rgba(37,61,54,0.08)] px-3 min-h-11 rounded-[3px] transition-all shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#253D36]"
                   style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
                   aria-label={`Descargar ${acta.label}`}
                 >
@@ -1226,11 +1231,20 @@ function ComprasMesas() {
 // COMPRAS PAGE
 // ─────────────────────────────────────────────────────────────────────────────
 
+const COMPRAS_SECTIONS = [
+  { id: "compras-hero",         label: "Inicio" },
+  { id: "compras-caminos",      label: "Dos caminos" },
+  { id: "compras-como-empezar", label: "¿Cómo empezar?" },
+  { id: "compras-resultados",   label: "Resultados" },
+  { id: "mesas",                label: "Mesas de trabajo" },
+];
+
 export function ComprasPage() {
   const [testOpen, setTestOpen] = useState(false);
 
   return (
     <>
+      <FloatingNav sections={COMPRAS_SECTIONS} />
       {testOpen && <TestCPI onClose={() => setTestOpen(false)} />}
       <ComprasBanner onOpenTest={() => setTestOpen(true)} />
       <ComprasDosCAMINOS />

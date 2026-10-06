@@ -283,7 +283,7 @@ function DataBanner() {
   }, []);
 
   return (
-    <section ref={ref} className="bg-[#253D36] text-white pt-32 pb-24 px-6 lg:px-10 xl:px-12 relative overflow-hidden">
+    <section ref={ref} id="radar-hero" className="bg-[#253D36] text-white px-6 lg:px-10 xl:px-12 relative overflow-hidden flex flex-col justify-center" style={{ minHeight: "60svh", paddingTop: 120, paddingBottom: 80 }}>
       {/* Decorative grid */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.04]"
         style={{ backgroundImage: "linear-gradient(rgba(192,212,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(192,212,0,1) 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
@@ -351,7 +351,7 @@ function DataDashboardsSection() {
   const activeDash = DASHBOARDS.find(d => d.id === active) ?? null;
 
   return (
-    <section ref={sectionRef} className="py-24 bg-[#FAFAF8]" style={{ borderBottom: "1px solid rgba(37,61,54,0.06)" }}>
+    <section ref={sectionRef} id="radar-tableros" className="py-24 bg-[#FAFAF8] relative" style={{ borderBottom: "1px solid rgba(37,61,54,0.06)" }}>
       <div className="max-w-[1440px] mx-auto px-6 lg:px-10 xl:px-12">
 
         {/* Header */}
@@ -534,7 +534,13 @@ function DocTypePill({ type }: { type: string }) {
   );
 }
 
-function DataReportsSection() {
+export function DataReportsSection({
+  title = "Reportes y documentos fuente",
+  subtitle = "Los documentos oficiales de rankings y mediciones del ecosistema, organizados por fuente y año, disponibles para descarga directa.",
+}: {
+  title?: string;
+  subtitle?: string;
+} = {}) {
   const sectionRef = useRef<HTMLElement>(null);
   const [search, setSearch] = useState("");
   const [yearFilter,  setYear]  = useState("Todos");
@@ -572,26 +578,26 @@ function DataReportsSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 bg-white">
+    <section ref={sectionRef} id="radar-reportes" className="py-12 bg-white relative">
       <div className="max-w-[1440px] mx-auto px-6 lg:px-10 xl:px-12">
 
-        <div className="max-w-3xl mb-12">
+        <div className="max-w-3xl mb-6">
           <p className="text-[10px] tracking-[0.28em] uppercase font-bold mb-3"
             style={{ color: "#0068FF", fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
             Repositorio de documentos
           </p>
           <h2 className="text-[#253D36] mb-4"
             style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif", fontSize: "clamp(1.85rem,3vw,2.5rem)", fontWeight: 900, letterSpacing: "-0.02em" }}>
-            Reportes y documentos fuente
+            {title}
           </h2>
           <p className="text-lg text-[#253D36]/65"
             style={{ fontFamily: "'Source Sans 3',Arial,sans-serif", lineHeight: 1.6 }}>
-            Los documentos oficiales de rankings y mediciones del ecosistema, organizados por fuente y año, disponibles para descarga directa.
+            {subtitle}
           </p>
         </div>
 
         {/* Filter bar */}
-        <div className="bg-[#F2F4F0] p-5 rounded-md mb-10 border border-[rgba(37,61,54,0.06)]">
+        <div className="bg-[#F2F4F0] p-4 rounded-md mb-6 border border-[rgba(37,61,54,0.06)]">
           <div className="flex flex-col lg:flex-row gap-3 mb-4">
             {/* Search */}
             <div className="flex-1 relative">
@@ -605,8 +611,8 @@ function DataReportsSection() {
                 style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
               />
               {search && (
-                <button onClick={() => setSearch("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-[#253D36]/40 hover:text-[#253D36]">
-                  <X className="w-4 h-4" />
+                <button onClick={() => setSearch("")} aria-label="Limpiar búsqueda" className="absolute right-1.5 top-1/2 -translate-y-1/2 flex items-center justify-center min-w-11 min-h-11 rounded-sm text-[#253D36]/40 hover:text-[#253D36] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400]">
+                  <X className="w-4 h-4" aria-hidden="true" />
                 </button>
               )}
             </div>
@@ -622,7 +628,7 @@ function DataReportsSection() {
                   <select
                     value={value}
                     onChange={e => setter(e.target.value)}
-                    className="appearance-none bg-white text-xs font-semibold text-[#253D36] border border-[rgba(37,61,54,0.1)] rounded-sm pl-3 pr-7 py-2.5 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#C0D400] h-full"
+                    className="appearance-none bg-white text-xs font-semibold text-[#253D36] border border-[rgba(37,61,54,0.1)] rounded-sm pl-3 pr-7 min-h-11 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#C0D400] h-full"
                     style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
                   >
                     <option value="Todos">{label}: Todos</option>
@@ -732,7 +738,7 @@ function DataReportsSection() {
                           </span>
                         </div>
                         <a href="#descargar"
-                          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0068FF] hover:underline focus-visible:outline-none"
+                          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0068FF] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] rounded-sm"
                           style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
                           <Download className="w-3.5 h-3.5" /> Descargar
                         </a>
@@ -749,16 +755,3 @@ function DataReportsSection() {
   );
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// PAGE EXPORT
-// ─────────────────────────────────────────────────────────────────────────────
-
-export function DataPage() {
-  return (
-    <>
-      <DataBanner />
-      <DataDashboardsSection />
-      <DataReportsSection />
-    </>
-  );
-}

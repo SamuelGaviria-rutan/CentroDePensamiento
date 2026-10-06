@@ -1,11 +1,13 @@
 import { useState, useEffect, useRef } from "react";
+import { Breadcrumb } from "../components/Breadcrumb";
+import { FloatingNav } from "../components/FloatingNav";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import novaBg from "../../imports/Nova_frontview-1.png";
 import {
   Search, X, ChevronDown, ArrowRight, ArrowDown, Download, ArrowUpRight,
   Info, Database, Activity, Image as ImageIcon, SlidersHorizontal,
-  BookOpen, Sparkles, Send, FileText
+  BookOpen, Sparkles, Send, FileText, TrendingUp, Eye, Network, Users, Clock, Star
 } from "lucide-react";
 gsap.registerPlugin(ScrollTrigger);
 
@@ -46,8 +48,9 @@ function AnalisisCTIHero() {
   return (
     <section
       ref={sectionRef}
-      className="bg-[#253D36] text-white overflow-hidden relative"
-      style={{ minHeight: "60svh", paddingTop: 140, paddingBottom: 100 }}
+      id="mapeo-hero"
+      className="bg-[#253D36] text-white overflow-hidden relative flex flex-col justify-center"
+      style={{ minHeight: "60svh", paddingTop: 120, paddingBottom: 80 }}
       aria-labelledby="analisis-hero-title"
     >
       <div className="max-w-[1440px] mx-auto px-6 lg:px-10 xl:px-12 relative z-10">
@@ -77,7 +80,7 @@ function AnalisisCTIHero() {
             </h1>
 
             <p
-              className="text-lg md:text-xl mb-12 max-w-2xl"
+              className="text-lg md:text-xl mb-6 max-w-2xl"
               style={{ color: "rgba(255,255,255,0.75)", fontFamily: "'Source Sans 3','Source Sans Pro',Arial,sans-serif", lineHeight: 1.6 }}
             >
               Esta es la parte más densa del Centro de Pensamiento: informes de tendencias, vigilancia tecnológica y análisis a profundidad, construidos a la medida de las preguntas reales de Medellín y su ecosistema. No son lecturas rápidas. Son las que sostienen decisiones que duran años.
@@ -86,45 +89,17 @@ function AnalisisCTIHero() {
             {/* Prominent Search Bar */}
             <div className="relative max-w-xl mb-4">
               <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-[#253D36]" aria-hidden="true" />
-              <input
-                type="search"
-                placeholder="Busca un informe por título, tema o palabra clave…"
-                className="w-full bg-white text-[#111111] pl-14 pr-5 py-4 rounded-sm border-2 border-transparent focus:outline-none focus:border-[#C0D400] transition-colors"
-                style={{ fontFamily: "'Source Sans 3',Arial,sans-serif", fontSize: "16px" }}
-              />
-              <button
-                className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#253D36] text-white px-4 py-2 rounded-[2px] font-bold text-sm transition-colors hover:bg-[#1C2E29] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400]"
-                style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif" }}
-              >
-                Buscar
-              </button>
+              
+              
             </div>
 
             {/* Microdato */}
-            <p
-              className="text-xs font-semibold mb-10"
-              style={{ color: "rgba(255,255,255,0.5)", fontFamily: "'Source Sans 3',Arial,sans-serif" }}
-            >
-              [N] publicaciones · [N] descargas en [año]
-            </p>
+            
 
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-6">
-              <a
-                href="#categorias"
-                className="inline-flex items-center justify-center font-bold text-sm text-[#253D36] bg-[#C0D400] rounded-[4px] transition-colors duration-200 hover:bg-[#AABC00] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#253D36] px-6"
-                style={{ minHeight: 48, fontFamily: "'Neue Haas Grotesk Display Pro','Helvetica Neue',Arial,sans-serif" }}
-              >
-                Explorar por categoría
-              </a>
-              <a
-                href="#destacados"
-                className="inline-flex items-center gap-2 font-bold text-sm text-white hover:text-[#C0D400] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded-sm"
-                style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Helvetica Neue',Arial,sans-serif" }}
-              >
-                Ver los más descargados
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </a>
+              
+              
             </div>
           </div>
 
@@ -210,124 +185,264 @@ const TOPICS = [
 
 const YEARS = ["Todos", "2024", "2023", "2022", "2021", "2020"];
 
-function AnalisisCTILibrary() {
-  const sectionRef = useRef<HTMLElement>(null);
+// ── Icon map por tipo de contenido ──────────────────────────────────────────
+const TYPE_ICONS: Record<string, React.ComponentType<{ className?: string; style?: React.CSSProperties; "aria-hidden"?: boolean | "true" | "false" }>> = {
+  tendencias: TrendingUp,
+  vigilancia: Eye,
+  ecosistema: Network,
+  notas: FileText,
+  memorias: Users,
+};
 
-  // States
-  const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
+// ── Conteo simulado por tipo ─────────────────────────────────────────────────
+const TYPE_COUNTS: Record<string, number> = {
+  tendencias: 18, vigilancia: 12, ecosistema: 9, notas: 24, memorias: 7,
+};
+
+// ── Publicaciones de ejemplo ─────────────────────────────────────────────────
+const SAMPLE_PUBLICATIONS = [
+  { id: "p1",  type: "tendencias", topic: "Inteligencia artificial",   year: "2024", title: "IA y el futuro del trabajo en Medellín: prospectiva 2025–2030",                  pages: 92,  downloads: "1.4k", isNew: true  },
+  { id: "p2",  type: "vigilancia", topic: "Deeptech",                  year: "2024", title: "Señales tempranas en biotecnología de precisión",                                 pages: 48,  downloads: "620"              },
+  { id: "p3",  type: "ecosistema", topic: "Emprendimiento y startups",  year: "2024", title: "Medellín Tech Report 2024: mapeo y evolución del ecosistema",                    pages: 120, downloads: "1.2k", isNew: true  },
+  { id: "p4",  type: "notas",      topic: "Política pública CTI",      year: "2024", title: "Nota de análisis: Primer año del Distrito CTI, qué funcionó y qué no",            pages: 15,  downloads: "890"              },
+  { id: "p5",  type: "tendencias", topic: "Talento y educación",        year: "2024", title: "El futuro del talento IT: proyecciones 2025–2034",                               pages: 60,  downloads: "650"              },
+  { id: "p6",  type: "vigilancia", topic: "Ciudades inteligentes",      year: "2023", title: "Movilidad autónoma en ciudades latinoamericanas: casos y lecciones",              pages: 55,  downloads: "410"              },
+  { id: "p7",  type: "notas",      topic: "Economía circular",          year: "2023", title: "Cinco modelos de negocio circular rentables en el Valle de Aburrá",              pages: 14,  downloads: "530"              },
+  { id: "p8",  type: "ecosistema", topic: "Industrias creativas",       year: "2023", title: "Economía creativa en Medellín: brechas, activos y oportunidades",                pages: 78,  downloads: "340"              },
+  { id: "p9",  type: "memorias",   topic: "Política pública CTI",      year: "2023", title: "Memorias del Taller Distrital de Innovación Pública",                            pages: 32,  downloads: "215"              },
+  { id: "p10", type: "tendencias", topic: "Sostenibilidad",             year: "2023", title: "Transición energética justa: oportunidades para el sector productivo local",     pages: 86,  downloads: "490"              },
+  { id: "p11", type: "notas",      topic: "Transferencia de tecnología",year: "2022", title: "Nota: Barreras para la transferencia tecnológica universidad–empresa en Antioquia",pages: 11, downloads: "320"             },
+  { id: "p12", type: "vigilancia", topic: "Inteligencia artificial",   year: "2022", title: "Vigilancia de patentes en IA generativa: actores y tendencias globales",         pages: 42,  downloads: "480"              },
+];
+
+function AnalisisCTILibrary() {
+  const sectionRef  = useRef<HTMLElement>(null);
+  const resultsRef  = useRef<HTMLDivElement>(null);
+  const searchRef   = useRef<HTMLInputElement>(null);
+
+  const [selectedType,   setSelectedType]   = useState<string | null>(null);
   const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
-  const [selectedYear, setSelectedYear] = useState<string>("Todos");
-  const [sortOrder, setSortOrder] = useState<string>("Más recientes");
+  const [selectedYear,   setSelectedYear]   = useState<string>("Todos");
+  const [sortOrder,      setSortOrder]      = useState<string>("Más recientes");
+  const [searchQuery,    setSearchQuery]    = useState<string>("");
 
   const reduced = useRef(
     typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches
   );
 
+  // Entry animation
   useEffect(() => {
     if (reduced.current || !sectionRef.current) return;
-
-    if (!gsap.plugins.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
-      gsap.fromTo(".library-fade-up",
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, stagger: 0.1, duration: 0.8, ease: "power2.out", scrollTrigger: { trigger: sectionRef.current, start: "top 80%" } }
+      gsap.fromTo(".lib-entry",
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, stagger: 0.07, duration: 0.65, ease: "power2.out",
+          scrollTrigger: { trigger: sectionRef.current, start: "top 78%" } }
       );
     }, sectionRef);
     return () => ctx.revert();
   }, []);
 
-  const toggleType = (id: string) => {
-    setSelectedTypes(prev => prev.includes(id) ? prev.filter(t => t !== id) : [...prev, id]);
-  };
+  // Animate result cards on filter change
+  useEffect(() => {
+    if (reduced.current || !resultsRef.current) return;
+    const cards = resultsRef.current.querySelectorAll<HTMLElement>(".result-card");
+    if (!cards.length) return;
+    gsap.fromTo(cards,
+      { opacity: 0, y: 14 },
+      { opacity: 1, y: 0, stagger: 0.055, duration: 0.38, ease: "power2.out" }
+    );
+  }, [selectedType, selectedTopics, selectedYear, searchQuery]);
 
-  const toggleTopic = (topic: string) => {
+  const toggleTopic = (topic: string) =>
     setSelectedTopics(prev => prev.includes(topic) ? prev.filter(t => t !== topic) : [...prev, topic]);
-  };
 
   const clearAllFilters = () => {
-    setSelectedTypes([]);
+    setSelectedType(null);
     setSelectedTopics([]);
     setSelectedYear("Todos");
+    setSearchQuery("");
   };
 
-  // Mocking results count
-  const isSearchEmpty = selectedTopics.includes("Deeptech") && selectedYear === "2020";
-  const resultCount = isSearchEmpty ? 0 : 42 - (selectedTypes.length * 3) - (selectedTopics.length * 2) - (selectedYear !== "Todos" ? 15 : 0);
+  const hasFilters = selectedType !== null || selectedTopics.length > 0 || selectedYear !== "Todos" || searchQuery.length > 0;
+
+  // Filter logic
+  const filteredPubs = SAMPLE_PUBLICATIONS.filter(pub => {
+    if (selectedType && pub.type !== selectedType) return false;
+    if (selectedTopics.length > 0 && !selectedTopics.includes(pub.topic)) return false;
+    if (selectedYear !== "Todos" && pub.year !== selectedYear) return false;
+    if (searchQuery.length > 1 && !pub.title.toLowerCase().includes(searchQuery.toLowerCase()) && !pub.topic.toLowerCase().includes(searchQuery.toLowerCase())) return false;
+    return true;
+  });
+
+  const visiblePubs = filteredPubs.slice(0, 8);
+  const isSearchEmpty = visiblePubs.length === 0;
+
+  const TYPE_COLORS: Record<string, string> = {
+    tendencias: "#0068FF", vigilancia: "#00B8A3", ecosistema: "#C0D400",
+    notas: "#FFCA00", memorias: "#FF4C17",
+  };
+
+  const activeTypeMeta = selectedType ? CONTENT_TYPES.find(t => t.id === selectedType) : null;
+  const resultLabel = activeTypeMeta ? ` en "${activeTypeMeta.title}"` : "";
 
   return (
-    <section ref={sectionRef} id="categorias" className="py-24 lg:py-32 bg-[#FAFAF8]" style={{ borderTop: "1px solid rgba(37,61,54,0.06)" }}>
+    <section ref={sectionRef} id="categorias" className="py-14 lg:py-20 bg-[#FAFAF8] relative" style={{ borderTop: "1px solid rgba(37,61,54,0.06)" }}>
       <div className="max-w-[1440px] mx-auto px-6 lg:px-10 xl:px-12">
 
-        {/* ── INTRO ── */}
-        <div className="library-fade-up max-w-3xl mb-16">
-          <h2 className="text-[#253D36] mb-6" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif", fontSize: "clamp(2rem, 3.5vw, 2.75rem)", fontWeight: 900, letterSpacing: "-0.02em", lineHeight: 1.05 }}>
-            Cómo recorrer esta biblioteca
-          </h2>
-          <p className="text-lg" style={{ color: "rgba(37,61,54,0.75)", fontFamily: "'Source Sans 3',Arial,sans-serif", lineHeight: 1.6 }}>
-            Organizamos cada publicación en tres capas: qué tipo de documento es, sobre qué tema trata y de qué año es. Puedes combinarlas libremente. Nuestra recomendación: empieza por el tema si sabes qué te interesa, empieza por el tipo si sabes cómo quieres leerlo, y usa el buscador si ya sabes exactamente qué necesitas.
-          </p>
+        {/* ── HEADER ── */}
+        <div className="lib-entry flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+          <div>
+            <h2 className="text-[#253D36] mb-2" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif", fontSize: "clamp(1.75rem, 3vw, 2.5rem)", fontWeight: 900, letterSpacing: "-0.02em", lineHeight: 1.05 }}>
+              Encuentra lo que necesitas
+            </h2>
+            <p className="text-sm" style={{ color: "rgba(37,61,54,0.6)", fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+              Busca por título o filtra por tipo, tema y año — combínalos libremente.
+            </p>
+          </div>
+          {hasFilters && (
+            <button
+              onClick={clearAllFilters}
+              className="lib-entry shrink-0 inline-flex items-center gap-1.5 text-xs font-bold text-[#0068FF] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] rounded-sm min-h-11 px-1"
+              style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+            >
+              <X className="w-3.5 h-3.5" /> Limpiar todo
+            </button>
+          )}
         </div>
 
-        {/* ── FILTERS ── */}
-        <div className="flex flex-col gap-12 mb-16">
+        {/* ── PASO 1: TIPO DE CONTENIDO — Tarjetas con descripción visible ── */}
+        <div className="lib-entry mb-8">
+          <p className="text-[10px] font-bold tracking-[0.18em] uppercase mb-4" style={{ color: "rgba(37,61,54,0.4)", fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+            ¿Qué tipo de análisis buscas?
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+            {CONTENT_TYPES.map((type) => {
+              const isActive  = selectedType === type.id;
+              const Icon      = TYPE_ICONS[type.id];
+              const accentCol = TYPE_COLORS[type.id];
+              const count     = TYPE_COUNTS[type.id];
+              return (
+                <button
+                  key={type.id}
+                  onClick={() => setSelectedType(isActive ? null : type.id)}
+                  aria-pressed={isActive}
+                  className={`group relative flex flex-col items-start text-left p-6 rounded-[4px] transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] ${
+                    isActive 
+                      ? 'bg-[#253D36] border-[#253D36] shadow-[0_6px_20px_rgba(37,61,54,0.18)]' 
+                      : 'bg-white border-[#253D36]/10 shadow-[0_1px_4px_rgba(37,61,54,0.04)] hover:-translate-y-1 hover:border-[#253D36]/30 hover:shadow-[0_8px_24px_rgba(37,61,54,0.08)]'
+                  }`}
+                  style={{
+                    borderWidth: "1.5px",
+                    borderStyle: "solid",
+                  }}
+                >
+                  {/* Top accent line */}
+                  <span
+                    className="absolute top-0 left-0 right-0 h-[3px] rounded-t-[3px]"
+                    style={{ backgroundColor: accentCol, opacity: isActive ? 1 : 0.35 }}
+                    aria-hidden="true"
+                  />
 
-          {/* Capa 1: Tipo */}
-          <div className="library-fade-up flex flex-col gap-4">
-            <h3 className="text-[11px] font-bold tracking-[0.12em] uppercase text-[#00B8A3]" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>Capa 1 · Tipo de contenido</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
-              {CONTENT_TYPES.map(type => {
-                const isActive = selectedTypes.includes(type.id);
-                return (
-                  <button
-                    key={type.id}
-                    onClick={() => toggleType(type.id)}
-                    className="group text-left p-5 rounded-md transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400]"
-                    style={{
-                      backgroundColor: isActive ? "#253D36" : "white",
-                      border: isActive ? "1px solid #253D36" : "1px solid rgba(37,61,54,0.12)",
-                      boxShadow: isActive ? "0 8px 24px rgba(37,61,54,0.15)" : "none",
-                    }}
-                  >
-                    <h4
-                      className="text-sm font-bold mb-2 transition-colors"
-                      style={{ color: isActive ? "#FFFFFF" : "#253D36", fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif" }}
-                    >
-                      {type.title}
-                    </h4>
-                    <p
-                      className="text-xs transition-colors"
-                      style={{ color: isActive ? "rgba(255,255,255,0.7)" : "rgba(37,61,54,0.6)", fontFamily: "'Source Sans 3',Arial,sans-serif", lineHeight: 1.5 }}
-                    >
-                      {type.desc}
-                    </p>
-                  </button>
-                );
-              })}
-            </div>
+                  {/* Icon */}
+                  <div className="mt-3 mb-4 p-2 rounded-[3px]" style={{ backgroundColor: isActive ? `${accentCol}22` : "rgba(37,61,54,0.05)" }}>
+                    <Icon
+                      className="w-5 h-5"
+                      style={{ color: isActive ? accentCol : "rgba(37,61,54,0.45)" }}
+                      aria-hidden="true"
+                    />
+                  </div>
+
+                  {/* Title */}
+                  <p className="font-bold text-[15px] leading-tight mb-2" style={{
+                    fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif",
+                    color: isActive ? "#FFFFFF" : "#253D36",
+                    letterSpacing: "-0.01em",
+                  }}>
+                    {type.title}
+                  </p>
+
+                  {/* Description — siempre visible */}
+                  <p className="text-xs leading-relaxed mb-5 flex-1" style={{
+                    color: isActive ? "rgba(255,255,255,0.6)" : "rgba(37,61,54,0.5)",
+                    fontFamily: "'Source Sans 3',Arial,sans-serif",
+                  }}>
+                    {type.desc}
+                  </p>
+
+                  {/* Count */}
+                  <span className="inline-flex items-center gap-1 text-[11px] font-bold" style={{
+                    color: isActive ? accentCol : "rgba(37,61,54,0.35)",
+                    fontFamily: "'Source Sans 3',Arial,sans-serif",
+                  }}>
+                    {count} documentos
+                  </span>
+
+                  {/* Selected dot */}
+                  {isActive && (
+                    <span className="absolute top-4 right-4 w-2 h-2 rounded-full" style={{ backgroundColor: accentCol }} aria-hidden="true" />
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* ── PASO 2: BÚSQUEDA + TEMA + AÑO ── */}
+        <div className="lib-entry bg-white rounded-[6px] p-5 mb-6" style={{ border: "1px solid rgba(37,61,54,0.10)", boxShadow: "0 2px 8px rgba(37,61,54,0.04)" }}>
+
+          {/* Search */}
+          <div className="relative mb-5">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none" style={{ color: "rgba(37,61,54,0.35)" }} aria-hidden="true" />
+            <input
+              ref={searchRef}
+              type="search"
+              value={searchQuery}
+              onChange={e => setSearchQuery(e.target.value)}
+              placeholder="Busca por título, autor o tema…"
+              className="w-full text-[#253D36] font-medium text-sm pl-11 pr-10 py-3.5 rounded-[4px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400]"
+              style={{
+                backgroundColor: "#FAFAF8",
+                border: "1px solid rgba(37,61,54,0.12)",
+                fontFamily: "'Source Sans 3',Arial,sans-serif",
+              }}
+              aria-label="Buscar publicaciones"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery("")}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-[#253D36]/40 hover:text-[#253D36] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] rounded-sm"
+                aria-label="Borrar búsqueda"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            )}
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
-            {/* Capa 2: Tema */}
-            <div className="library-fade-up lg:col-span-8 flex flex-col gap-4">
-              <h3 className="text-[11px] font-bold tracking-[0.12em] uppercase text-[#00B8A3]" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>Capa 2 · Tema</h3>
-              <div className="flex flex-wrap gap-2.5">
+          {/* Tema + Año */}
+          <div className="flex flex-col lg:flex-row lg:items-start gap-5">
+            <div className="flex-1">
+              <p className="text-[10px] font-bold tracking-[0.14em] uppercase mb-2.5" style={{ color: "rgba(37,61,54,0.4)", fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                Tema
+              </p>
+              <div className="flex flex-wrap gap-1.5">
                 {TOPICS.map(topic => {
                   const isActive = selectedTopics.includes(topic);
                   return (
                     <button
                       key={topic}
                       onClick={() => toggleTopic(topic)}
-                      className="px-4 py-2 rounded-full text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#253D36]"
+                      className="flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400]"
                       style={{
                         fontFamily: "'Source Sans 3',Arial,sans-serif",
-                        backgroundColor: isActive ? "#C0D400" : "transparent",
+                        backgroundColor: isActive ? "#C0D400" : "rgba(37,61,54,0.05)",
                         color: "#253D36",
-                        border: isActive ? "1px solid #C0D400" : "1px solid rgba(37,61,54,0.2)",
+                        border: isActive ? "1px solid #C0D400" : "1px solid transparent",
                       }}
-                      onMouseEnter={(e) => { if (!isActive) e.currentTarget.style.backgroundColor = "rgba(37,61,54,0.05)"; }}
-                      onMouseLeave={(e) => { if (!isActive) e.currentTarget.style.backgroundColor = "transparent"; }}
+                      aria-pressed={isActive}
                     >
+                      {isActive && <X className="w-2.5 h-2.5 opacity-70" aria-hidden="true" />}
                       {topic}
                     </button>
                   );
@@ -335,124 +450,140 @@ function AnalisisCTILibrary() {
               </div>
             </div>
 
-            {/* Capa 3: Año */}
-            <div className="library-fade-up lg:col-span-4 flex flex-col gap-4">
-              <h3 className="text-[11px] font-bold tracking-[0.12em] uppercase text-[#00B8A3]" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>Capa 3 · Año</h3>
-              <div className="relative">
-                <select
-                  value={selectedYear}
-                  onChange={(e) => setSelectedYear(e.target.value)}
-                  className="w-full appearance-none bg-white text-[#253D36] font-bold text-sm px-5 py-3.5 border border-[rgba(37,61,54,0.2)] rounded-md cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] transition-colors hover:bg-[rgba(37,61,54,0.02)]"
-                  style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif" }}
-                >
-                  {YEARS.map(y => <option key={y} value={y}>{y}</option>)}
-                </select>
-                <ChevronDown className="w-5 h-5 text-[#253D36] absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true" />
-              </div>
-            </div>
-          </div>
+            <div className="hidden lg:block w-px self-stretch" style={{ backgroundColor: "rgba(37,61,54,0.07)" }} />
 
-        </div>
-
-        {/* ── ACTIVE FILTERS & RESULTS HEADER ── */}
-        <div className="library-fade-up bg-[#FAFAF8] py-4" style={{ borderBottom: "1px solid rgba(37,61,54,0.1)" }}>
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-
-            <div className="flex flex-col gap-3">
-              <p className="text-sm font-bold text-[#253D36]" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
-                {resultCount} publicaciones coinciden con tu búsqueda
+            <div className="lg:min-w-[196px]">
+              <p className="text-[10px] font-bold tracking-[0.14em] uppercase mb-2.5" style={{ color: "rgba(37,61,54,0.4)", fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                Año
               </p>
-
-              {/* Active Filter Chips */}
-              {(selectedTypes.length > 0 || selectedTopics.length > 0 || selectedYear !== "Todos") && (
-                <div className="flex flex-wrap items-center gap-2">
-                  {selectedTypes.map(id => {
-                    const title = CONTENT_TYPES.find(t => t.id === id)?.title;
-                    return (
-                      <button key={id} onClick={() => toggleType(id)} className="flex items-center gap-1.5 px-2.5 py-1 bg-[#253D36] text-white rounded-[2px] text-xs font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400]" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
-                        Tipo: {title} <X className="w-3 h-3 opacity-70 hover:opacity-100" />
-                      </button>
-                    );
-                  })}
-                  {selectedTopics.map(topic => (
-                    <button key={topic} onClick={() => toggleTopic(topic)} className="flex items-center gap-1.5 px-2.5 py-1 bg-[#C0D400] text-[#253D36] rounded-[2px] text-xs font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#253D36]" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
-                      Tema: {topic} <X className="w-3 h-3 opacity-70 hover:opacity-100" />
+              <div className="flex flex-wrap gap-1.5">
+                {YEARS.map(y => {
+                  const isActive = selectedYear === y;
+                  return (
+                    <button
+                      key={y}
+                      onClick={() => setSelectedYear(y)}
+                      className="px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400]"
+                      style={{
+                        fontFamily: "'Source Sans 3',Arial,sans-serif",
+                        backgroundColor: isActive ? "#253D36" : "rgba(37,61,54,0.05)",
+                        color: isActive ? "#FFFFFF" : "#253D36",
+                        border: isActive ? "1px solid #253D36" : "1px solid transparent",
+                      }}
+                      aria-pressed={isActive}
+                    >
+                      {y}
                     </button>
-                  ))}
-                  {selectedYear !== "Todos" && (
-                    <button onClick={() => setSelectedYear("Todos")} className="flex items-center gap-1.5 px-2.5 py-1 bg-[rgba(37,61,54,0.1)] text-[#253D36] rounded-[2px] text-xs font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400]" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
-                      Año: {selectedYear} <X className="w-3 h-3 opacity-70 hover:opacity-100" />
-                    </button>
-                  )}
-                  <button onClick={clearAllFilters} className="text-xs font-bold text-[#0068FF] hover:underline ml-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] rounded-sm" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
-                    Quitar todos los filtros
-                  </button>
-                </div>
-              )}
-            </div>
-
-            <div className="flex items-center gap-3 shrink-0">
-              <span className="text-xs font-bold text-[#253D36]/60 flex items-center gap-1" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
-                <SlidersHorizontal className="w-3.5 h-3.5" /> Orden:
-              </span>
-              <div className="relative">
-                <select
-                  value={sortOrder}
-                  onChange={(e) => setSortOrder(e.target.value)}
-                  className="appearance-none bg-transparent text-sm font-bold text-[#253D36] pr-6 py-1 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] rounded-sm"
-                  style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
-                >
-                  <option value="Más recientes">Más recientes</option>
-                  <option value="Más descargados">Más descargados</option>
-                  <option value="A–Z">A–Z</option>
-                </select>
-                <ChevronDown className="w-4 h-4 text-[#253D36] absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true" />
+                  );
+                })}
               </div>
             </div>
-
           </div>
         </div>
 
-        {/* ── RESULTS AREA (Empty State or Grid) ── */}
-        <div className="library-fade-up pt-12 pb-16 min-h-[400px]">
+        {/* ── BARRA DE RESULTADOS ── */}
+        <div className="lib-entry flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-4" style={{ borderBottom: "1px solid rgba(37,61,54,0.09)" }}>
+          <p className="text-sm font-bold text-[#253D36]" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+            {isSearchEmpty
+              ? "Sin resultados"
+              : <>{visiblePubs.length} <span className="font-normal text-[#253D36]/60">publicaciones{resultLabel}</span></>
+            }
+          </p>
+          <div className="flex items-center gap-2 shrink-0">
+            <span className="text-xs text-[#253D36]/50" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>Ordenar por</span>
+            <div className="relative">
+              <select
+                value={sortOrder}
+                onChange={e => setSortOrder(e.target.value)}
+                className="appearance-none bg-transparent text-xs font-bold text-[#253D36] pr-5 min-h-9 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] rounded-sm"
+                style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+              >
+                <option>Más recientes</option>
+                <option>Más descargados</option>
+                <option>A–Z</option>
+              </select>
+              <ChevronDown className="w-3.5 h-3.5 text-[#253D36] absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true" />
+            </div>
+          </div>
+        </div>
+
+        {/* ── RESULTADOS ── */}
+        <div ref={resultsRef} className="pt-2 pb-10 min-h-[240px]">
           {isSearchEmpty ? (
-            <div className="text-center py-20 bg-white rounded-md border border-dashed border-[rgba(37,61,54,0.15)] max-w-3xl mx-auto flex flex-col items-center">
-              <div className="w-16 h-16 rounded-full bg-[#FAFAF8] flex items-center justify-center mb-5" style={{ border: "1px solid rgba(37,61,54,0.06)" }}>
-                <Search className="w-6 h-6 text-[#253D36]/30" />
+            <div className="text-center py-20 bg-white rounded-md border border-dashed border-[rgba(37,61,54,0.15)] max-w-2xl mx-auto flex flex-col items-center">
+              <div className="w-14 h-14 rounded-full bg-[#FAFAF8] flex items-center justify-center mb-4" style={{ border: "1px solid rgba(37,61,54,0.06)" }}>
+                <Search className="w-5 h-5 text-[#253D36]/25" />
               </div>
-              <h3 className="text-xl font-bold text-[#253D36] mb-3" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif" }}>Sin resultados</h3>
-              <p className="text-[#253D36]/60 mb-6 max-w-md leading-relaxed" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
-                No encontramos nada con esa combinación. Prueba ampliando el año o quitando un filtro. Si crees que deberíamos estar analizando ese tema, cuéntanoslo.
+              <h3 className="text-lg font-bold text-[#253D36] mb-2" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif" }}>Sin resultados</h3>
+              <p className="text-sm text-[#253D36]/55 mb-5 max-w-sm leading-relaxed" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                Ninguna publicación coincide con esa combinación. Prueba quitando algún filtro.
               </p>
-              <button onClick={clearAllFilters} className="font-bold text-sm text-[#0068FF] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] rounded-sm" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
-                Limpiar filtros
+              <button onClick={clearAllFilters} className="inline-flex items-center gap-1.5 min-h-9 px-4 py-2 rounded-md bg-[#253D36] text-white text-sm font-bold hover:bg-[#1C2E29] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] transition-colors" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                <X className="w-3.5 h-3.5" /> Limpiar filtros
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {/* Dummy cards to represent grid */}
-              {Array.from({ length: Math.min(8, resultCount) }).map((_, i) => (
-                <div key={i} className="bg-white rounded-md overflow-hidden flex flex-col group transition-all hover:shadow-lg border border-[rgba(37,61,54,0.08)] focus-within:ring-2 focus-within:ring-[#C0D400]">
-                  <div className="w-full aspect-[4/3] bg-[#EBF2EA] relative overflow-hidden flex items-center justify-center">
-                    <div className="w-16 h-20 bg-white shadow-sm -rotate-3 rounded-sm border border-[rgba(37,61,54,0.05)]" />
-                    <div className="absolute top-3 left-3 bg-[#00B8A3] text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-[2px] shadow-sm">
-                      {selectedTypes[0] ? CONTENT_TYPES.find(t => t.id === selectedTypes[0])?.title : "Informe"}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+              {visiblePubs.map((pub) => {
+                const accentCol = TYPE_COLORS[pub.type];
+                return (
+                  <article
+                    key={pub.id}
+                    className="result-card bg-white rounded-[4px] overflow-hidden flex flex-col group transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(37,61,54,0.12)] focus-within:ring-2 focus-within:ring-[#C0D400] relative"
+                    style={{ border: "1px solid rgba(37,61,54,0.09)" }}
+                  >
+                    {/* Portada */}
+                    <div className="w-full aspect-video relative overflow-hidden flex items-center justify-center" style={{ backgroundColor: `${accentCol}15` }}>
+                      {/* Accent top line */}
+                      <span className="absolute top-0 left-0 right-0 h-[3px]" style={{ backgroundColor: accentCol }} aria-hidden="true" />
+                      {/* Document placeholder */}
+                      <div className="w-10 h-14 bg-white/80 rounded-[2px] shadow-md -rotate-2" aria-hidden="true" />
+                      {/* New badge */}
+                      {pub.isNew && (
+                        <span
+                          className="absolute bottom-3 right-3 inline-flex items-center gap-1 px-1.5 py-0.5 rounded-[2px] text-[9px] font-bold text-white"
+                          style={{ backgroundColor: "#0068FF", fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+                        >
+                          <Star className="w-2.5 h-2.5" aria-hidden="true" /> Nuevo
+                        </span>
+                      )}
+                      {/* Type badge */}
+                      <span
+                        className="absolute top-3 left-3 text-[9px] font-bold uppercase tracking-wider px-2 py-1 rounded-[2px]"
+                        style={{
+                          backgroundColor: accentCol,
+                          color: pub.type === "notas" ? "#253D36" : "#FFFFFF",
+                          fontFamily: "'Source Sans 3',Arial,sans-serif",
+                        }}
+                      >
+                        {CONTENT_TYPES.find(t => t.id === pub.type)?.title}
+                      </span>
                     </div>
-                  </div>
-                  <div className="p-5 flex flex-col flex-1">
-                    <p className="text-xs font-bold text-[#0068FF] mb-2" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
-                      {selectedTopics[0] || "Inteligencia artificial"}
-                    </p>
-                    <h4 className="text-lg font-bold text-[#253D36] mb-3 leading-tight group-hover:text-[#0068FF] transition-colors" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif", letterSpacing: "-0.01em" }}>
-                      <a href="#reporte" className="focus:outline-none">
-                        <span className="absolute inset-0" aria-hidden="true" />
-                        Reporte de evaluación y prospectiva {selectedYear !== "Todos" ? selectedYear : "2024"}
-                      </a>
-                    </h4>
-                    <p className="text-xs text-[#253D36]/50 mt-auto" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>Publicado: {selectedYear !== "Todos" ? selectedYear : "Oct 2024"}</p>
-                  </div>
-                </div>
-              ))}
+
+                    <div className="p-5 flex flex-col flex-1">
+                      <p className="text-[11px] font-bold text-[#0068FF] mb-2 leading-none" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                        {pub.topic}
+                      </p>
+                      <h4 className="text-sm font-bold text-[#253D36] mb-auto leading-snug group-hover:text-[#0068FF] transition-colors" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif", letterSpacing: "-0.01em" }}>
+                        <a href="#reporte" className="focus:outline-none focus-visible:outline-none">
+                          <span className="absolute inset-0 z-10" aria-hidden="true" />
+                          {pub.title}
+                        </a>
+                      </h4>
+                      <div className="mt-4 pt-3 flex items-center justify-between" style={{ borderTop: "1px solid rgba(37,61,54,0.07)" }}>
+                        <div className="flex items-center gap-2 text-[10px] text-[#253D36]/45" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                          <span>{pub.year}</span>
+                          <span aria-hidden="true">·</span>
+                          <span>{pub.pages} págs.</span>
+                        </div>
+                        <span className="flex items-center gap-1 text-[10px] font-bold text-[#253D36]/40" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                          <Download className="w-3 h-3" aria-hidden="true" /> {pub.downloads}
+                        </span>
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
             </div>
           )}
         </div>
@@ -583,11 +714,11 @@ function AnalisisCTIFeatured() {
   };
 
   return (
-    <section ref={sectionRef} className="py-24 lg:py-32 bg-white relative">
+    <section ref={sectionRef} id="mapeo-destacados" className="py-10 lg:py-14 bg-white relative">
       <div className="max-w-[1440px] mx-auto px-6 lg:px-10 xl:px-12">
 
         {/* ── HEADER ── */}
-        <div className="featured-fade max-w-3xl mb-12">
+        <div className="featured-fade max-w-3xl mb-6">
           <h2 className="text-[#253D36] mb-5" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif", fontSize: "clamp(2.25rem, 4vw, 3.5rem)", fontWeight: 900, letterSpacing: "-0.02em", lineHeight: 1.05 }}>
             Los más consultados
           </h2>
@@ -597,7 +728,7 @@ function AnalisisCTIFeatured() {
         </div>
 
         {/* ── TABS ── */}
-        <div className="featured-fade mb-12" role="tablist">
+        <div className="featured-fade mb-6" role="tablist">
           <div className="flex items-center gap-2 overflow-x-auto pb-4 lg:pb-0 hide-scrollbar" style={{ scrollbarWidth: 'none' }}>
             {["Más descargados", "Más recientes", "Selección de Nova"].map((tab) => {
               const isActive = activeTab === tab;
@@ -625,7 +756,7 @@ function AnalisisCTIFeatured() {
         </div>
 
         {/* ── GRID (Estantería) ── */}
-        <div ref={gridRef} className="featured-fade grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-16">
+        <div ref={gridRef} className="featured-fade grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-8">
           {FEATURED_REPORTS.map((report, idx) => {
             const isFeatured = idx === 0;
 
@@ -637,7 +768,7 @@ function AnalisisCTIFeatured() {
                   border: "1px solid rgba(37,61,54,0.1)",
                   borderLeft: `8px solid ${report.color}`,
                   borderRadius: "2px 6px 6px 2px",
-                  minHeight: isFeatured ? "auto" : "460px"
+                  minHeight: isFeatured ? "auto" : "380px"
                 }}
               >
                 {/* Lomo / Spine shading */}
@@ -647,16 +778,16 @@ function AnalisisCTIFeatured() {
                 <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')" }}></div>
 
                 {/* Contenido impreso en la portada */}
-                <div className="flex flex-col flex-1 p-8 lg:p-10 relative z-10">
-                  <div className="mb-6">
+                <div className="flex flex-col flex-1 p-6 lg:p-8 relative z-10">
+                  <div className="mb-4">
                     <span
-                      className="inline-flex items-center px-2.5 py-1 rounded-[2px] text-[10px] font-bold tracking-widest uppercase mb-6"
+                      className="inline-flex items-center px-2 py-0.5 rounded-[2px] text-[9px] font-bold tracking-widest uppercase mb-4"
                       style={{ backgroundColor: "rgba(37,61,54,0.06)", color: "#253D36", fontFamily: "'Source Sans 3',Arial,sans-serif" }}
                     >
                       {report.type}
                     </span>
                     <h3
-                      className={`font-black text-[#253D36] mb-4 leading-tight group-hover:text-[#0068FF] transition-colors ${isFeatured ? "text-3xl lg:text-4xl pr-8" : "text-2xl"}`}
+                      className={`font-black text-[#253D36] mb-3 leading-tight group-hover:text-[#0068FF] transition-colors ${isFeatured ? "text-2xl lg:text-3xl pr-6" : "text-xl"}`}
                       style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif", letterSpacing: "-0.02em" }}
                     >
                       <a href="#descargar" className="focus-visible:outline-none before:absolute before:inset-0 before:z-10">
@@ -664,23 +795,23 @@ function AnalisisCTIFeatured() {
                       </a>
                     </h3>
                     <p
-                      className={`text-[#253D36]/70 leading-relaxed ${isFeatured ? "text-lg line-clamp-4" : "text-sm line-clamp-3"}`}
+                      className={`text-[#253D36]/70 leading-relaxed ${isFeatured ? "text-base line-clamp-3" : "text-[13px] line-clamp-3"}`}
                       style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
                     >
                       {report.summary}
                     </p>
                   </div>
 
-                  <div className="mt-auto pt-8 flex flex-col gap-5">
+                  <div className="mt-auto pt-3 flex flex-col gap-3">
                     {/* Metadatos superiores (Tema, Año) */}
-                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-bold text-[#253D36]" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                    <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-bold text-[#253D36]" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
                       <span style={{ color: report.color === "#C0D400" ? "#8A9900" : report.color }}>{report.topic}</span>
                       <span className="text-[#253D36]/30">·</span>
                       <span className="text-[#253D36]/60">{report.year}</span>
                     </div>
 
                     {/* Metadatos técnicos */}
-                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-[#253D36]/60 font-medium" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                    <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[10px] text-[#253D36]/60 font-medium" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
                       <span>PDF</span>
                       <span className="text-[#253D36]/30">·</span>
                       <span>{report.pages} páginas</span>
@@ -691,9 +822,9 @@ function AnalisisCTIFeatured() {
                     </div>
 
                     {/* Acciones */}
-                    <div className="flex flex-wrap items-center gap-5 mt-2 relative z-20" style={{ borderTop: "1px solid rgba(37,61,54,0.1)", paddingTop: "1rem" }}>
-                      <a href="#pdf" className="inline-flex items-center gap-1.5 text-sm font-bold text-[#0068FF] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] rounded-sm" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
-                        <Download className="w-4 h-4" /> Descargar PDF
+                    <div className="flex flex-wrap items-center gap-4 mt-1 relative z-20" style={{ borderTop: "1px solid rgba(37,61,54,0.1)", paddingTop: "0.75rem" }}>
+                      <a href="#pdf" className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0068FF] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] rounded-sm" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                        <Download className="w-3.5 h-3.5" /> Descargar PDF
                       </a>
                       <a href="#leer" className="inline-flex items-center gap-1.5 text-sm font-bold text-[#253D36] hover:text-[#00B8A3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] rounded-sm transition-colors" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
                         <BookOpen className="w-4 h-4" /> Leer en línea
@@ -707,7 +838,7 @@ function AnalisisCTIFeatured() {
         </div>
 
         {/* ── FOOTER ACTIONS ── */}
-        <div className="featured-fade flex flex-col items-center justify-center border-t border-[rgba(37,61,54,0.1)] pt-12 text-center">
+        <div className="featured-fade flex flex-col items-center justify-center border-t border-[rgba(37,61,54,0.1)] pt-8 text-center">
           <a
             href="/analisis-cti/publicaciones"
             className="inline-flex items-center justify-center font-bold text-sm text-[#253D36] bg-[#C0D400] rounded-[4px] transition-colors duration-200 hover:bg-[#AABC00] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#253D36] focus-visible:ring-offset-2 px-8 mb-6"
@@ -715,7 +846,7 @@ function AnalisisCTIFeatured() {
           >
             Ver todas las publicaciones
           </a>
-          <p className="text-xs text-[#253D36]/50 max-w-md mx-auto mb-16" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif", lineHeight: 1.5 }}>
+          <p className="text-xs text-[#253D36]/50 max-w-md mx-auto mb-6" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif", lineHeight: 1.5 }}>
             No pedimos registro para descargar. El conocimiento del Centro de Pensamiento es público.
           </p>
 
@@ -885,7 +1016,8 @@ const NOVA_ANSWER = `En la edición 2024 del Global Startup Ecosystem Index (pub
 const NOVA_ERROR = `Esto excede lo que tengo documentado. Puedes buscarlo manualmente en la biblioteca o escribirle al equipo del Centro de Pensamiento.`;
 
 function AnalisisCTINova() {
-  const [question, setQuestion]   = useState("");
+  const [inputValue, setInputValue] = useState("");
+  const [messages, setMessages] = useState<{id: string; role: "user" | "nova"; content: string}[]>([]);
   const [chatState, setChatState] = useState<"idle" | "typing" | "answered" | "error">("idle");
   const sectionRef  = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -893,17 +1025,17 @@ function AnalisisCTINova() {
   const chatBodyRef = useRef<HTMLDivElement>(null);
   const inputRef    = useRef<HTMLInputElement>(null);
 
-  const answerText = chatState === "error" ? NOVA_ERROR : NOVA_ANSWER;
+  const lastNovaMsg = messages.length > 0 && messages[messages.length - 1].role === "nova" 
+    ? messages[messages.length - 1].content 
+    : "";
+  const answerText = lastNovaMsg || NOVA_ANSWER;
   const typeActive = chatState === "answered" || chatState === "error";
   const { displayed, done: typeDone } = useTypewriter(answerText, typeActive);
 
-  // Pasamos el chatState y typeDone al hook para que reaccione exactamente al habla
   useWaveCanvas(canvasRef, chatState, typeDone);
 
-  // Status computation for UI elements
   const isSpeaking = (chatState === "answered" || chatState === "error") && !typeDone;
 
-  // Section entrance
   useEffect(() => {
     if (!containerRef.current) return;
     gsap.fromTo(containerRef.current,
@@ -913,32 +1045,36 @@ function AnalisisCTINova() {
     );
   }, []);
 
-  // Auto-scroll chat body
   useEffect(() => {
     if (chatBodyRef.current) chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
-  }, [displayed, chatState]);
+  }, [displayed, messages, chatState]);
 
   const handleAsk = (e?: React.FormEvent, presetQ?: string) => {
     e?.preventDefault();
-    const q = presetQ ?? question;
+    const q = presetQ ?? inputValue;
     if (!q.trim() || chatState === "typing") return;
-    setQuestion(q);
+    
+    setMessages(prev => [...prev, { id: Date.now().toString(), role: "user", content: q }]);
+    setInputValue("");
     setChatState("typing");
     setTimeout(() => {
-      setChatState(
-        q.toLowerCase().includes("startupblink") || q.toLowerCase().includes("puesto")
-          ? "answered"
-          : "error"
-      );
+      const isErr = !(q.toLowerCase().includes("startupblink") || q.toLowerCase().includes("puesto"));
+      setMessages(prev => [...prev, { 
+        id: (Date.now() + 1).toString(), 
+        role: "nova", 
+        content: isErr ? NOVA_ERROR : NOVA_ANSWER 
+      }]);
+      setChatState(isErr ? "error" : "answered");
     }, 1800);
   };
 
-  const resetChat = () => { setQuestion(""); setChatState("idle"); inputRef.current?.focus(); };
+  const resetChat = () => { setInputValue(""); setMessages([]); setChatState("idle"); inputRef.current?.focus(); };
 
   return (
     <section
       ref={sectionRef}
-      className="py-14 lg:py-20 bg-[#111111] relative overflow-hidden"
+      id="nova-demo"
+      className="py-8 lg:py-12 bg-[#111111] relative overflow-hidden"
       aria-labelledby="nova-heading"
     >
       {/* Background Image */}
@@ -960,7 +1096,7 @@ function AnalisisCTINova() {
       <div className="max-w-[1440px] mx-auto px-6 lg:px-10 xl:px-12 relative z-10 flex flex-col items-center">
 
         {/* ── Section header ── */}
-        <div className="text-center max-w-3xl mb-8">
+        <div className="text-center max-w-3xl mb-4">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 mb-4 rounded-full"
             style={{ background: "rgba(192,212,0,0.08)", border: "1px solid rgba(192,212,0,0.2)" }}>
             <Sparkles className="w-3.5 h-3.5 text-[#C0D400]" aria-hidden="true" />
@@ -1084,40 +1220,111 @@ function AnalisisCTINova() {
               </div>
             )}
 
-            {/* Active conversation */}
+                        {/* Active conversation */}
             {chatState !== "idle" && (
               <div className="flex flex-col gap-5">
+                {messages.map((msg, idx) => {
+                  const isUser = msg.role === "user";
+                  const isLatest = idx === messages.length - 1;
 
-                {/* User bubble */}
-                <div className="self-end max-w-[85%] px-5 py-4 rounded-t-2xl rounded-bl-2xl text-[15px]"
-                  style={{
-                    background: "rgba(192,212,0,0.15)",
-                    backdropFilter: "blur(12px)",
-                    WebkitBackdropFilter: "blur(12px)",
-                    border: "1px solid rgba(192,212,0,0.3)",
-                    color: "rgba(255,255,255,0.95)",
-                    fontFamily: "'Source Sans 3',Arial,sans-serif",
-                    lineHeight: 1.55,
-                    boxShadow: "0 8px 32px rgba(0,0,0,0.3)"
-                  }}>
-                  {question}
-                </div>
+                  if (isUser) {
+                    return (
+                      <div key={msg.id} className="self-end max-w-[85%] px-5 py-4 rounded-t-2xl rounded-bl-2xl text-[15px]"
+                        style={{
+                          background: "rgba(192,212,0,0.15)",
+                          backdropFilter: "blur(12px)",
+                          WebkitBackdropFilter: "blur(12px)",
+                          border: "1px solid rgba(192,212,0,0.3)",
+                          color: "rgba(255,255,255,0.95)",
+                          fontFamily: "'Source Sans 3',Arial,sans-serif",
+                          lineHeight: 1.55,
+                          boxShadow: "0 8px 32px rgba(0,0,0,0.3)"
+                        }}>
+                        {msg.content}
+                      </div>
+                    );
+                  }
 
-                {/* Nova response */}
-                <div className="self-start w-full max-w-[92%]">
-                  <div className="flex items-center gap-2 mb-2.5">
-                    <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0"
-                      style={{ background: "rgba(192,212,0,0.15)", border: "1px solid rgba(192,212,0,0.3)" }}>
-                      <Sparkles className="w-2.5 h-2.5 text-[#C0D400]" aria-hidden="true" />
+                  const isErr = msg.content === NOVA_ERROR;
+                  return (
+                    <div key={msg.id} className="self-start w-full max-w-[92%]">
+                      <div className="flex items-center gap-2 mb-2.5">
+                        <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0"
+                          style={{ background: "rgba(192,212,0,0.15)", border: "1px solid rgba(192,212,0,0.3)" }}>
+                          <Sparkles className="w-2.5 h-2.5 text-[#C0D400]" aria-hidden="true" />
+                        </div>
+                        <span className="text-[11px] font-bold tracking-[0.10em] text-[#C0D400]"
+                          style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                          Nova
+                        </span>
+                      </div>
+
+                      <div className="flex flex-col gap-4 px-6 py-5 rounded-b-2xl rounded-tr-2xl"
+                        style={{
+                          background: "rgba(255,255,255,0.06)",
+                          backdropFilter: "blur(12px)",
+                          WebkitBackdropFilter: "blur(12px)",
+                          boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
+                          border: isErr
+                            ? "1px solid rgba(255,76,23,0.3)"
+                            : "1px solid rgba(255,255,255,0.15)",
+                        }}>
+                        <p className="text-[15px]"
+                          style={{ color: "rgba(255,255,255,0.82)", fontFamily: "'Source Sans 3',Arial,sans-serif", lineHeight: 1.65 }}>
+                          {isLatest ? displayed : msg.content}
+                          {isLatest && !typeDone && (
+                            <span
+                              aria-hidden="true"
+                              style={{
+                                display: "inline-block",
+                                width: 2,
+                                height: "1em",
+                                background: "#C0D400",
+                                marginLeft: 2,
+                                verticalAlign: "text-bottom",
+                                animation: "nova-blink 0.8s step-end infinite",
+                              }}
+                            />
+                          )}
+                        </p>
+
+                        {(!isLatest || (isLatest && typeDone)) && !isErr && (
+                          <div className="pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                            style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
+                            <p className="text-[11px] flex items-center gap-1.5"
+                              style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                              <FileText className="w-3 h-3" aria-hidden="true" />
+                              Fuente: Global Startup Ecosystem Index 2024
+                            </p>
+                            <a
+                              href="#descargar"
+                              className="inline-flex items-center min-h-11 gap-1 text-[11px] font-bold uppercase tracking-wider transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#C0D400] rounded-sm"
+                              style={{ color: "#C0D400", fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+                              onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
+                              onMouseLeave={(e) => (e.currentTarget.style.color = "#C0D400")}
+                            >
+                              Descargar documento completo →
+                            </a>
+                          </div>
+                        )}
+                      </div>
                     </div>
-                    <span className="text-[11px] font-bold tracking-[0.10em] text-[#C0D400]"
-                      style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
-                      Nova
-                    </span>
-                  </div>
+                  );
+                })}
 
-                  {/* Typing indicator */}
-                  {chatState === "typing" && (
+                {/* Typing indicator (only when chatState === "typing") */}
+                {chatState === "typing" && (
+                  <div className="self-start w-full max-w-[92%]">
+                    <div className="flex items-center gap-2 mb-2.5">
+                      <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0"
+                        style={{ background: "rgba(192,212,0,0.15)", border: "1px solid rgba(192,212,0,0.3)" }}>
+                        <Sparkles className="w-2.5 h-2.5 text-[#C0D400]" aria-hidden="true" />
+                      </div>
+                      <span className="text-[11px] font-bold tracking-[0.10em] text-[#C0D400]"
+                        style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                        Nova
+                      </span>
+                    </div>
                     <div className="inline-flex gap-1.5 px-5 py-4 rounded-b-2xl rounded-tr-2xl"
                       style={{ 
                         background: "rgba(255,255,255,0.06)", 
@@ -1131,62 +1338,8 @@ function AnalisisCTINova() {
                           style={{ background: "#C0D400", animationDelay: `${delay}ms` }} />
                       ))}
                     </div>
-                  )}
-
-                  {/* Answer with typewriter */}
-                  {(chatState === "answered" || chatState === "error") && (
-                    <div className="flex flex-col gap-4 px-6 py-5 rounded-b-2xl rounded-tr-2xl"
-                      style={{
-                        background: "rgba(255,255,255,0.06)",
-                        backdropFilter: "blur(12px)",
-                        WebkitBackdropFilter: "blur(12px)",
-                        boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
-                        border: chatState === "error"
-                          ? "1px solid rgba(255,76,23,0.3)"
-                          : "1px solid rgba(255,255,255,0.15)",
-                      }}>
-                      <p className="text-[15px]"
-                        style={{ color: "rgba(255,255,255,0.82)", fontFamily: "'Source Sans 3',Arial,sans-serif", lineHeight: 1.65 }}>
-                        {displayed}
-                        {!typeDone && (
-                          <span
-                            aria-hidden="true"
-                            style={{
-                              display: "inline-block",
-                              width: 2,
-                              height: "1em",
-                              background: "#C0D400",
-                              marginLeft: 2,
-                              verticalAlign: "text-bottom",
-                              animation: "nova-blink 0.8s step-end infinite",
-                            }}
-                          />
-                        )}
-                      </p>
-
-                      {/* Citation — visible only when typing is done and it's not an error */}
-                      {typeDone && chatState === "answered" && (
-                        <div className="pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
-                          style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
-                          <p className="text-[11px] flex items-center gap-1.5"
-                            style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
-                            <FileText className="w-3 h-3" aria-hidden="true" />
-                            Fuente: Medellín Tech Report 2024.
-                          </p>
-                          <a
-                            href="#descargar"
-                            className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#C0D400] rounded-sm"
-                            style={{ color: "#C0D400", fontFamily: "'Source Sans 3',Arial,sans-serif" }}
-                            onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
-                            onMouseLeave={(e) => (e.currentTarget.style.color = "#C0D400")}
-                          >
-                            Descargar documento completo →
-                          </a>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             )}
           </div>
@@ -1197,39 +1350,23 @@ function AnalisisCTINova() {
               <input
                 ref={inputRef}
                 type="text"
-                value={question}
-                onChange={(e) => setQuestion(e.target.value)}
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Escribe tu pregunta sobre el ecosistema CTI de Medellín…"
-                className="flex-1 py-4 pl-5 pr-5 rounded-full text-[15px] transition-all duration-150 focus:outline-none"
-                style={{
-                  background: "rgba(255,255,255,0.06)",
-                  backdropFilter: "blur(12px)",
-                  WebkitBackdropFilter: "blur(12px)",
-                  border: "1px solid rgba(255,255,255,0.15)",
-                  color: "rgba(255,255,255,0.95)",
-                  fontFamily: "'Source Sans 3',Arial,sans-serif",
-                  boxShadow: "0 8px 32px rgba(0,0,0,0.4)"
-                }}
-                onFocus={(e) => {
-                  e.currentTarget.style.borderColor = "rgba(192,212,0,0.5)";
-                  e.currentTarget.style.background  = "rgba(255,255,255,0.1)";
-                }}
-                onBlur={(e) => {
-                  e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)";
-                  e.currentTarget.style.background  = "rgba(255,255,255,0.06)";
-                }}
+                className="flex-1 py-4 px-6 rounded-full text-[15px] transition-all duration-200 outline-none border border-white/15 bg-white/5 text-white/95 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.4)] focus:border-[#C0D400]/50 focus:bg-white/10 focus:ring-2 focus:ring-[#C0D400] focus:ring-offset-2 focus:ring-offset-[#111111]"
+                style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
                 aria-label="Pregunta para Nova"
                 disabled={chatState === "typing"}
               />
               <button
                 type="submit"
-                disabled={!question.trim() || chatState === "typing"}
+                disabled={!inputValue.trim() || chatState === "typing"}
                 className="w-14 h-14 rounded-full flex items-center justify-center shrink-0 transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] focus-visible:ring-offset-1 focus-visible:ring-offset-[#111111]"
                 style={{
-                  background: question.trim() && chatState !== "typing" ? "#C0D400" : "rgba(255,255,255,0.1)",
-                  color: question.trim() && chatState !== "typing" ? "#111111" : "rgba(255,255,255,0.3)",
-                  cursor: !question.trim() || chatState === "typing" ? "not-allowed" : "pointer",
-                  boxShadow: question.trim() && chatState !== "typing" ? "0 8px 24px rgba(192,212,0,0.25)" : "none"
+                  background: inputValue.trim() && chatState !== "typing" ? "#C0D400" : "rgba(255,255,255,0.1)",
+                  color: inputValue.trim() && chatState !== "typing" ? "#111111" : "rgba(255,255,255,0.3)",
+                  cursor: !inputValue.trim() || chatState === "typing" ? "not-allowed" : "pointer",
+                  boxShadow: inputValue.trim() && chatState !== "typing" ? "0 8px 24px rgba(192,212,0,0.25)" : "none"
                 }}
                 aria-label="Enviar pregunta"
               >
@@ -1254,10 +1391,22 @@ function AnalisisCTINova() {
 
 
 
+const MAPEO_SECTIONS = [
+  { id: "mapeo-hero",       label: "Inicio" },
+  { id: "categorias",       label: "Repositorio" },
+  { id: "mapeo-destacados", label: "Destacados" },
+  { id: "nova-demo",        label: "Nova AI" },
+];
+
 export function AnalisisCTIPage() {
   return (
     <>
+      <FloatingNav sections={MAPEO_SECTIONS} />
       <AnalisisCTIHero />
+      <Breadcrumb items={[
+        { label: "Contenidos", href: "#contenidos" },
+        { label: "Informes y tendencias" }
+      ]} />
       <AnalisisCTILibrary />
       <AnalisisCTIFeatured />
       <AnalisisCTINova />

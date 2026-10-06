@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { FloatingNav } from "../components/FloatingNav";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -311,6 +312,7 @@ function DocBanner() {
   return (
     <section
       ref={sectionRef}
+      id="doc-hero"
       className="bg-[#253D36] text-white pt-32 pb-20 px-6 lg:px-10 xl:px-12 relative overflow-hidden"
     >
       {/* Grid texture */}
@@ -532,7 +534,7 @@ function DocCronologia() {
     <section
       ref={sectionRef}
       id="cronologia"
-      className="bg-[#F7F7F5] px-6 py-24 lg:py-32 overflow-hidden"
+      className="bg-[#F7F7F5] px-6 py-24 lg:py-32 overflow-hidden relative"
       aria-labelledby="cronologia-heading"
     >
       <div className="max-w-[1200px] mx-auto">
@@ -825,7 +827,8 @@ function DocRutaNMarco() {
   return (
     <section
       ref={sectionRef}
-      className="bg-white px-6 py-24 lg:py-32"
+      id="doc-marco"
+      className="bg-white px-6 py-24 lg:py-32 relative"
       aria-labelledby="marco-heading"
     >
       <div className="max-w-[1200px] mx-auto">
@@ -1193,7 +1196,7 @@ function DocRepositorio() {
     <section
       ref={sectionRef}
       id="repositorio"
-      className="bg-[#F7F7F5] px-6 py-24 lg:py-32"
+      className="bg-[#F7F7F5] px-6 py-24 lg:py-32 relative"
       aria-labelledby="repositorio-heading"
     >
       <div className="max-w-[1200px] mx-auto">
@@ -1329,9 +1332,17 @@ function DocRepositorio() {
 // DOCUMENTACIÓN PAGE
 // ─────────────────────────────────────────────────────────────────────────────
 
+const DOC_SECTIONS = [
+  { id: "doc-hero",   label: "Inicio" },
+  { id: "cronologia", label: "Cronología" },
+  { id: "doc-marco",  label: "Marco Ruta N" },
+  { id: "repositorio", label: "Repositorio" },
+];
+
 export function DocumentacionPage() {
   return (
     <>
+      <FloatingNav sections={DOC_SECTIONS} />
       <DocBanner />
       <DocCronologia />
       <DocRutaNMarco />

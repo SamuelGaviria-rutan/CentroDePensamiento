@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { FloatingNav } from "../components/FloatingNav";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Search, Sparkles, X } from "lucide-react";
@@ -137,6 +138,7 @@ function BlogBanner() {
   return (
     <section
       ref={sectionRef}
+      id="blog-hero"
       className="pt-32 pb-20 px-6 lg:px-10 xl:px-12 relative overflow-hidden"
       style={{ background: "#253D36" }}
     >
@@ -228,7 +230,8 @@ function NovaSelectionStrip() {
   return (
     <section
       ref={sectionRef}
-      className="py-16 lg:py-20 px-6 lg:px-10 xl:px-12"
+      id="blog-nova"
+      className="py-16 lg:py-20 px-6 lg:px-10 xl:px-12 relative"
       style={{ background: "#111111" }}
       aria-labelledby="nova-strip-heading"
     >
@@ -427,7 +430,8 @@ function BlogGrid() {
   return (
     <section
       ref={sectionRef}
-      className="py-20 lg:py-28 px-6 lg:px-10 xl:px-12"
+      id="blog-articulos"
+      className="py-20 lg:py-28 px-6 lg:px-10 xl:px-12 relative"
       style={{ background: "#F7F7F5" }}
       aria-labelledby="blog-grid-heading"
     >
@@ -534,9 +538,16 @@ function BlogGrid() {
 // BLOG PAGE
 // ─────────────────────────────────────────────────────────────────────────────
 
+const BLOG_SECTIONS = [
+  { id: "blog-hero",      label: "Inicio" },
+  { id: "blog-nova",      label: "Selección Nova" },
+  { id: "blog-articulos", label: "Artículos" },
+];
+
 export function BlogPage() {
   return (
     <>
+      <FloatingNav sections={BLOG_SECTIONS} />
       <BlogBanner />
       <NovaSelectionStrip />
       <BlogGrid />

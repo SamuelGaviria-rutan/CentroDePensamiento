@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from "react";
+import { Breadcrumb } from "../components/Breadcrumb";
+import { FloatingNav } from "../components/FloatingNav";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -45,8 +47,9 @@ function LabPoliticasHero() {
   return (
     <section
       ref={sectionRef}
-      className="bg-[#253D36] text-white relative overflow-hidden"
-      style={{ minHeight: "55svh", paddingTop: 140, paddingBottom: 100 }}
+      id="lab-hero"
+      className="bg-[#253D36] text-white relative overflow-hidden flex flex-col justify-center"
+      style={{ minHeight: "60svh", paddingTop: 120, paddingBottom: 80 }}
       aria-labelledby="lab-hero-title"
     >
       {/* Decorative texture representing a document/timeline grid */}
@@ -80,14 +83,14 @@ function LabPoliticasHero() {
             </h1>
 
             <p
-              className="text-lg md:text-xl mb-12 max-w-3xl"
+              className="text-lg md:text-xl mb-6 max-w-3xl"
               style={{ color: "rgba(255,255,255,0.75)", fontFamily: "'Source Sans 3',Arial,sans-serif", lineHeight: 1.6 }}
             >
               Aquí el Centro de Pensamiento de Ruta N centraliza lo más relevante en política pública para el ecosistema: las normas externas que enmarcan a Medellín como Distrito CTI y las iniciativas que impulsamos y lideramos desde la organización. Conocerlas no es un trámite: es la diferencia entre esperar a que el entorno cambie y usarlo a favor.
             </p>
 
             {/* Microdatos */}
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 mb-10 pb-6 border-b border-[rgba(255,255,255,0.1)]">
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 mb-6 pb-4 border-b border-[rgba(255,255,255,0.1)]">
               <span className="text-sm font-bold text-[#00B8A3]" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
                 [N] normas mapeadas
               </span>
@@ -206,23 +209,23 @@ function LabPoliticasCards() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 lg:py-32 bg-[#FAFAF8]" style={{ borderTop: "1px solid rgba(37,61,54,0.06)" }}>
+    <section ref={sectionRef} id="lab-acceso" className="relative py-10 lg:py-14 bg-[#FAFAF8]" style={{ borderTop: "1px solid rgba(37,61,54,0.06)" }}>
       <div className="max-w-[1440px] mx-auto px-6 lg:px-10 xl:px-12">
 
         {/* Título de Sección */}
-        <div className="lab-cards-title max-w-4xl mx-auto text-center mb-16">
+        <div className="lab-cards-title max-w-4xl mx-auto text-center mb-8">
           <h2 className="text-[#253D36]" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Helvetica Neue',Arial,sans-serif", fontSize: "clamp(2rem, 4vw, 3.5rem)", fontWeight: 900, letterSpacing: "-0.02em", lineHeight: 1.1 }}>
             Dos formas de usar la política pública a tu favor
           </h2>
         </div>
 
         {/* Grilla de dos tarjetas */}
-        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
 
           {/* ── TARJETA 1: Documentación ── */}
           <article className="group flex flex-col bg-white rounded-md overflow-hidden shadow-sm hover:shadow-[0_20px_40px_rgba(37,61,54,0.08)] transition-all duration-300 focus-within:ring-2 focus-within:ring-[#C0D400]" style={{ border: "1px solid rgba(37,61,54,0.1)" }}>
             {/* Mitad superior: Imagen tratada (Sobria, documental) */}
-            <div className="w-full h-64 bg-[#E8EDE6] relative overflow-hidden flex items-center justify-center border-b border-[rgba(37,61,54,0.1)]">
+            <div className="w-full h-52 bg-[#E8EDE6] relative overflow-hidden flex items-center justify-center border-b border-[rgba(37,61,54,0.1)]">
               {/* Textura de cuadricula sutil / documento */}
               <div className="absolute inset-0 opacity-40" style={{ backgroundImage: "linear-gradient(rgba(37,61,54,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(37,61,54,0.1) 1px, transparent 1px)", backgroundSize: "20px 20px" }} />
               {/* Ilustración de abstracción de folios / leyes */}
@@ -245,24 +248,24 @@ function LabPoliticasCards() {
             </div>
 
             {/* Mitad inferior: Contenido */}
-            <div className="flex flex-col flex-1 p-8 lg:p-10">
-              <h3 className="text-3xl font-black text-[#253D36] mb-2" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif", letterSpacing: "-0.01em" }}>
+            <div className="flex flex-col flex-1 p-6 lg:p-8">
+              <h3 className="text-2xl font-black text-[#253D36] mb-2" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif", letterSpacing: "-0.01em" }}>
                 Documentación
               </h3>
-              <p className="text-base font-bold text-[#00B8A3] mb-5" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+              <p className="text-base font-bold text-[#00B8A3] mb-4" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
                 El repositorio de política pública de la organización.
               </p>
-              <p className="text-[#253D36]/70 leading-relaxed mb-8" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+              <p className="text-[#253D36]/70 text-sm leading-relaxed mb-6" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
                 Toda la normativa que construyó y sostiene al Distrito CTI, reunida y explicada en un solo lugar: acuerdos del Concejo, decretos de la Alcaldía, leyes nacionales y documentos CONPES. Cada norma con su año, su contenido en una línea y el rol concreto que Ruta N cumple en ella. Del Acuerdo 024 de 2011 al Plan SDCTI 2024–2033.
               </p>
 
-              <div className="mb-10">
-                <p className="text-[11px] font-bold tracking-[0.15em] uppercase text-[#253D36]/50 mb-4" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+              <div className="mb-6">
+                <p className="text-[11px] font-bold tracking-[0.15em] uppercase text-[#253D36]/50 mb-3" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
                   Contiene:
                 </p>
-                <ul className="flex flex-col gap-3">
+                <ul className="grid grid-cols-2 gap-x-4 gap-y-2.5">
                   {["Cronología interactiva 2011–2026", "Ruta N en el marco normativo", "Repositorio descargable", "Seguimiento de políticas vigentes"].map((item, i) => (
-                    <li key={i} className="flex items-start gap-2.5 text-sm font-semibold text-[#253D36]" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                    <li key={i} className="flex items-start gap-2 text-sm font-semibold text-[#253D36]" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
                       <CheckCircle2 className="w-4 h-4 text-[#00B8A3] shrink-0 mt-0.5" />
                       {item}
                     </li>
@@ -281,7 +284,7 @@ function LabPoliticasCards() {
           {/* ── TARJETA 2: Compras Públicas Innovadoras ── */}
           <article className="group flex flex-col bg-white rounded-md overflow-hidden shadow-sm hover:shadow-[0_20px_40px_rgba(37,61,54,0.08)] transition-all duration-300 focus-within:ring-2 focus-within:ring-[#C0D400]" style={{ border: "1px solid rgba(37,61,54,0.1)" }}>
             {/* Mitad superior: Imagen tratada (Herramienta, vibrante) */}
-            <div className="w-full h-64 bg-[#253D36] relative overflow-hidden flex items-center justify-center border-b border-[#1C2E29]">
+            <div className="w-full h-52 bg-[#253D36] relative overflow-hidden flex items-center justify-center border-b border-[#1C2E29]">
               {/* Textura de puntos y degradado dinámico */}
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(192,212,0,0.15)_0%,transparent_70%)]" />
               {/* Ilustración tipo interfaz de usuario / dashboard */}
@@ -306,24 +309,24 @@ function LabPoliticasCards() {
             </div>
 
             {/* Mitad inferior: Contenido */}
-            <div className="flex flex-col flex-1 p-8 lg:p-10">
-              <h3 className="text-3xl font-black text-[#253D36] mb-2" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif", letterSpacing: "-0.01em" }}>
+            <div className="flex flex-col flex-1 p-6 lg:p-8">
+              <h3 className="text-2xl font-black text-[#253D36] mb-2" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif", letterSpacing: "-0.01em" }}>
                 Compras Públicas Innovadoras
               </h3>
-              <p className="text-base font-bold text-[#0068FF] mb-5" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+              <p className="text-base font-bold text-[#0068FF] mb-4" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
                 El Estado como primer cliente de la innovación.
               </p>
-              <p className="text-[#253D36]/70 leading-relaxed mb-8" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+              <p className="text-[#253D36]/70 text-sm leading-relaxed mb-6" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
                 La compra pública para la innovación le permite a una entidad pública adquirir soluciones que todavía no existen en el mercado: en lugar de pedir un producto, plantea un reto. Aquí encuentras los mecanismos, las guías, el test de autodiagnóstico y los tableros de resultados para apropiarte de este tipo de contratación, seas comprador público o proveedor de innovación.
               </p>
 
-              <div className="mb-10">
-                <p className="text-[11px] font-bold tracking-[0.15em] uppercase text-[#253D36]/50 mb-4" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+              <div className="mb-6">
+                <p className="text-[11px] font-bold tracking-[0.15em] uppercase text-[#253D36]/50 mb-3" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
                   Contiene:
                 </p>
-                <ul className="flex flex-col gap-3">
+                <ul className="grid grid-cols-2 gap-x-4 gap-y-2.5">
                   {["Guía CPI", "Test de autodiagnóstico", "Plan anual e informes trimestrales", "Tablero de resultados", "Actas de las mesas estratégicas"].map((item, i) => (
-                    <li key={i} className="flex items-start gap-2.5 text-sm font-semibold text-[#253D36]" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                    <li key={i} className="flex items-start gap-2 text-sm font-semibold text-[#253D36]" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
                       <CheckCircle2 className="w-4 h-4 text-[#C0D400] shrink-0 mt-0.5" />
                       {item}
                     </li>
@@ -464,14 +467,15 @@ function LabQueEsSection() {
   return (
     <section
       ref={sectionRef}
-      className="bg-[#111111] px-6 py-24 lg:py-32"
+      id="lab-que-es"
+      className="relative bg-[#111111] px-6 py-10 lg:py-14"
       aria-labelledby="lab-que-es-heading"
     >
       <div className="max-w-[1200px] mx-auto">
 
         {/* ── Text block ── */}
-        <div className="lg:grid lg:grid-cols-12 lg:gap-16 mb-20 lg:mb-28">
-          <div className="lg:col-span-5 mb-10 lg:mb-0">
+        <div className="lg:grid lg:grid-cols-12 lg:gap-16 mb-10 lg:mb-14">
+          <div className="lg:col-span-5 mb-6 lg:mb-0">
             <p
               className="text-[10px] tracking-[0.28em] uppercase text-[#C0D400] mb-5"
               style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
@@ -628,6 +632,304 @@ function LabAttributeCard({ attr }: { attr: LabAttr }) {
   );
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// LAB DE POLÍTICAS — Section: Cronología interactiva 2011–2026
+// ─────────────────────────────────────────────────────────────────────────────
+
+const TIMELINE_EVENTS = [
+  {
+    year: "2011",
+    color: "#0068FF",
+    title: "Acuerdo 024 de 2011",
+    type: "Acuerdo del Concejo",
+    body: "El Concejo de Medellín crea Ruta N y establece las bases del modelo de gestión de la ciencia, la tecnología y la innovación en la ciudad.",
+  },
+  {
+    year: "2015",
+    color: "#00B8A3",
+    title: "Plan CTI de Medellín",
+    type: "Política pública",
+    body: "La Alcaldía adopta el primer Plan de Ciencia, Tecnología e Innovación para orientar la inversión y las capacidades del ecosistema local.",
+  },
+  {
+    year: "2018",
+    color: "#FFCA00",
+    title: "Estrategia Compras Públicas Innovadoras",
+    type: "Mecanismo de contratación",
+    body: "Ruta N lidera el primer ciclo de compra pública de innovación en Colombia, usando retos abiertos en lugar de especificaciones cerradas.",
+  },
+  {
+    year: "2021",
+    color: "#C0D400",
+    title: "Ley 2086 — Distrito de CTI",
+    type: "Ley Nacional",
+    body: "El Congreso declara a Medellín Distrito Especial de Ciencia, Tecnología e Innovación, abriendo un nuevo marco de gobernanza y financiamiento para el ecosistema.",
+  },
+  {
+    year: "2022",
+    color: "#FF4C17",
+    title: "Decreto reglamentario Distrito CTI",
+    type: "Decreto de la Alcaldía",
+    body: "La Alcaldía reglamenta el funcionamiento del Distrito CTI y define las competencias de las entidades que integran el Sistema Municipal de Innovación.",
+  },
+  {
+    year: "2024",
+    color: "#C0D400",
+    title: "Plan SDCTI 2024–2033",
+    type: "Plan estratégico",
+    body: "El Plan Estratégico del Sistema Distrital de CTI traza la hoja de ruta de Medellín para la próxima década: inversión, talento, internacionalización y gobernanza.",
+  },
+] as const;
+
+type TimelineEvent = (typeof TIMELINE_EVENTS)[number];
+
+function TimelineNode({ event, index, isLast }: { event: TimelineEvent; index: number; isLast: boolean }) {
+  const nodeRef = useRef<HTMLDivElement>(null);
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <div ref={nodeRef} className="timeline-node relative flex gap-6 md:gap-8">
+      {/* ── Axis ── */}
+      <div className="flex flex-col items-center shrink-0 w-10">
+        <button
+          onClick={() => setExpanded((v) => !v)}
+          aria-expanded={expanded}
+          aria-label={`${event.year}: ${event.title}`}
+          className="relative w-10 h-10 rounded-full flex items-center justify-center shrink-0 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0D1F1A] z-10"
+          style={{
+            backgroundColor: expanded ? event.color : "rgba(255,255,255,0.06)",
+            border: `2px solid ${event.color}`,
+            boxShadow: expanded ? `0 0 0 4px ${event.color}22` : "none",
+            focusVisibleRingColor: event.color,
+          }}
+        >
+          <span
+            className="text-[10px] font-black"
+            style={{
+              color: expanded ? "#111" : event.color,
+              fontFamily: "'Neue Haas Grotesk Display Pro','Helvetica Neue',Arial,sans-serif",
+            }}
+          >
+            {event.year.slice(2)}
+          </span>
+        </button>
+        {!isLast && (
+          <div
+            className="w-[2px] flex-1 min-h-[2rem] mt-1"
+            style={{ background: `linear-gradient(to bottom, ${event.color}55, rgba(255,255,255,0.06))` }}
+            aria-hidden="true"
+          />
+        )}
+      </div>
+
+      {/* ── Content ── */}
+      <div className="pb-10 flex-1 min-w-0">
+        <div className="mb-1 flex flex-wrap items-center gap-2">
+          <span
+            className="text-[10px] font-bold tracking-[0.22em] uppercase px-2 py-0.5 rounded-[2px]"
+            style={{
+              color: event.color,
+              backgroundColor: `${event.color}18`,
+              fontFamily: "'Source Sans 3',Arial,sans-serif",
+            }}
+          >
+            {event.type}
+          </span>
+          <span
+            className="text-xs font-bold"
+            style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+          >
+            {event.year}
+          </span>
+        </div>
+
+        <button
+          onClick={() => setExpanded((v) => !v)}
+          aria-expanded={expanded}
+          className="text-left w-full group focus-visible:outline-none"
+        >
+          <h3
+            className="mb-0 transition-colors duration-200"
+            style={{
+              fontFamily: "'Neue Haas Grotesk Display Pro','Helvetica Neue',Arial,sans-serif",
+              fontSize: "clamp(1.05rem, 2vw, 1.3rem)",
+              fontWeight: 800,
+              letterSpacing: "-0.01em",
+              lineHeight: 1.2,
+              color: expanded ? "#fff" : "rgba(255,255,255,0.85)",
+            }}
+          >
+            {event.title}
+          </h3>
+        </button>
+
+        <div
+          className="overflow-hidden transition-all duration-500"
+          style={{ maxHeight: expanded ? "200px" : "0px", opacity: expanded ? 1 : 0 }}
+        >
+          <p
+            className="mt-3 leading-relaxed"
+            style={{
+              color: "rgba(255,255,255,0.6)",
+              fontFamily: "'Source Sans 3',Arial,sans-serif",
+              fontSize: "0.9375rem",
+              lineHeight: 1.65,
+            }}
+          >
+            {event.body}
+          </p>
+        </div>
+
+        {!expanded && (
+          <p
+            className="mt-1 text-sm leading-snug line-clamp-2"
+            style={{
+              color: "rgba(255,255,255,0.4)",
+              fontFamily: "'Source Sans 3',Arial,sans-serif",
+            }}
+          >
+            {event.body}
+          </p>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function LabCronologiaSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const nodesRef = useRef<HTMLDivElement>(null);
+
+  const prefersReduced = useRef(
+    typeof window !== "undefined"
+      ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      : false
+  );
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      if (prefersReduced.current) return;
+
+      if (headingRef.current) {
+        gsap.fromTo(
+          headingRef.current,
+          { opacity: 0, y: 28 },
+          {
+            opacity: 1, y: 0, duration: 0.75, ease: "power3.out",
+            scrollTrigger: { trigger: headingRef.current, start: "top 85%" },
+          }
+        );
+      }
+
+      if (nodesRef.current) {
+        const nodes = nodesRef.current.querySelectorAll<HTMLElement>(".timeline-node");
+        gsap.fromTo(
+          nodes,
+          { opacity: 0, x: -24 },
+          {
+            opacity: 1, x: 0, duration: 0.6, ease: "power2.out", stagger: 0.14,
+            scrollTrigger: { trigger: nodesRef.current, start: "top 80%" },
+          }
+        );
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section
+      ref={sectionRef}
+      id="cronologia"
+      className="relative py-14 lg:py-20"
+      style={{ background: "#0D1F1A" }}
+      aria-labelledby="cronologia-heading"
+    >
+      {/* Subtle grid texture */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.04]"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(192,212,0,1) 1px, transparent 1px), linear-gradient(90deg, rgba(192,212,0,1) 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+        }}
+        aria-hidden="true"
+      />
+
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-10 xl:px-12 relative z-10">
+        <div className="lg:grid lg:grid-cols-12 lg:gap-16">
+
+          {/* ── Left: heading + context ── */}
+          <div className="lg:col-span-4 mb-10 lg:mb-0 lg:sticky lg:top-28 lg:self-start">
+            <p
+              className="text-[10px] tracking-[0.3em] uppercase mb-5"
+              style={{ color: "#C0D400", fontFamily: "'Source Sans 3',Arial,sans-serif", fontWeight: 700 }}
+            >
+              Cronología · 2011–2026
+            </p>
+            <h2
+              id="cronologia-heading"
+              ref={headingRef}
+              className="mb-5"
+              style={{
+                fontFamily: "'Neue Haas Grotesk Display Pro','Helvetica Neue',Arial,sans-serif",
+                fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)",
+                fontWeight: 900,
+                lineHeight: 1.08,
+                letterSpacing: "-0.03em",
+                color: "#fff",
+                opacity: 0,
+              }}
+            >
+              Las normas que construyeron el Distrito CTI
+            </h2>
+            <p
+              className="leading-relaxed mb-8"
+              style={{
+                color: "rgba(255,255,255,0.55)",
+                fontFamily: "'Source Sans 3',Arial,sans-serif",
+                fontSize: "0.9375rem",
+                lineHeight: 1.65,
+              }}
+            >
+              Del Acuerdo 024 de 2011 al Plan SDCTI 2024–2033. Cada hito normativo que posicionó a Medellín como referente de innovación pública en Colombia.
+            </p>
+            <a
+              href="#recursos"
+              className="inline-flex items-center gap-2 font-bold text-sm rounded-[4px] px-5 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400]"
+              style={{
+                minHeight: 44,
+                color: "#253D36",
+                backgroundColor: "#C0D400",
+                fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif",
+              }}
+              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#AABC00"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "#C0D400"; }}
+            >
+              Descargar repositorio normativo <Download className="w-4 h-4" />
+            </a>
+          </div>
+
+          {/* ── Right: timeline nodes ── */}
+          <div ref={nodesRef} className="lg:col-span-8">
+            {TIMELINE_EVENTS.map((event, i) => (
+              <TimelineNode
+                key={event.year}
+                event={event}
+                index={i}
+                isLast={i === TIMELINE_EVENTS.length - 1}
+              />
+            ))}
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
 function PlaceholderSections() {
   const sections = [
     {
@@ -657,11 +959,24 @@ function PlaceholderSections() {
   );
 }
 
+const LAB_SECTIONS = [
+  { id: "lab-hero",      label: "Inicio" },
+  { id: "lab-acceso",   label: "Acceso" },
+  { id: "cronologia",   label: "Cronología" },
+  { id: "lab-que-es",   label: "¿Qué es?" },
+];
+
 export function LabPoliticasPage() {
   return (
     <>
+      <FloatingNav sections={LAB_SECTIONS} />
       <LabPoliticasHero />
+      <Breadcrumb items={[
+        { label: "Contenidos", href: "#contenidos" },
+        { label: "Lab de Políticas" }
+      ]} />
       <LabPoliticasCards />
+      <LabCronologiaSection />
       <LabQueEsSection />
       <PlaceholderSections />
     </>
