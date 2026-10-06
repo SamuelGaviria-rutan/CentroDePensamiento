@@ -7,7 +7,7 @@ import novaBg from "../../imports/Nova_frontview-1.png";
 import {
   Search, X, ChevronDown, ArrowRight, ArrowDown, Download, ArrowUpRight,
   Info, Database, Activity, Image as ImageIcon, SlidersHorizontal,
-  BookOpen, Sparkles, Send, FileText, TrendingUp, Eye, Network, Users, Clock, Star
+  BookOpen, Sparkles, Send, FileText, TrendingUp, Eye, Network, Users, Clock
 } from "lucide-react";
 gsap.registerPlugin(ScrollTrigger);
 
@@ -201,19 +201,120 @@ const TYPE_COUNTS: Record<string, number> = {
 
 // ── Publicaciones de ejemplo ─────────────────────────────────────────────────
 const SAMPLE_PUBLICATIONS = [
-  { id: "p1",  type: "tendencias", topic: "Inteligencia artificial",   year: "2024", title: "IA y el futuro del trabajo en Medellín: prospectiva 2025–2030",                  pages: 92,  downloads: "1.4k", isNew: true  },
-  { id: "p2",  type: "vigilancia", topic: "Deeptech",                  year: "2024", title: "Señales tempranas en biotecnología de precisión",                                 pages: 48,  downloads: "620"              },
-  { id: "p3",  type: "ecosistema", topic: "Emprendimiento y startups",  year: "2024", title: "Medellín Tech Report 2024: mapeo y evolución del ecosistema",                    pages: 120, downloads: "1.2k", isNew: true  },
-  { id: "p4",  type: "notas",      topic: "Política pública CTI",      year: "2024", title: "Nota de análisis: Primer año del Distrito CTI, qué funcionó y qué no",            pages: 15,  downloads: "890"              },
-  { id: "p5",  type: "tendencias", topic: "Talento y educación",        year: "2024", title: "El futuro del talento IT: proyecciones 2025–2034",                               pages: 60,  downloads: "650"              },
-  { id: "p6",  type: "vigilancia", topic: "Ciudades inteligentes",      year: "2023", title: "Movilidad autónoma en ciudades latinoamericanas: casos y lecciones",              pages: 55,  downloads: "410"              },
-  { id: "p7",  type: "notas",      topic: "Economía circular",          year: "2023", title: "Cinco modelos de negocio circular rentables en el Valle de Aburrá",              pages: 14,  downloads: "530"              },
-  { id: "p8",  type: "ecosistema", topic: "Industrias creativas",       year: "2023", title: "Economía creativa en Medellín: brechas, activos y oportunidades",                pages: 78,  downloads: "340"              },
-  { id: "p9",  type: "memorias",   topic: "Política pública CTI",      year: "2023", title: "Memorias del Taller Distrital de Innovación Pública",                            pages: 32,  downloads: "215"              },
-  { id: "p10", type: "tendencias", topic: "Sostenibilidad",             year: "2023", title: "Transición energética justa: oportunidades para el sector productivo local",     pages: 86,  downloads: "490"              },
-  { id: "p11", type: "notas",      topic: "Transferencia de tecnología",year: "2022", title: "Nota: Barreras para la transferencia tecnológica universidad–empresa en Antioquia",pages: 11, downloads: "320"             },
-  { id: "p12", type: "vigilancia", topic: "Inteligencia artificial",   year: "2022", title: "Vigilancia de patentes en IA generativa: actores y tendencias globales",         pages: 42,  downloads: "480"              },
+  { id: "p1",  type: "tendencias", topics: ["Inteligencia artificial", "Emprendimiento e innovación", "Política pública CTI"],  year: "2024", title: "IA y el futuro del trabajo en Medellín: prospectiva 2025–2030",                    pages: 92,  downloads: "1.4k", isNew: true  },
+  { id: "p2",  type: "vigilancia", topics: ["Deeptech", "Transferencia de tecnología"],                                         year: "2024", title: "Señales tempranas en biotecnología de precisión",                                   pages: 48,  downloads: "620"              },
+  { id: "p3",  type: "ecosistema", topics: ["Emprendimiento y startups", "Talento y educación"],                                 year: "2024", title: "Medellín Tech Report 2024: mapeo y evolución del ecosistema",                      pages: 120, downloads: "1.2k", isNew: true  },
+  { id: "p4",  type: "notas",      topics: ["Política pública CTI"],                                                            year: "2024", title: "Nota de análisis: Primer año del Distrito CTI, qué funcionó y qué no",              pages: 15,  downloads: "890"              },
+  { id: "p5",  type: "tendencias", topics: ["Talento y educación", "Inteligencia artificial"],                                   year: "2024", title: "El futuro del talento IT: proyecciones 2025–2034",                                 pages: 60,  downloads: "650"              },
+  { id: "p6",  type: "vigilancia", topics: ["Ciudades inteligentes", "Sostenibilidad", "Política pública CTI"],                  year: "2023", title: "Movilidad autónoma en ciudades latinoamericanas: casos y lecciones",                pages: 55,  downloads: "410"              },
+  { id: "p7",  type: "notas",      topics: ["Economía circular"],                                                                year: "2023", title: "Cinco modelos de negocio circular rentables en el Valle de Aburrá",                pages: 14,  downloads: "530"              },
+  { id: "p8",  type: "ecosistema", topics: ["Industrias creativas", "Emprendimiento y startups"],                                year: "2023", title: "Economía creativa en Medellín: brechas, activos y oportunidades",                  pages: 78,  downloads: "340"              },
+  { id: "p9",  type: "memorias",   topics: ["Política pública CTI", "Transferencia de tecnología"],                             year: "2023", title: "Memorias del Taller Distrital de Innovación Pública",                              pages: 32,  downloads: "215"              },
+  { id: "p10", type: "tendencias", topics: ["Sostenibilidad"],                                                                   year: "2023", title: "Transición energética justa: oportunidades para el sector productivo local",       pages: 86,  downloads: "490"              },
+  { id: "p11", type: "notas",      topics: ["Transferencia de tecnología", "Emprendimiento y startups", "Talento y educación"],  year: "2022", title: "Nota: Barreras para la transferencia tecnológica universidad–empresa en Antioquia", pages: 11,  downloads: "320"             },
+  { id: "p12", type: "vigilancia", topics: ["Inteligencia artificial", "Deeptech"],                                              year: "2022", title: "Vigilancia de patentes en IA generativa: actores y tendencias globales",           pages: 42,  downloads: "480"              },
 ];
+
+// ── Card de publicación con panel de temas desplegable ───────────────────────
+type Pub = (typeof SAMPLE_PUBLICATIONS)[number];
+
+function PublicationCard({ pub, typeColors }: { pub: Pub; typeColors: Record<string, string> }) {
+  const accentCol = typeColors[pub.type];
+  const extraTopics = pub.topics.slice(1);
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <article
+      className="result-card bg-white rounded-[4px] overflow-visible flex flex-col group focus-within:ring-2 focus-within:ring-[#C0D400] relative"
+      style={{ border: "1px solid rgba(37,61,54,0.09)" }}
+    >
+      {/* Línea de color superior por tipo */}
+      <span className="block h-[3px] shrink-0 rounded-t-[4px]" style={{ backgroundColor: accentCol }} aria-hidden="true" />
+
+      <div className="p-5 flex flex-col flex-1">
+        {/* Fila 1: etiqueta de tipo + badge Nuevo */}
+        <div className="flex items-center justify-between gap-2 mb-3">
+          <span
+            className="text-[9px] font-bold uppercase tracking-wider px-2 py-1 rounded-[2px]"
+            style={{ backgroundColor: `${accentCol}20`, color: "#253D36", fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+          >
+            {CONTENT_TYPES.find(t => t.id === pub.type)?.title}
+          </span>
+          {pub.isNew && (
+            <span
+              className="shrink-0 text-[9px] font-bold px-2 py-1 rounded-[4px]"
+              style={{ backgroundColor: "#E1FFFB", color: "#006152", fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+            >
+              Nuevo
+            </span>
+          )}
+        </div>
+
+        {/* Fila de temas */}
+        <div className="flex items-center gap-1.5 mb-2 relative">
+          <p className="text-[11px] font-bold leading-none truncate" style={{ color: "#0050E0", fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+            {pub.topics[0]}
+          </p>
+          {extraTopics.length > 0 && (
+            <div
+              className="relative shrink-0 z-20"
+              onMouseEnter={() => setHovered(true)}
+              onMouseLeave={() => setHovered(false)}
+            >
+              <span
+                aria-label={`${extraTopics.length} tema${extraTopics.length > 1 ? "s" : ""} más`}
+                className="text-[12px] font-bold px-1.5 py-0.5 rounded-[4px] leading-none cursor-default select-none"
+                style={{ backgroundColor: "#E7ECEA", color: "#515B58", fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+              >
+                +{extraTopics.length}
+              </span>
+              {hovered && (
+                <div
+                  className="absolute left-0 top-full mt-1 rounded-[4px] px-3 py-2 flex flex-col gap-1 min-w-[160px] pointer-events-none"
+                  style={{ backgroundColor: "#253D36", zIndex: 30 }}
+                  role="tooltip"
+                >
+                  {extraTopics.map(t => (
+                    <span
+                      key={t}
+                      className="text-[13px] leading-snug"
+                      style={{ color: "#FFFFFF", fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Título */}
+        <h4
+          className="mb-auto leading-snug transition-colors duration-150 group-hover:text-[#0050E0]"
+          style={{ fontSize: 18, fontWeight: 700, color: "#253D36", fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif", letterSpacing: "-0.01em" }}
+        >
+          <a href="#reporte" className="focus:outline-none focus-visible:outline-none">
+            <span className="absolute inset-0 z-10" aria-hidden="true" />
+            {pub.title}
+          </a>
+        </h4>
+
+        {/* Metadatos */}
+        <div className="mt-4 pt-3 flex items-center justify-between" style={{ borderTop: "1px solid rgba(37,61,54,0.07)" }}>
+          <div className="flex items-center gap-2 text-[10px] text-[#253D36]/45" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+            <span>{pub.year}</span>
+            <span aria-hidden="true">·</span>
+            <span>{pub.pages} págs.</span>
+          </div>
+          <span className="flex items-center gap-1 text-[10px] font-bold text-[#253D36]/40" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+            <Download className="w-3 h-3" aria-hidden="true" /> {pub.downloads}
+          </span>
+        </div>
+      </div>
+    </article>
+  );
+}
 
 function AnalisisCTILibrary() {
   const sectionRef  = useRef<HTMLElement>(null);
@@ -267,12 +368,21 @@ function AnalisisCTILibrary() {
 
   const hasFilters = selectedType !== null || selectedTopics.length > 0 || selectedYear !== "Todos" || searchQuery.length > 0;
 
+  // Normaliza texto: minúsculas + sin tildes
+  const normalize = (s: string) =>
+    s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+
   // Filter logic
   const filteredPubs = SAMPLE_PUBLICATIONS.filter(pub => {
     if (selectedType && pub.type !== selectedType) return false;
-    if (selectedTopics.length > 0 && !selectedTopics.includes(pub.topic)) return false;
+    if (selectedTopics.length > 0 && !selectedTopics.some(t => pub.topics.includes(t))) return false;
     if (selectedYear !== "Todos" && pub.year !== selectedYear) return false;
-    if (searchQuery.length > 1 && !pub.title.toLowerCase().includes(searchQuery.toLowerCase()) && !pub.topic.toLowerCase().includes(searchQuery.toLowerCase())) return false;
+    if (searchQuery.length > 0) {
+      const q = normalize(searchQuery);
+      const typeLabel = CONTENT_TYPES.find(t => t.id === pub.type)?.title ?? "";
+      const haystack = normalize([pub.title, ...pub.topics, typeLabel, pub.year].join(" "));
+      if (!haystack.includes(q)) return false;
+    }
     return true;
   });
 
@@ -298,7 +408,7 @@ function AnalisisCTILibrary() {
               Encuentra lo que necesitas
             </h2>
             <p className="text-sm" style={{ color: "rgba(37,61,54,0.6)", fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
-              Busca por título o filtra por tipo, tema y año — combínalos libremente.
+              Busca por palabra clave o filtra por tipo, tema y año.
             </p>
           </div>
           {hasFilters && (
@@ -400,7 +510,7 @@ function AnalisisCTILibrary() {
               type="search"
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
-              placeholder="Busca por título, autor o tema…"
+              placeholder="Busca por palabra clave"
               className="w-full text-[#253D36] font-medium text-sm pl-11 pr-10 py-3.5 rounded-[4px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400]"
               style={{
                 backgroundColor: "#FAFAF8",
@@ -523,67 +633,10 @@ function AnalisisCTILibrary() {
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-              {visiblePubs.map((pub) => {
-                const accentCol = TYPE_COLORS[pub.type];
-                return (
-                  <article
-                    key={pub.id}
-                    className="result-card bg-white rounded-[4px] overflow-hidden flex flex-col group transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(37,61,54,0.12)] focus-within:ring-2 focus-within:ring-[#C0D400] relative"
-                    style={{ border: "1px solid rgba(37,61,54,0.09)" }}
-                  >
-                    {/* Portada */}
-                    <div className="w-full aspect-video relative overflow-hidden flex items-center justify-center" style={{ backgroundColor: `${accentCol}15` }}>
-                      {/* Accent top line */}
-                      <span className="absolute top-0 left-0 right-0 h-[3px]" style={{ backgroundColor: accentCol }} aria-hidden="true" />
-                      {/* Document placeholder */}
-                      <div className="w-10 h-14 bg-white/80 rounded-[2px] shadow-md -rotate-2" aria-hidden="true" />
-                      {/* New badge */}
-                      {pub.isNew && (
-                        <span
-                          className="absolute bottom-3 right-3 inline-flex items-center gap-1 px-1.5 py-0.5 rounded-[2px] text-[9px] font-bold text-white"
-                          style={{ backgroundColor: "#0068FF", fontFamily: "'Source Sans 3',Arial,sans-serif" }}
-                        >
-                          <Star className="w-2.5 h-2.5" aria-hidden="true" /> Nuevo
-                        </span>
-                      )}
-                      {/* Type badge */}
-                      <span
-                        className="absolute top-3 left-3 text-[9px] font-bold uppercase tracking-wider px-2 py-1 rounded-[2px]"
-                        style={{
-                          backgroundColor: accentCol,
-                          color: pub.type === "notas" ? "#253D36" : "#FFFFFF",
-                          fontFamily: "'Source Sans 3',Arial,sans-serif",
-                        }}
-                      >
-                        {CONTENT_TYPES.find(t => t.id === pub.type)?.title}
-                      </span>
-                    </div>
-
-                    <div className="p-5 flex flex-col flex-1">
-                      <p className="text-[11px] font-bold text-[#0068FF] mb-2 leading-none" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
-                        {pub.topic}
-                      </p>
-                      <h4 className="text-sm font-bold text-[#253D36] mb-auto leading-snug group-hover:text-[#0068FF] transition-colors" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif", letterSpacing: "-0.01em" }}>
-                        <a href="#reporte" className="focus:outline-none focus-visible:outline-none">
-                          <span className="absolute inset-0 z-10" aria-hidden="true" />
-                          {pub.title}
-                        </a>
-                      </h4>
-                      <div className="mt-4 pt-3 flex items-center justify-between" style={{ borderTop: "1px solid rgba(37,61,54,0.07)" }}>
-                        <div className="flex items-center gap-2 text-[10px] text-[#253D36]/45" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
-                          <span>{pub.year}</span>
-                          <span aria-hidden="true">·</span>
-                          <span>{pub.pages} págs.</span>
-                        </div>
-                        <span className="flex items-center gap-1 text-[10px] font-bold text-[#253D36]/40" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
-                          <Download className="w-3 h-3" aria-hidden="true" /> {pub.downloads}
-                        </span>
-                      </div>
-                    </div>
-                  </article>
-                );
-              })}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 items-start">
+              {visiblePubs.map((pub) => (
+                <PublicationCard key={pub.id} pub={pub} typeColors={TYPE_COLORS} />
+              ))}
             </div>
           )}
         </div>
@@ -823,11 +876,8 @@ function AnalisisCTIFeatured() {
 
                     {/* Acciones */}
                     <div className="flex flex-wrap items-center gap-4 mt-1 relative z-20" style={{ borderTop: "1px solid rgba(37,61,54,0.1)", paddingTop: "0.75rem" }}>
-                      <a href="#pdf" className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0068FF] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] rounded-sm" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
-                        <Download className="w-3.5 h-3.5" /> Descargar PDF
-                      </a>
-                      <a href="#leer" className="inline-flex items-center gap-1.5 text-sm font-bold text-[#253D36] hover:text-[#00B8A3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] rounded-sm transition-colors" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
-                        <BookOpen className="w-4 h-4" /> Leer en línea
+                      <a href="#pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 font-bold hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] rounded-sm" style={{ fontSize: 14, color: "#0050E0", fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                        Abrir PDF <ArrowUpRight className="w-3.5 h-3.5" />
                       </a>
                     </div>
                   </div>
@@ -850,19 +900,7 @@ function AnalisisCTIFeatured() {
             No pedimos registro para descargar. El conocimiento del Centro de Pensamiento es público.
           </p>
 
-          <div className="bg-[#EBF2EA] w-full p-8 md:p-12 rounded-md flex flex-col md:flex-row items-center justify-between gap-6" style={{ borderLeft: "4px solid #00B8A3" }}>
-            <div className="text-left max-w-xl">
-              <h3 className="text-xl font-bold text-[#253D36] mb-2" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif" }}>
-                ¿No encontraste lo que buscabas?
-              </h3>
-              <p className="text-sm text-[#253D36]/70" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
-                Cuéntanos qué necesita analizar la ciudad.
-              </p>
-            </div>
-            <a href="#sugerir" className="shrink-0 inline-flex items-center font-bold text-sm text-white bg-[#253D36] rounded-[4px] hover:bg-[#1C2E29] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] px-6 py-3" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif" }}>
-              Sugerir un tema
-            </a>
-          </div>
+          
         </div>
 
       </div>

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { FloatingNav } from "../components/FloatingNav";
+import { Breadcrumb } from "../components/Breadcrumb";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -316,14 +317,7 @@ function DocBanner() {
       className="bg-[#253D36] text-white pt-32 pb-20 px-6 lg:px-10 xl:px-12 relative overflow-hidden"
     >
       {/* Grid texture */}
-      <div
-        className="absolute right-0 top-0 w-[500px] h-full opacity-[0.04] pointer-events-none"
-        aria-hidden="true"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(192,212,0,1) 39px,rgba(192,212,0,1) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(192,212,0,1) 39px,rgba(192,212,0,1) 40px)",
-        }}
-      />
+      
 
       <div className="max-w-[1200px] mx-auto relative z-10">
         <div className="max-w-[760px]">
@@ -360,26 +354,8 @@ function DocBanner() {
               El repositorio de política pública de Ruta N y del ecosistema de ciencia, tecnología e innovación de Medellín. Cada acuerdo, cada decreto y cada ley que hizo posible lo que hoy es la ciudad, con su contexto, su contenido y el papel que jugamos en cada uno.
             </p>
             <div className="flex flex-wrap gap-4">
-              <a
-                href="#cronologia"
-                className="inline-flex items-center justify-center gap-2 font-bold text-sm text-[#253D36] bg-[#C0D400] rounded-[4px] px-6 transition-colors duration-200 hover:bg-[#AABC00] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#253D36]"
-                style={{
-                  minHeight: 48,
-                  fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif",
-                }}
-              >
-                Recorrer la cronología
-              </a>
-              <a
-                href="#repositorio"
-                className="inline-flex items-center justify-center gap-2 font-bold text-sm text-white border border-white/30 rounded-[4px] px-6 transition-all duration-200 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                style={{
-                  minHeight: 48,
-                  fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif",
-                }}
-              >
-                Buscar una norma
-              </a>
+              
+              
             </div>
           </div>
         </div>
@@ -871,18 +847,7 @@ function DocRutaNMarco() {
               className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#253D36]/35"
               aria-hidden="true"
             />
-            <input
-              type="search"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Busca por norma o por secretaría…"
-              className="w-full pl-11 pr-4 py-3 border border-[rgba(37,61,54,0.18)] rounded-[4px] bg-[#F7F7F5] text-[#253D36] focus:outline-none focus:ring-2 focus:ring-[#253D36] focus:border-transparent"
-              style={{
-                fontFamily: "'Source Sans 3',Arial,sans-serif",
-                fontSize: "0.9rem",
-              }}
-              aria-label="Buscar por norma o secretaría"
-            />
+            
           </div>
         </div>
 
@@ -1344,6 +1309,11 @@ export function DocumentacionPage() {
     <>
       <FloatingNav sections={DOC_SECTIONS} />
       <DocBanner />
+      <Breadcrumb items={[
+        { label: "Contenidos", href: "#contenidos" },
+        { label: "Lab de Políticas", href: "/lab-de-politicas" },
+        { label: "Documentación" }
+      ]} />
       <DocCronologia />
       <DocRutaNMarco />
       <DocRepositorio />

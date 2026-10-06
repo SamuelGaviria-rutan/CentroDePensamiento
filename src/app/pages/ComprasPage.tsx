@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { FloatingNav } from "../components/FloatingNav";
+import { Breadcrumb } from "../components/Breadcrumb";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { X, Download, ArrowRight, ArrowUpRight, Globe, TrendingUp, ClipboardList, Activity } from "lucide-react";
@@ -579,17 +580,6 @@ function ComprasDosCAMINOS() {
               </p>
             </div>
 
-            <div className="mt-auto">
-              <a
-                href="#"
-                onClick={(e) => e.preventDefault()}
-                className="inline-flex items-center gap-2 font-bold text-sm text-[#253D36] hover:text-[#C0D400] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#253D36] rounded-sm group"
-                style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
-              >
-                Empezar como comprador público
-                <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
-              </a>
-            </div>
           </article>
 
           {/* Card: Empresa / emprendimiento */}
@@ -624,17 +614,6 @@ function ComprasDosCAMINOS() {
               </p>
             </div>
 
-            <div className="mt-auto">
-              <a
-                href="#"
-                onClick={(e) => e.preventDefault()}
-                className="inline-flex items-center gap-2 font-bold text-sm text-[#C0D400] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] rounded-sm group transition-all"
-                style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
-              >
-                Empezar como proveedor de innovación
-                <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
-              </a>
-            </div>
           </article>
         </div>
       </div>
@@ -899,15 +878,6 @@ function ComprasComoEmpezar({ onOpenTest }: { onOpenTest: () => void }) {
               Plan Anual de CPI, informes trimestrales, actas de las mesas estratégicas y el tablero de resultados. Todo lo necesario para estructurar el proceso y para hacerle seguimiento después.
             </p>
 
-            <div className="mt-auto pt-4 border-t border-[rgba(37,61,54,0.08)]">
-              <a
-                href="#mesas"
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#253D36] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#253D36] rounded-sm"
-                style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
-              >
-                Ver las actas de las mesas <ArrowRight className="w-3.5 h-3.5" />
-              </a>
-            </div>
           </article>
 
         </div>
@@ -992,14 +962,6 @@ function ComprasResultados() {
             >
               El tablero de resultados de CPI muestra los procesos estructurados, las entidades participantes y el valor movilizado. La compra pública de innovación no es una promesa: aquí están los números.
             </p>
-            <a
-              href="#"
-              onClick={(e) => e.preventDefault()}
-              className="inline-flex items-center gap-2 font-bold text-sm text-[#C0D400] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] rounded-sm"
-              style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
-            >
-              Abrir el tablero de resultados <ArrowUpRight className="w-4 h-4" />
-            </a>
           </div>
         </div>
 
@@ -1116,40 +1078,6 @@ function ComprasMesas() {
             El espacio donde las entidades del Distrito coordinan sus procesos de compra pública de innovación. Publicamos las actas porque la trazabilidad de estas decisiones es parte del valor público que generan.
           </p>
 
-          {/* Contact CTA */}
-          <div
-            className="mt-10 p-6 rounded-[4px]"
-            style={{ background: "rgba(37,61,54,0.06)", border: "1px solid rgba(37,61,54,0.1)" }}
-          >
-            <p
-              className="text-[#253D36] mb-4 leading-snug"
-              style={{
-                fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif",
-                fontSize: "0.9375rem",
-                fontWeight: 800,
-                lineHeight: 1.35,
-              }}
-            >
-              ¿Tienes un reto y no sabes por dónde empezar?
-            </p>
-            <p
-              className="text-[#253D36]/60 mb-5 text-sm leading-relaxed"
-              style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
-            >
-              Escríbele al equipo de CPI de Ruta N.
-            </p>
-            <a
-              href="#"
-              onClick={(e) => e.preventDefault()}
-              className="inline-flex items-center gap-2 font-bold text-sm text-[#253D36] bg-[#C0D400] rounded-[4px] px-5 transition-colors hover:bg-[#AABC00] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#253D36]"
-              style={{
-                minHeight: 44,
-                fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif",
-              }}
-            >
-              Contactar al equipo CPI
-            </a>
-          </div>
         </div>
 
         {/* Right: Actas list */}
@@ -1247,6 +1175,11 @@ export function ComprasPage() {
       <FloatingNav sections={COMPRAS_SECTIONS} />
       {testOpen && <TestCPI onClose={() => setTestOpen(false)} />}
       <ComprasBanner onOpenTest={() => setTestOpen(true)} />
+      <Breadcrumb items={[
+        { label: "Contenidos", href: "#contenidos" },
+        { label: "Lab de Políticas", href: "/lab-de-politicas" },
+        { label: "Compras Públicas Innovadoras" }
+      ]} />
       <ComprasDosCAMINOS />
       <ComprasComoEmpezar onOpenTest={() => setTestOpen(true)} />
       <ComprasResultados />

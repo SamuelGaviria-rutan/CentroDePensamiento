@@ -138,12 +138,14 @@ type SourceDoc = {
 type Source = {
   name: string;
   desc: string;
+  color: string;
   docs: SourceDoc[];
 };
 
 const SOURCES: Source[] = [
   {
     name: "GEIAL",
+    color: "#007C6B",
     desc: "Comunidad de medición de ecosistemas de emprendimiento dinámico e innovador en América Latina.",
     docs: [
       { title: "GEIAL Medellín 2024", year: "2024", scope: "Local", weight: "2.4 MB", type: "informe" },
@@ -155,6 +157,7 @@ const SOURCES: Source[] = [
   },
   {
     name: "IESE Cities in Motion",
+    color: "#0050E0",
     desc: "Plataforma de investigación de IESE Business School sobre gobernanza urbana y ciudades inteligentes.",
     docs: [
       { title: "Cities in Motion Index 2024", year: "2024", scope: "Global", weight: "5.2 MB", type: "ranking" },
@@ -163,6 +166,7 @@ const SOURCES: Source[] = [
   },
   {
     name: "StartupBlink",
+    color: "#253D36",
     desc: "Mapa global de ecosistemas de startups y centro de investigación en economía de la innovación.",
     docs: [
       { title: "Global Startup Ecosystem Report 2024", year: "2024", scope: "Global", weight: "12 MB", type: "informe" },
@@ -173,6 +177,7 @@ const SOURCES: Source[] = [
   },
   {
     name: "Medellín Cómo Vamos",
+    color: "#6A7700",
     desc: "Programa ciudadano de seguimiento y evaluación de la calidad de vida en Medellín.",
     docs: [
       { title: "Encuesta de Percepción 2024", year: "2024", scope: "Local", weight: "3.7 MB", type: "datos" },
@@ -544,8 +549,6 @@ export function DataReportsSection({
   const sectionRef = useRef<HTMLElement>(null);
   const [search, setSearch] = useState("");
   const [yearFilter,  setYear]  = useState("Todos");
-  const [scopeFilter, setScope] = useState("Todos");
-  const [typeFilter,  setType]  = useState("Todos");
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase().trim();
@@ -554,17 +557,15 @@ export function DataReportsSection({
       docs: source.docs.filter(doc => {
         const matchSearch = !q || doc.title.toLowerCase().includes(q) || source.name.toLowerCase().includes(q) || doc.year.includes(q);
         const matchYear   = yearFilter === "Todos"  || doc.year  === yearFilter;
-        const matchScope  = scopeFilter === "Todos" || doc.scope === scopeFilter;
-        const matchType   = typeFilter  === "Todos" || doc.type  === typeFilter;
-        return matchSearch && matchYear && matchScope && matchType;
+        return matchSearch && matchYear;
       }),
     })).filter(s => s.docs.length > 0);
-  }, [search, yearFilter, scopeFilter, typeFilter]);
+  }, [search, yearFilter]);
 
   const totalDocs = filtered.reduce((acc, s) => acc + s.docs.length, 0);
-  const hasFilters = search || yearFilter !== "Todos" || scopeFilter !== "Todos" || typeFilter !== "Todos";
+  const hasFilters = search || yearFilter !== "Todos";
 
-  const clearAll = () => { setSearch(""); setYear("Todos"); setScope("Todos"); setType("Todos"); };
+  const clearAll = () => { setSearch(""); setYear("Todos"); };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -597,68 +598,62 @@ export function DataReportsSection({
         </div>
 
         {/* Filter bar */}
-        <div className="bg-[#F2F4F0] p-4 rounded-md mb-6 border border-[rgba(37,61,54,0.06)]">
-          <div className="flex flex-col lg:flex-row gap-3 mb-4">
-            {/* Search */}
-            <div className="flex-1 relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#253D36]/40" />
-              <input
-                type="search"
-                value={search}
-                onChange={e => setSearch(e.target.value)}
-                placeholder="Busca por fuente, documento o año…"
-                className="w-full bg-white pl-11 pr-10 py-3 rounded-sm border border-[rgba(37,61,54,0.1)] text-[#111] focus:outline-none focus:border-[#C0D400] focus:ring-1 focus:ring-[#C0D400] text-sm"
-                style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
-              />
-              {search && (
-                <button onClick={() => setSearch("")} aria-label="Limpiar búsqueda" className="absolute right-1.5 top-1/2 -translate-y-1/2 flex items-center justify-center min-w-11 min-h-11 rounded-sm text-[#253D36]/40 hover:text-[#253D36] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400]">
-                  <X className="w-4 h-4" aria-hidden="true" />
-                </button>
-              )}
-            </div>
-
-            {/* Filter selects */}
-            <div className="flex flex-wrap gap-2">
-              {([
-                { label: "Año", value: yearFilter,  setter: setYear,  opts: YEAR_OPTIONS },
-                { label: "Alcance", value: scopeFilter, setter: setScope, opts: SCOPE_OPTIONS },
-                { label: "Tipo", value: typeFilter,  setter: setType,  opts: TYPE_OPTIONS },
-              ] as { label: string; value: string; setter: (v: string) => void; opts: string[] }[]).map(({ label, value, setter, opts }) => (
-                <div key={label} className="relative">
-                  <select
-                    value={value}
-                    onChange={e => setter(e.target.value)}
-                    className="appearance-none bg-white text-xs font-semibold text-[#253D36] border border-[rgba(37,61,54,0.1)] rounded-sm pl-3 pr-7 min-h-11 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#C0D400] h-full"
-                    style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
-                  >
-                    <option value="Todos">{label}: Todos</option>
-                    {opts.filter(o => o !== "Todos").map(o => (
-                      <option key={o} value={o}>{o}</option>
-                    ))}
-                  </select>
-                  <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 text-[#253D36]/40 pointer-events-none" />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Status bar */}
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2 text-sm text-[#253D36]/60" style={{ fontFamily: "'Source Sans 3',sans-serif" }}>
-              <SlidersHorizontal className="w-3.5 h-3.5" />
-              <span>
-                {hasFilters
-                  ? <><strong className="text-[#253D36]">{totalDocs}</strong> {totalDocs === 1 ? "documento encontrado" : "documentos encontrados"}</>
-                  : <><strong className="text-[#253D36]">17</strong> documentos disponibles</>
-                }
-              </span>
-            </div>
-            {hasFilters && (
-              <button onClick={clearAll} className="text-xs font-bold text-[#0068FF] hover:underline" style={{ fontFamily: "'Source Sans 3',sans-serif" }}>
-                Limpiar filtros
+        {/* Filter bar — single compact row */}
+        <div className="flex items-center gap-2 mb-6">
+          {/* Search */}
+          <div className="relative" style={{ maxWidth: 280 }}>
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[#253D36]/35 pointer-events-none" />
+            <input
+              type="search"
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+              placeholder="Buscar documento…"
+              className="w-full h-9 bg-white pl-9 pr-8 rounded-sm border border-[rgba(37,61,54,0.12)] text-[#111] focus:outline-none focus:border-[#C0D400] focus:ring-1 focus:ring-[#C0D400] text-xs"
+              style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+            />
+            {search && (
+              <button
+                onClick={() => setSearch("")}
+                aria-label="Limpiar búsqueda"
+                className="absolute right-1 top-1/2 -translate-y-1/2 w-7 h-7 flex items-center justify-center rounded-sm text-[#253D36]/35 hover:text-[#253D36] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400]"
+              >
+                <X className="w-3.5 h-3.5" aria-hidden="true" />
               </button>
             )}
           </div>
+
+          {/* Year */}
+          <div className="relative shrink-0">
+            <select
+              value={yearFilter}
+              onChange={e => setYear(e.target.value)}
+              className="appearance-none h-9 bg-white text-xs font-semibold text-[#253D36] border border-[rgba(37,61,54,0.12)] rounded-sm pl-3 pr-6 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#C0D400]"
+              style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+            >
+              <option value="Todos">Año: Todos</option>
+              {YEAR_OPTIONS.filter(o => o !== "Todos").map(o => (
+                <option key={o} value={o}>{o}</option>
+              ))}
+            </select>
+            <ChevronDown className="absolute right-1.5 top-1/2 -translate-y-1/2 w-3 h-3 text-[#253D36]/35 pointer-events-none" />
+          </div>
+
+          {/* Status + clear */}
+          <span className="ml-1 text-xs text-[#253D36]/45 shrink-0" style={{ fontFamily: "'Source Sans 3',sans-serif" }}>
+            {hasFilters
+              ? <><strong className="text-[#253D36] font-bold">{totalDocs}</strong> {totalDocs === 1 ? "doc." : "docs."}</>
+              : <>17 disponibles</>
+            }
+          </span>
+          {hasFilters && (
+            <button
+              onClick={clearAll}
+              className="ml-auto text-xs font-bold text-[#0068FF] hover:underline shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] rounded-sm"
+              style={{ fontFamily: "'Source Sans 3',sans-serif" }}
+            >
+              Limpiar
+            </button>
+          )}
         </div>
 
         {/* Results */}
@@ -686,10 +681,11 @@ export function DataReportsSection({
             {filtered.map((source, idx) => (
               <div key={idx} className="report-source-block">
                 {/* Source header */}
-                <div className="flex items-start justify-between mb-6 pb-5" style={{ borderBottom: "2px solid rgba(37,61,54,0.08)" }}>
+                <div className="flex items-start justify-between mb-6 pb-5">
                   <div>
-                    <h3 className="text-2xl font-black text-[#253D36] mb-1"
-                      style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif", letterSpacing: "-0.015em" }}>
+                    <div className="h-[3px] w-10 rounded-full mb-3" style={{ backgroundColor: source.color }} aria-hidden="true" />
+                    <h3 className="text-2xl font-black mb-1"
+                      style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif", letterSpacing: "-0.015em", color: source.color }}>
                       {source.name}
                     </h3>
                     <p className="text-sm text-[#253D36]/55"
@@ -704,44 +700,33 @@ export function DataReportsSection({
                 </div>
 
                 {/* Doc cards */}
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3">
                   {source.docs.map((doc, dIdx) => (
                     <div key={dIdx}
-                      className="group flex items-start gap-4 p-5 rounded-md border border-[rgba(37,61,54,0.08)] bg-white transition-all hover:border-[#00B8A3] hover:shadow-sm">
-                      {/* Icon */}
-                      <div className="w-10 h-10 rounded-[3px] bg-[#F2F4F0] flex items-center justify-center shrink-0 group-hover:bg-[#EBF2EA] transition-colors">
-                        <svg className="w-5 h-5 transition-colors" style={{ color: "rgba(37,61,54,0.3)" }}
-                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                          stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
-                          <polyline points="14 2 14 8 20 8"/>
-                          <line x1="16" x2="8" y1="13" y2="13"/>
-                          <line x1="16" x2="8" y1="17" y2="17"/>
-                          <line x1="10" x2="8" y1="9" y2="9"/>
-                        </svg>
-                      </div>
-
-                      <div className="flex-1 min-w-0">
-                        <h4 className="text-[14px] font-bold text-[#253D36] mb-2 group-hover:text-[#0068FF] transition-colors"
-                          style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif", lineHeight: 1.3 }}>
+                      className="group flex flex-col rounded-[4px] bg-white overflow-hidden transition-colors duration-150"
+                      style={{ border: "1px solid rgba(37,61,54,0.09)" }}
+                      onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "#253D36"; }}
+                      onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(37,61,54,0.09)"; }}
+                    >
+                      <span className="block h-[3px] shrink-0" style={{ backgroundColor: source.color }} aria-hidden="true" />
+                      <div className="p-4 flex flex-col flex-1">
+                        <div className="mb-2">
+                          <DocTypePill type={doc.type} />
+                        </div>
+                        <h4 className="text-[15px] font-bold mb-auto leading-snug transition-colors duration-150 group-hover:text-[#0050E0]"
+                          style={{ color: "#253D36", fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif", letterSpacing: "-0.01em" }}>
                           {doc.title}
                         </h4>
-                        <div className="flex flex-wrap items-center gap-1.5 mb-3">
-                          <DocTypePill type={doc.type} />
-                          <span className="text-[10px] font-semibold text-[#253D36]/40 uppercase tracking-wide"
-                            style={{ fontFamily: "'Source Sans 3',sans-serif" }}>
-                            {doc.scope}
+                        <div className="mt-3 pt-3 flex items-center justify-between" style={{ borderTop: "1px solid rgba(37,61,54,0.07)" }}>
+                          <span className="text-[10px] text-[#253D36]/45" style={{ fontFamily: "'Source Sans 3',sans-serif" }}>
+                            {doc.year} · {doc.weight}
                           </span>
-                          <span className="text-[10px] text-[#253D36]/30"
-                            style={{ fontFamily: "'Source Sans 3',sans-serif" }}>
-                            · {doc.year} · {doc.weight}
-                          </span>
+                          <a href="#descargar"
+                            className="inline-flex items-center gap-1 text-[11px] font-bold text-[#0050E0] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] rounded-sm relative z-10"
+                            style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                            <Download className="w-3 h-3" /> Descargar
+                          </a>
                         </div>
-                        <a href="#descargar"
-                          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0068FF] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] rounded-sm"
-                          style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
-                          <Download className="w-3.5 h-3.5" /> Descargar
-                        </a>
                       </div>
                     </div>
                   ))}

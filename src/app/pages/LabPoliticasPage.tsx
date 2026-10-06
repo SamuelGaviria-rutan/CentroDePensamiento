@@ -156,12 +156,7 @@ function LabPoliticasHero() {
                 ))}
               </div>
 
-              <div className="mt-auto pt-6 flex items-center justify-between z-10" style={{ borderTop: "1px solid rgba(255,255,255,0.1)" }}>
-                <span className="text-xs font-bold text-[#C0D400]" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>Ver cronología</span>
-                <div className="w-6 h-6 rounded-full bg-[rgba(192,212,0,0.1)] flex items-center justify-center group-hover:bg-[#C0D400] transition-colors">
-                  <ArrowDown className="w-3.5 h-3.5 text-[#C0D400] group-hover:text-[#253D36] transition-colors" />
-                </div>
-              </div>
+              
             </a>
           </div>
 
@@ -476,12 +471,7 @@ function LabQueEsSection() {
         {/* ── Text block ── */}
         <div className="lg:grid lg:grid-cols-12 lg:gap-16 mb-10 lg:mb-14">
           <div className="lg:col-span-5 mb-6 lg:mb-0">
-            <p
-              className="text-[10px] tracking-[0.28em] uppercase text-[#C0D400] mb-5"
-              style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
-            >
-              Quiénes somos
-            </p>
+            
             <h2
               id="lab-que-es-heading"
               ref={headingRef}
