@@ -195,8 +195,8 @@ const TYPE_LABELS: Record<string, string> = {
 };
 
 const TYPE_COLORS: Record<string, { bg: string; text: string }> = {
-  informe:     { bg: "#E8F4FF", text: "#0068FF" },
-  ranking:     { bg: "#EBF2EA", text: "#00B8A3" },
+  informe:     { bg: "#E8F4FF", text: "#0050E0" },
+  ranking:     { bg: "#EBF2EA", text: "#007C6B" },
   metodologia: { bg: "#FFF8E1", text: "#9B7700" },
   datos:       { bg: "#F3F0FF", text: "#6C4BCC" },
 };

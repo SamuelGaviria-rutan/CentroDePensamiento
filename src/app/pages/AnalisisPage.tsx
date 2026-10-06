@@ -86,21 +86,6 @@ function AnalisisCTIHero() {
               Esta es la parte más densa del Centro de Pensamiento: informes de tendencias, vigilancia tecnológica y análisis a profundidad, construidos a la medida de las preguntas reales de Medellín y su ecosistema. No son lecturas rápidas. Son las que sostienen decisiones que duran años.
             </p>
 
-            {/* Prominent Search Bar */}
-            <div className="relative max-w-xl mb-4">
-              <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-[#253D36]" aria-hidden="true" />
-              
-              
-            </div>
-
-            {/* Microdato */}
-            
-
-            {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-6">
-              
-              
-            </div>
           </div>
 
           {/* ── RIGHT COLUMN: Cover Mosaic (Takes up 5 columns on desktop) ── */}
@@ -221,12 +206,15 @@ type Pub = (typeof SAMPLE_PUBLICATIONS)[number];
 function PublicationCard({ pub, typeColors }: { pub: Pub; typeColors: Record<string, string> }) {
   const accentCol = typeColors[pub.type];
   const extraTopics = pub.topics.slice(1);
-  const [hovered, setHovered] = useState(false);
+  const [open, setOpen] = useState(false);
+  const isTouch = useRef(false);
 
   return (
     <article
-      className="result-card bg-white rounded-[4px] overflow-visible flex flex-col group focus-within:ring-2 focus-within:ring-[#C0D400] relative"
+      className="result-card bg-white rounded-[4px] overflow-visible flex flex-col group focus-within:ring-2 focus-within:ring-[#C0D400] relative transition-colors duration-150"
       style={{ border: "1px solid rgba(37,61,54,0.09)" }}
+      onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "#253D36"; }}
+      onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(37,61,54,0.09)"; }}
     >
       {/* Línea de color superior por tipo */}
       <span className="block h-[3px] shrink-0 rounded-t-[4px]" style={{ backgroundColor: accentCol }} aria-hidden="true" />
@@ -242,7 +230,7 @@ function PublicationCard({ pub, typeColors }: { pub: Pub; typeColors: Record<str
           </span>
           {pub.isNew && (
             <span
-              className="shrink-0 text-[9px] font-bold px-2 py-1 rounded-[4px]"
+              className="shrink-0 text-[12px] font-bold px-2 py-1 rounded-[4px]"
               style={{ backgroundColor: "#E1FFFB", color: "#006152", fontFamily: "'Source Sans 3',Arial,sans-serif" }}
             >
               Nuevo
@@ -252,23 +240,28 @@ function PublicationCard({ pub, typeColors }: { pub: Pub; typeColors: Record<str
 
         {/* Fila de temas */}
         <div className="flex items-center gap-1.5 mb-2 relative">
-          <p className="text-[11px] font-bold leading-none truncate" style={{ color: "#0050E0", fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+          <p className="text-[13px] font-bold leading-none truncate" style={{ color: "#0050E0", fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
             {pub.topics[0]}
           </p>
           {extraTopics.length > 0 && (
             <div
               className="relative shrink-0 z-20"
-              onMouseEnter={() => setHovered(true)}
-              onMouseLeave={() => setHovered(false)}
+              onMouseEnter={() => { if (!isTouch.current) setOpen(true); }}
+              onMouseLeave={() => { if (!isTouch.current) setOpen(false); }}
             >
               <span
+                role="button"
+                tabIndex={0}
                 aria-label={`${extraTopics.length} tema${extraTopics.length > 1 ? "s" : ""} más`}
+                aria-expanded={open}
                 className="text-[12px] font-bold px-1.5 py-0.5 rounded-[4px] leading-none cursor-default select-none"
                 style={{ backgroundColor: "#E7ECEA", color: "#515B58", fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+                onTouchStart={() => { isTouch.current = true; }}
+                onClick={e => { e.preventDefault(); e.stopPropagation(); if (isTouch.current) setOpen(v => !v); }}
               >
                 +{extraTopics.length}
               </span>
-              {hovered && (
+              {open && (
                 <div
                   className="absolute left-0 top-full mt-1 rounded-[4px] px-3 py-2 flex flex-col gap-1 min-w-[160px] pointer-events-none"
                   style={{ backgroundColor: "#253D36", zIndex: 30 }}
