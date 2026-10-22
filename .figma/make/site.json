@@ -1,0 +1,10 @@
+{
+  "description": "This web application offers a sleek, user-friendly interface for design professionals to create and customize projects using Neue Haas Grotesk and Source Sans Pro fonts.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

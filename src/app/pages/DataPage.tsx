@@ -703,9 +703,9 @@ export function DataReportsSection({
                 <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3">
                   {source.docs.map((doc, dIdx) => (
                     <div key={dIdx}
-                      className="group flex flex-col rounded-[4px] bg-white overflow-hidden transition-colors duration-150"
+                      className="group flex flex-col rounded-[4px] bg-white overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(37,61,54,0.08)]"
                       style={{ border: "1px solid rgba(37,61,54,0.09)" }}
-                      onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "#253D36"; }}
+                      onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(37,61,54,0.3)"; }}
                       onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(37,61,54,0.09)"; }}
                     >
                       <span className="block h-[3px] shrink-0" style={{ backgroundColor: source.color }} aria-hidden="true" />

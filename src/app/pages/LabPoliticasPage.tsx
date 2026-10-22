@@ -90,7 +90,7 @@ function LabPoliticasHero() {
             </p>
 
             {/* Microdatos */}
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 mb-6 pb-4 border-b border-[rgba(255,255,255,0.1)]">
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
               <span className="text-sm font-bold text-[#00B8A3]" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
                 [N] normas mapeadas
               </span>
@@ -103,60 +103,57 @@ function LabPoliticasHero() {
                 [N] herramientas descargables
               </span>
             </div>
-
-            {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-4">
-              <a
-                href="#cronologia"
-                className="inline-flex items-center justify-center font-bold text-sm text-[#253D36] bg-[#C0D400] rounded-[4px] transition-colors duration-200 hover:bg-[#AABC00] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#253D36] px-6"
-                style={{ minHeight: 48, fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif" }}
-              >
-                Recorrer la línea de tiempo
-              </a>
-              <a
-                href="#recursos"
-                className="inline-flex items-center justify-center font-semibold text-sm text-white rounded-[4px] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#253D36] px-6"
-                style={{ minHeight: 48, border: "1px solid rgba(255,255,255,0.2)", fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif" }}
-                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.05)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.4)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.2)"; }}
-              >
-                Explorar los recursos
-              </a>
-            </div>
           </div>
 
-          {/* ── RIGHT COLUMN: Interactive Timeline Thumbnail ── */}
-          <div ref={rightColRef} className="lg:col-span-4 hidden lg:flex justify-end">
+          {/* ── RIGHT COLUMN: Timeline Card ── */}
+          <div ref={rightColRef} className="lg:col-span-4 hidden lg:flex justify-end items-start">
             <a
               href="#cronologia"
-              className="group relative w-[280px] h-[360px] bg-[#1C2E29] rounded-sm p-6 flex flex-col justify-between overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400]"
-              style={{ border: "1px solid rgba(255,255,255,0.1)" }}
-              aria-label="Ir a la línea de tiempo 2011-2026"
+              className="group relative w-[300px] bg-[#111F1B] rounded-[6px] overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_48px_rgba(0,0,0,0.5)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400]"
+              style={{ border: "1px solid rgba(255,255,255,0.08)" }}
+              aria-label="Ir a la línea de tiempo 2011–2026"
             >
-              {/* Timeline graphic */}
-              <div className="absolute top-0 bottom-0 left-8 w-[2px] bg-[#253D36] group-hover:bg-[rgba(255,255,255,0.1)] transition-colors" />
+              {/* Top accent bar */}
+              <div className="h-[3px] w-full" style={{ background: "linear-gradient(90deg,#0068FF,#00B8A3,#C0D400)" }} />
 
-              <div className="flex flex-col gap-6 w-full z-10">
-                {[
-                  { y: "2011", t: "Fundación de Ruta N", c: "#0068FF" },
-                  { y: "2015", t: "Plan CTI", c: "#253D36" },
-                  { y: "2021", t: "Distrito CTI", c: "#00B8A3" },
-                  { y: "2026", t: "Proyección", c: "#C0D400" },
-                ].map((node, i) => (
-                  <div key={i} className="flex items-start gap-4">
-                    <div className="relative mt-1">
-                      <div className="w-3 h-3 rounded-full border-2 border-[#1C2E29]" style={{ backgroundColor: node.c }} />
-                      <div className="absolute inset-0 rounded-full animate-ping opacity-0 group-hover:opacity-50 transition-opacity" style={{ backgroundColor: node.c }} />
+              {/* Header */}
+              <div className="px-5 pt-5 pb-4" style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
+                <p className="text-[9px] uppercase tracking-[0.22em] font-bold text-white/35 mb-1" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                  Trayectoria
+                </p>
+                <p className="text-white font-black leading-none" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif", fontSize: "1.15rem", letterSpacing: "-0.02em" }}>
+                  15 años de política CTI
+                </p>
+              </div>
+
+              {/* Timeline nodes */}
+              <div className="relative px-5 py-5 flex flex-col gap-0">
+                {/* Vertical line */}
+                <div className="absolute left-[2.1rem] top-5 bottom-5 w-px" style={{ background: "linear-gradient(to bottom,#0068FF44,#00B8A344,#C0D40044)" }} />
+
+                {([
+                  { y: "2011", t: "Fundación de Ruta N", c: "#4D8FFF", dot: "#0068FF" },
+                  { y: "2015", t: "Plan CTI Medellín",   c: "#66D4C8", dot: "#00B8A3" },
+                  { y: "2021", t: "Distrito CTI",         c: "#B8CC20", dot: "#C0D400" },
+                  { y: "2026", t: "Proyección",           c: "#FFCA00", dot: "#FFCA00" },
+                ] as { y: string; t: string; c: string; dot: string }[]).map((node, i, arr) => (
+                  <div key={i} className="flex items-start gap-4 relative" style={{ paddingBottom: i < arr.length - 1 ? "1.25rem" : 0 }}>
+                    {/* Dot */}
+                    <div className="shrink-0 mt-[3px] relative z-10 flex items-center justify-center w-5 h-5">
+                      <div className="w-2.5 h-2.5 rounded-full ring-[3px] ring-[#111F1B]" style={{ backgroundColor: node.dot }} />
                     </div>
-                    <div className="flex flex-col">
-                      <span className="text-xs font-bold text-white/50 mb-0.5" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>{node.y}</span>
-                      <span className="text-sm font-semibold text-white/90 leading-tight" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif" }}>{node.t}</span>
+                    <div>
+                      <span className="block text-[10px] font-bold leading-none mb-1" style={{ color: node.c, fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                        {node.y}
+                      </span>
+                      <span className="text-[13px] font-semibold leading-tight" style={{ color: "rgba(255,255,255,0.85)", fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif" }}>
+                        {node.t}
+                      </span>
                     </div>
                   </div>
                 ))}
               </div>
 
-              
             </a>
           </div>
 

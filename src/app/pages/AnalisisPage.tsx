@@ -211,9 +211,9 @@ function PublicationCard({ pub, typeColors }: { pub: Pub; typeColors: Record<str
 
   return (
     <article
-      className="result-card bg-white rounded-[4px] overflow-visible flex flex-col group focus-within:ring-2 focus-within:ring-[#C0D400] relative transition-colors duration-150"
+      className="result-card bg-white rounded-[4px] overflow-visible flex flex-col group focus-within:ring-2 focus-within:ring-[#C0D400] relative transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(37,61,54,0.08)]"
       style={{ border: "1px solid rgba(37,61,54,0.09)" }}
-      onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "#253D36"; }}
+      onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(37,61,54,0.3)"; }}
       onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(37,61,54,0.09)"; }}
     >
       {/* Línea de color superior por tipo */}
@@ -611,7 +611,7 @@ function AnalisisCTILibrary() {
         </div>
 
         {/* ── RESULTADOS ── */}
-        <div ref={resultsRef} className="pt-2 pb-10 min-h-[240px]">
+        <div ref={resultsRef} className="pt-2 pb-10 min-h-[240px] overflow-visible">
           {isSearchEmpty ? (
             <div className="text-center py-20 bg-white rounded-md border border-dashed border-[rgba(37,61,54,0.15)] max-w-2xl mx-auto flex flex-col items-center">
               <div className="w-14 h-14 rounded-full bg-[#FAFAF8] flex items-center justify-center mb-4" style={{ border: "1px solid rgba(37,61,54,0.06)" }}>
@@ -626,7 +626,7 @@ function AnalisisCTILibrary() {
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 items-start">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 items-start overflow-visible">
               {visiblePubs.map((pub) => (
                 <PublicationCard key={pub.id} pub={pub} typeColors={TYPE_COLORS} />
               ))}
