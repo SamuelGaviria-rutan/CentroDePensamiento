@@ -60,7 +60,7 @@ function AnalisisCTIHero() {
           <div ref={leftColRef} className="lg:col-span-7 flex flex-col">
             <p
               className="text-[10px] tracking-[0.32em] uppercase mb-6"
-              style={{ color: "#00B8A3", fontFamily: "'Source Sans 3','Source Sans Pro',Arial,sans-serif", fontWeight: "bold" }}
+              style={{ color: "#00B8A3", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif", fontWeight: "bold" }}
             >
               MAPEO · REPOSITORIO
             </p>
@@ -81,7 +81,7 @@ function AnalisisCTIHero() {
 
             <p
               className="text-lg md:text-xl mb-6 max-w-2xl"
-              style={{ color: "rgba(255,255,255,0.75)", fontFamily: "'Source Sans 3','Source Sans Pro',Arial,sans-serif", lineHeight: 1.6 }}
+              style={{ color: "rgba(255,255,255,0.75)", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif", lineHeight: 1.6 }}
             >
               Esta es la parte más densa del Centro de Pensamiento: informes de tendencias, vigilancia tecnológica y análisis a profundidad, construidos a la medida de las preguntas reales de Medellín y su ecosistema. No son lecturas rápidas. Son las que sostienen decisiones que duran años.
             </p>
@@ -113,7 +113,7 @@ function AnalisisCTIHero() {
 
             {/* Cover 3 - Front center (Hero cover) */}
             <div className="absolute bottom-[5%] left-[20%] w-[55%] aspect-[1/1.414] bg-[#FAFAF8] rounded-sm shadow-[0_20px_40px_rgba(0,0,0,0.3)] flex flex-col p-6 z-10 -rotate-2">
-              <p className="text-[8px] font-bold tracking-widest text-[#253D36]/50 mb-4 uppercase" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>Vigilancia Tecnológica</p>
+              <p className="text-[8px] font-bold tracking-widest text-[#253D36]/50 mb-4 uppercase" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>Vigilancia Tecnológica</p>
               <h3 className="text-xl font-black text-[#253D36] mb-3 leading-tight" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif", letterSpacing: "-0.01em" }}>
                 El impacto de la Inteligencia Artificial
               </h3>
@@ -224,14 +224,14 @@ function PublicationCard({ pub, typeColors }: { pub: Pub; typeColors: Record<str
         <div className="flex items-center justify-between gap-2 mb-3">
           <span
             className="text-[9px] font-bold uppercase tracking-wider px-2 py-1 rounded-[2px]"
-            style={{ backgroundColor: `${accentCol}20`, color: "#253D36", fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+            style={{ backgroundColor: `${accentCol}20`, color: "#253D36", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
           >
             {CONTENT_TYPES.find(t => t.id === pub.type)?.title}
           </span>
           {pub.isNew && (
             <span
               className="shrink-0 text-[12px] font-bold px-2 py-1 rounded-[4px]"
-              style={{ backgroundColor: "#E1FFFB", color: "#006152", fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+              style={{ backgroundColor: "#E1FFFB", color: "#006152", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
             >
               Nuevo
             </span>
@@ -240,7 +240,7 @@ function PublicationCard({ pub, typeColors }: { pub: Pub; typeColors: Record<str
 
         {/* Fila de temas */}
         <div className="flex items-center gap-1.5 mb-2 relative">
-          <p className="text-[13px] font-bold leading-none truncate" style={{ color: "#0050E0", fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+          <p className="text-[13px] font-bold leading-none truncate" style={{ color: "#0050E0", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
             {pub.topics[0]}
           </p>
           {extraTopics.length > 0 && (
@@ -255,7 +255,7 @@ function PublicationCard({ pub, typeColors }: { pub: Pub; typeColors: Record<str
                 aria-label={`${extraTopics.length} tema${extraTopics.length > 1 ? "s" : ""} más`}
                 aria-expanded={open}
                 className="text-[12px] font-bold px-1.5 py-0.5 rounded-[4px] leading-none cursor-default select-none"
-                style={{ backgroundColor: "#E7ECEA", color: "#515B58", fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+                style={{ backgroundColor: "#E7ECEA", color: "#515B58", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
                 onTouchStart={() => { isTouch.current = true; }}
                 onClick={e => { e.preventDefault(); e.stopPropagation(); if (isTouch.current) setOpen(v => !v); }}
               >
@@ -271,7 +271,7 @@ function PublicationCard({ pub, typeColors }: { pub: Pub; typeColors: Record<str
                     <span
                       key={t}
                       className="text-[13px] leading-snug"
-                      style={{ color: "#FFFFFF", fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+                      style={{ color: "#FFFFFF", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
                     >
                       {t}
                     </span>
@@ -295,12 +295,12 @@ function PublicationCard({ pub, typeColors }: { pub: Pub; typeColors: Record<str
 
         {/* Metadatos */}
         <div className="mt-4 pt-3 flex items-center justify-between" style={{ borderTop: "1px solid rgba(37,61,54,0.07)" }}>
-          <div className="flex items-center gap-2 text-[10px] text-[#253D36]/45" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+          <div className="flex items-center gap-2 text-[10px] text-[#253D36]/45" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
             <span>{pub.year}</span>
             <span aria-hidden="true">·</span>
             <span>{pub.pages} págs.</span>
           </div>
-          <span className="flex items-center gap-1 text-[10px] font-bold text-[#253D36]/40" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+          <span className="flex items-center gap-1 text-[10px] font-bold text-[#253D36]/40" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
             <Download className="w-3 h-3" aria-hidden="true" /> {pub.downloads}
           </span>
         </div>
@@ -400,7 +400,7 @@ function AnalisisCTILibrary() {
             <h2 className="text-[#253D36] mb-2" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif", fontSize: "clamp(1.75rem, 3vw, 2.5rem)", fontWeight: 900, letterSpacing: "-0.02em", lineHeight: 1.05 }}>
               Encuentra lo que necesitas
             </h2>
-            <p className="text-sm" style={{ color: "rgba(37,61,54,0.6)", fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+            <p className="text-sm" style={{ color: "rgba(37,61,54,0.6)", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
               Busca por palabra clave o filtra por tipo, tema y año.
             </p>
           </div>
@@ -408,7 +408,7 @@ function AnalisisCTILibrary() {
             <button
               onClick={clearAllFilters}
               className="lib-entry shrink-0 inline-flex items-center gap-1.5 text-xs font-bold text-[#0068FF] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] rounded-sm min-h-11 px-1"
-              style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+              style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
             >
               <X className="w-3.5 h-3.5" /> Limpiar todo
             </button>
@@ -417,7 +417,7 @@ function AnalisisCTILibrary() {
 
         {/* ── PASO 1: TIPO DE CONTENIDO — Tarjetas con descripción visible ── */}
         <div className="lib-entry mb-8">
-          <p className="text-[10px] font-bold tracking-[0.18em] uppercase mb-4" style={{ color: "rgba(37,61,54,0.4)", fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+          <p className="text-[10px] font-bold tracking-[0.18em] uppercase mb-4" style={{ color: "rgba(37,61,54,0.4)", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
             ¿Qué tipo de análisis buscas?
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
@@ -469,7 +469,7 @@ function AnalisisCTILibrary() {
                   {/* Description — siempre visible */}
                   <p className="text-xs leading-relaxed mb-5 flex-1" style={{
                     color: isActive ? "rgba(255,255,255,0.6)" : "rgba(37,61,54,0.5)",
-                    fontFamily: "'Source Sans 3',Arial,sans-serif",
+                    fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                   }}>
                     {type.desc}
                   </p>
@@ -477,7 +477,7 @@ function AnalisisCTILibrary() {
                   {/* Count */}
                   <span className="inline-flex items-center gap-1 text-[11px] font-bold" style={{
                     color: isActive ? accentCol : "rgba(37,61,54,0.35)",
-                    fontFamily: "'Source Sans 3',Arial,sans-serif",
+                    fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                   }}>
                     {count} documentos
                   </span>
@@ -508,7 +508,7 @@ function AnalisisCTILibrary() {
               style={{
                 backgroundColor: "#FAFAF8",
                 border: "1px solid rgba(37,61,54,0.12)",
-                fontFamily: "'Source Sans 3',Arial,sans-serif",
+                fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
               }}
               aria-label="Buscar publicaciones"
             />
@@ -526,7 +526,7 @@ function AnalisisCTILibrary() {
           {/* Tema + Año */}
           <div className="flex flex-col lg:flex-row lg:items-start gap-5">
             <div className="flex-1">
-              <p className="text-[10px] font-bold tracking-[0.14em] uppercase mb-2.5" style={{ color: "rgba(37,61,54,0.4)", fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+              <p className="text-[10px] font-bold tracking-[0.14em] uppercase mb-2.5" style={{ color: "rgba(37,61,54,0.4)", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                 Tema
               </p>
               <div className="flex flex-wrap gap-1.5">
@@ -538,7 +538,7 @@ function AnalisisCTILibrary() {
                       onClick={() => toggleTopic(topic)}
                       className="flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400]"
                       style={{
-                        fontFamily: "'Source Sans 3',Arial,sans-serif",
+                        fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                         backgroundColor: isActive ? "#C0D400" : "rgba(37,61,54,0.05)",
                         color: "#253D36",
                         border: isActive ? "1px solid #C0D400" : "1px solid transparent",
@@ -556,7 +556,7 @@ function AnalisisCTILibrary() {
             <div className="hidden lg:block w-px self-stretch" style={{ backgroundColor: "rgba(37,61,54,0.07)" }} />
 
             <div className="lg:min-w-[196px]">
-              <p className="text-[10px] font-bold tracking-[0.14em] uppercase mb-2.5" style={{ color: "rgba(37,61,54,0.4)", fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+              <p className="text-[10px] font-bold tracking-[0.14em] uppercase mb-2.5" style={{ color: "rgba(37,61,54,0.4)", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                 Año
               </p>
               <div className="flex flex-wrap gap-1.5">
@@ -568,7 +568,7 @@ function AnalisisCTILibrary() {
                       onClick={() => setSelectedYear(y)}
                       className="px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400]"
                       style={{
-                        fontFamily: "'Source Sans 3',Arial,sans-serif",
+                        fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                         backgroundColor: isActive ? "#253D36" : "rgba(37,61,54,0.05)",
                         color: isActive ? "#FFFFFF" : "#253D36",
                         border: isActive ? "1px solid #253D36" : "1px solid transparent",
@@ -586,20 +586,20 @@ function AnalisisCTILibrary() {
 
         {/* ── BARRA DE RESULTADOS ── */}
         <div className="lib-entry flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-4" style={{ borderBottom: "1px solid rgba(37,61,54,0.09)" }}>
-          <p className="text-sm font-bold text-[#253D36]" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+          <p className="text-sm font-bold text-[#253D36]" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
             {isSearchEmpty
               ? "Sin resultados"
               : <>{visiblePubs.length} <span className="font-normal text-[#253D36]/60">publicaciones{resultLabel}</span></>
             }
           </p>
           <div className="flex items-center gap-2 shrink-0">
-            <span className="text-xs text-[#253D36]/50" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>Ordenar por</span>
+            <span className="text-xs text-[#253D36]/50" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>Ordenar por</span>
             <div className="relative">
               <select
                 value={sortOrder}
                 onChange={e => setSortOrder(e.target.value)}
                 className="appearance-none bg-transparent text-xs font-bold text-[#253D36] pr-5 min-h-9 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] rounded-sm"
-                style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+                style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
               >
                 <option>Más recientes</option>
                 <option>Más descargados</option>
@@ -618,10 +618,10 @@ function AnalisisCTILibrary() {
                 <Search className="w-5 h-5 text-[#253D36]/25" />
               </div>
               <h3 className="text-lg font-bold text-[#253D36] mb-2" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif" }}>Sin resultados</h3>
-              <p className="text-sm text-[#253D36]/55 mb-5 max-w-sm leading-relaxed" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+              <p className="text-sm text-[#253D36]/55 mb-5 max-w-sm leading-relaxed" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                 Ninguna publicación coincide con esa combinación. Prueba quitando algún filtro.
               </p>
-              <button onClick={clearAllFilters} className="inline-flex items-center gap-1.5 min-h-9 px-4 py-2 rounded-md bg-[#253D36] text-white text-sm font-bold hover:bg-[#1C2E29] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] transition-colors" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+              <button onClick={clearAllFilters} className="inline-flex items-center gap-1.5 min-h-9 px-4 py-2 rounded-md bg-[#253D36] text-white text-sm font-bold hover:bg-[#1C2E29] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] transition-colors" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                 <X className="w-3.5 h-3.5" /> Limpiar filtros
               </button>
             </div>
@@ -768,7 +768,7 @@ function AnalisisCTIFeatured() {
           <h2 className="text-[#253D36] mb-5" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif", fontSize: "clamp(2.25rem, 4vw, 3.5rem)", fontWeight: 900, letterSpacing: "-0.02em", lineHeight: 1.05 }}>
             Los más consultados
           </h2>
-          <p className="text-lg" style={{ color: "rgba(37,61,54,0.75)", fontFamily: "'Source Sans 3',Arial,sans-serif", lineHeight: 1.6 }}>
+          <p className="text-lg" style={{ color: "rgba(37,61,54,0.75)", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif", lineHeight: 1.6 }}>
             Lo que el ecosistema está leyendo ahora mismo. Buen punto de partida si no sabes por dónde empezar.
           </p>
         </div>
@@ -828,7 +828,7 @@ function AnalisisCTIFeatured() {
                   <div className="mb-4">
                     <span
                       className="inline-flex items-center px-2 py-0.5 rounded-[2px] text-[9px] font-bold tracking-widest uppercase mb-4"
-                      style={{ backgroundColor: "rgba(37,61,54,0.06)", color: "#253D36", fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+                      style={{ backgroundColor: "rgba(37,61,54,0.06)", color: "#253D36", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
                     >
                       {report.type}
                     </span>
@@ -842,7 +842,7 @@ function AnalisisCTIFeatured() {
                     </h3>
                     <p
                       className={`text-[#253D36]/70 leading-relaxed ${isFeatured ? "text-base line-clamp-3" : "text-[13px] line-clamp-3"}`}
-                      style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+                      style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
                     >
                       {report.summary}
                     </p>
@@ -850,14 +850,14 @@ function AnalisisCTIFeatured() {
 
                   <div className="mt-auto pt-3 flex flex-col gap-3">
                     {/* Metadatos superiores (Tema, Año) */}
-                    <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-bold text-[#253D36]" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                    <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-bold text-[#253D36]" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                       <span style={{ color: report.color === "#C0D400" ? "#8A9900" : report.color }}>{report.topic}</span>
                       <span className="text-[#253D36]/30">·</span>
                       <span className="text-[#253D36]/60">{report.year}</span>
                     </div>
 
                     {/* Metadatos técnicos */}
-                    <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[10px] text-[#253D36]/60 font-medium" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                    <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[10px] text-[#253D36]/60 font-medium" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                       <span>PDF</span>
                       <span className="text-[#253D36]/30">·</span>
                       <span>{report.pages} páginas</span>
@@ -869,7 +869,7 @@ function AnalisisCTIFeatured() {
 
                     {/* Acciones */}
                     <div className="flex flex-wrap items-center gap-4 mt-1 relative z-20" style={{ borderTop: "1px solid rgba(37,61,54,0.1)", paddingTop: "0.75rem" }}>
-                      <a href="#pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 font-bold hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] rounded-sm" style={{ fontSize: 14, color: "#0050E0", fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                      <a href="#pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 font-bold hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] rounded-sm" style={{ fontSize: 14, color: "#0050E0", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                         Abrir PDF <ArrowUpRight className="w-3.5 h-3.5" />
                       </a>
                     </div>
@@ -889,7 +889,7 @@ function AnalisisCTIFeatured() {
           >
             Ver todas las publicaciones
           </a>
-          <p className="text-xs text-[#253D36]/50 max-w-md mx-auto mb-6" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif", lineHeight: 1.5 }}>
+          <p className="text-xs text-[#253D36]/50 max-w-md mx-auto mb-6" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif", lineHeight: 1.5 }}>
             No pedimos registro para descargar. El conocimiento del Centro de Pensamiento es público.
           </p>
 
@@ -1132,7 +1132,7 @@ function AnalisisCTINova() {
             style={{ background: "rgba(192,212,0,0.08)", border: "1px solid rgba(192,212,0,0.2)" }}>
             <Sparkles className="w-3.5 h-3.5 text-[#C0D400]" aria-hidden="true" />
             <span className="text-[11px] font-bold tracking-[0.18em] uppercase text-[#C0D400]"
-              style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+              style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
               NOVA AI
             </span>
           </div>
@@ -1143,7 +1143,7 @@ function AnalisisCTINova() {
           >
             ¿Y si pudieras preguntarle directamente al archivo?
           </h2>
-          <p style={{ fontSize: "1.0625rem", color: "rgba(255,255,255,0.60)", fontFamily: "'Source Sans 3',Arial,sans-serif", lineHeight: 1.55 }}>
+          <p style={{ fontSize: "1.0625rem", color: "rgba(255,255,255,0.60)", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif", lineHeight: 1.55 }}>
             Puedo consultar por ti los informes, planes y reportes de gestión de Ruta N y responderte en lenguaje natural, citando siempre el documento del que salió la respuesta. Si algo no está en mis fuentes, te lo digo: prefiero un "no lo sé" honesto a un dato inventado.
           </p>
         </div>
@@ -1158,7 +1158,7 @@ function AnalisisCTINova() {
             <div className="flex items-center gap-2.5">
               <div className="w-2 h-2 rounded-full bg-[#C0D400]" style={{ boxShadow: isSpeaking ? "0 0 8px #C0D400" : "none", transition: "box-shadow 0.5s" }} aria-hidden="true" />
               <span className="text-[12px] font-bold text-white/70 tracking-[0.12em] uppercase"
-                style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                 Nova · Centro de Pensamiento
               </span>
             </div>
@@ -1166,7 +1166,7 @@ function AnalisisCTINova() {
               <button
                 onClick={resetChat}
                 className="flex items-center gap-1.5 text-[11px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#C0D400] rounded-sm px-1"
-                style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+                style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.7)")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.35)")}
                 aria-label="Limpiar conversación"
@@ -1195,7 +1195,7 @@ function AnalisisCTINova() {
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               {chatState === "typing" && (
                 <span className="text-[11px] tracking-[0.2em] uppercase"
-                  style={{ color: "rgba(192,212,0,0.5)", fontFamily: "'Source Sans 3',Arial,sans-serif", background: "rgba(17,17,17,0.7)", padding: "4px 8px", borderRadius: "4px" }}>
+                  style={{ color: "rgba(192,212,0,0.5)", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif", background: "rgba(17,17,17,0.7)", padding: "4px 8px", borderRadius: "4px" }}>
                   procesando…
                 </span>
               )}
@@ -1214,7 +1214,7 @@ function AnalisisCTINova() {
             {chatState === "idle" && (
               <div className="flex flex-col gap-4 mt-auto">
                 <p className="text-[10px] font-bold tracking-[0.22em] uppercase"
-                  style={{ color: "rgba(255,255,255,0.28)", fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                  style={{ color: "rgba(255,255,255,0.28)", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                   Preguntas sugeridas
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -1224,7 +1224,7 @@ function AnalisisCTINova() {
                       onClick={() => handleAsk(undefined, q)}
                       className="text-left px-5 py-4 rounded-xl text-sm transition-all duration-150 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#C0D400]"
                       style={{
-                        fontFamily: "'Source Sans 3',Arial,sans-serif",
+                        fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                         lineHeight: 1.45,
                         color: "rgba(255,255,255,0.75)",
                         background: "rgba(255,255,255,0.06)",
@@ -1267,7 +1267,7 @@ function AnalisisCTINova() {
                           WebkitBackdropFilter: "blur(12px)",
                           border: "1px solid rgba(192,212,0,0.3)",
                           color: "rgba(255,255,255,0.95)",
-                          fontFamily: "'Source Sans 3',Arial,sans-serif",
+                          fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                           lineHeight: 1.55,
                           boxShadow: "0 8px 32px rgba(0,0,0,0.3)"
                         }}>
@@ -1285,7 +1285,7 @@ function AnalisisCTINova() {
                           <Sparkles className="w-2.5 h-2.5 text-[#C0D400]" aria-hidden="true" />
                         </div>
                         <span className="text-[11px] font-bold tracking-[0.10em] text-[#C0D400]"
-                          style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                          style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                           Nova
                         </span>
                       </div>
@@ -1301,7 +1301,7 @@ function AnalisisCTINova() {
                             : "1px solid rgba(255,255,255,0.15)",
                         }}>
                         <p className="text-[15px]"
-                          style={{ color: "rgba(255,255,255,0.82)", fontFamily: "'Source Sans 3',Arial,sans-serif", lineHeight: 1.65 }}>
+                          style={{ color: "rgba(255,255,255,0.82)", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif", lineHeight: 1.65 }}>
                           {isLatest ? displayed : msg.content}
                           {isLatest && !typeDone && (
                             <span
@@ -1323,14 +1323,14 @@ function AnalisisCTINova() {
                           <div className="pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
                             style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
                             <p className="text-[11px] flex items-center gap-1.5"
-                              style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                              style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                               <FileText className="w-3 h-3" aria-hidden="true" />
                               Fuente: Global Startup Ecosystem Index 2024
                             </p>
                             <a
                               href="#descargar"
                               className="inline-flex items-center min-h-11 gap-1 text-[11px] font-bold uppercase tracking-wider transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#C0D400] rounded-sm"
-                              style={{ color: "#C0D400", fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+                              style={{ color: "#C0D400", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
                               onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
                               onMouseLeave={(e) => (e.currentTarget.style.color = "#C0D400")}
                             >
@@ -1352,7 +1352,7 @@ function AnalisisCTINova() {
                         <Sparkles className="w-2.5 h-2.5 text-[#C0D400]" aria-hidden="true" />
                       </div>
                       <span className="text-[11px] font-bold tracking-[0.10em] text-[#C0D400]"
-                        style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                        style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                         Nova
                       </span>
                     </div>
@@ -1385,7 +1385,7 @@ function AnalisisCTINova() {
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Escribe tu pregunta sobre el ecosistema CTI de Medellín…"
                 className="flex-1 py-4 px-6 rounded-full text-[15px] transition-all duration-200 outline-none border border-white/15 bg-white/5 text-white/95 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.4)] focus:border-[#C0D400]/50 focus:bg-white/10 focus:ring-2 focus:ring-[#C0D400] focus:ring-offset-2 focus:ring-offset-[#111111]"
-                style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+                style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
                 aria-label="Pregunta para Nova"
                 disabled={chatState === "typing"}
               />
@@ -1405,7 +1405,7 @@ function AnalisisCTINova() {
               </button>
             </form>
             <p className="text-center text-[11px] mt-3"
-              style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Source Sans 3',Arial,sans-serif", lineHeight: 1.5 }}>
+              style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif", lineHeight: 1.5 }}>
               Las respuestas se generan a partir de los documentos públicos del Centro de Pensamiento. Verifica siempre en la fuente citada.
             </p>
           </div>

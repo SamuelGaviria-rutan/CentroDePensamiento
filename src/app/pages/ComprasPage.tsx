@@ -187,14 +187,14 @@ function TestCPI({ onClose }: TestCPIProps) {
           <div>
             <p
               className="text-[10px] tracking-[0.28em] uppercase text-[#C0D400] mb-0.5"
-              style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+              style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
             >
               Test CPI
             </p>
             {!showResult && (
               <p
                 className="text-white/60"
-                style={{ fontFamily: "'Source Sans 3',Arial,sans-serif", fontSize: "0.8rem" }}
+                style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif", fontSize: "0.8rem" }}
               >
                 Pregunta {step + 1} de {CPI_QUESTIONS.length}
               </p>
@@ -241,7 +241,7 @@ function TestCPI({ onClose }: TestCPIProps) {
                 <p
                   className="text-[#253D36]/45 mb-8"
                   style={{
-                    fontFamily: "'Source Sans 3',Arial,sans-serif",
+                    fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                     fontSize: "0.8125rem",
                     lineHeight: 1.55,
                   }}
@@ -282,7 +282,7 @@ function TestCPI({ onClose }: TestCPIProps) {
                 <button
                   onClick={goBack}
                   className="mt-5 inline-flex items-center min-h-11 px-2 text-xs text-[#253D36]/40 hover:text-[#253D36] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#253D36] rounded-sm"
-                  style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+                  style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
                 >
                   ← Volver a la pregunta anterior
                 </button>
@@ -293,7 +293,7 @@ function TestCPI({ onClose }: TestCPIProps) {
               <div
                 className="inline-flex items-center gap-2 text-[10px] uppercase tracking-wider px-3 py-1.5 rounded-[3px] mb-6"
                 style={{
-                  fontFamily: "'Source Sans 3',Arial,sans-serif",
+                  fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                   background: isPositive ? "rgba(192,212,0,0.14)" : "rgba(255,76,23,0.1)",
                   color: isPositive ? "#5E6A00" : "#C93800",
                   border: `1px solid ${isPositive ? "rgba(192,212,0,0.3)" : "rgba(255,76,23,0.25)"}`,
@@ -325,7 +325,7 @@ function TestCPI({ onClose }: TestCPIProps) {
               <p
                 className="text-[#253D36]/60 mb-8 leading-relaxed"
                 style={{
-                  fontFamily: "'Source Sans 3',Arial,sans-serif",
+                  fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                   fontSize: "0.9rem",
                   lineHeight: 1.65,
                 }}
@@ -363,7 +363,7 @@ function TestCPI({ onClose }: TestCPIProps) {
         >
           <p
             className="text-[10px] text-[#253D36]/35"
-            style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+            style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
           >
             Toma alrededor de 5 minutos · Recibes el resultado al instante
           </p>
@@ -422,7 +422,7 @@ function ComprasBanner({ onOpenTest }: { onOpenTest: () => void }) {
         <div className="max-w-[780px]">
           <p
             className="text-[10px] tracking-[0.32em] uppercase font-bold mb-6"
-            style={{ color: "#C0D400", fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+            style={{ color: "#C0D400", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
           >
             Compras Públicas Innovadoras
           </p>
@@ -445,7 +445,7 @@ function ComprasBanner({ onOpenTest }: { onOpenTest: () => void }) {
             <p
               className="text-white/70 mb-10 leading-relaxed"
               style={{
-                fontFamily: "'Source Sans 3',Arial,sans-serif",
+                fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                 fontSize: "1.125rem",
                 lineHeight: 1.7,
               }}
@@ -527,7 +527,7 @@ function ComprasDosCAMINOS() {
         <div className="mb-12">
           <p
             className="text-[10px] tracking-[0.28em] uppercase text-[#253D36]/40 mb-4"
-            style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+            style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
           >
             Bloque 1 · Dos caminos
           </p>
@@ -564,14 +564,14 @@ function ComprasDosCAMINOS() {
             <div>
               <p
                 className="text-[10px] uppercase tracking-wider text-[#253D36]/40 mb-3"
-                style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+                style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
               >
                 Si eres una entidad pública
               </p>
               <p
                 className="text-[#253D36] leading-relaxed"
                 style={{
-                  fontFamily: "'Source Sans 3',Arial,sans-serif",
+                  fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                   fontSize: "1rem",
                   lineHeight: 1.7,
                 }}
@@ -598,14 +598,14 @@ function ComprasDosCAMINOS() {
             <div>
               <p
                 className="text-[10px] uppercase tracking-wider text-white/40 mb-3"
-                style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+                style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
               >
                 Si eres una empresa o un emprendimiento
               </p>
               <p
                 className="text-white/75 leading-relaxed"
                 style={{
-                  fontFamily: "'Source Sans 3',Arial,sans-serif",
+                  fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                   fontSize: "1rem",
                   lineHeight: 1.7,
                 }}
@@ -665,7 +665,7 @@ function ComprasComoEmpezar({ onOpenTest }: { onOpenTest: () => void }) {
         <div className="mb-12">
           <p
             className="text-[10px] tracking-[0.28em] uppercase text-[#253D36]/40 mb-4"
-            style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+            style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
           >
             Bloque 2 · Cómo empezar
           </p>
@@ -707,7 +707,7 @@ function ComprasComoEmpezar({ onOpenTest }: { onOpenTest: () => void }) {
               </span>
               <p
                 className="text-[10px] uppercase tracking-wider text-[#253D36]/40"
-                style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+                style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
               >
                 Entiende
               </p>
@@ -729,7 +729,7 @@ function ComprasComoEmpezar({ onOpenTest }: { onOpenTest: () => void }) {
             <p
               className="text-[#253D36]/60 leading-relaxed"
               style={{
-                fontFamily: "'Source Sans 3',Arial,sans-serif",
+                fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                 fontSize: "0.9rem",
                 lineHeight: 1.65,
               }}
@@ -742,7 +742,7 @@ function ComprasComoEmpezar({ onOpenTest }: { onOpenTest: () => void }) {
             >
               <span
                 className="text-[10px] text-[#253D36]/40 flex items-center gap-1"
-                style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+                style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
               >
                 Lectura de [N] minutos
               </span>
@@ -751,7 +751,7 @@ function ComprasComoEmpezar({ onOpenTest }: { onOpenTest: () => void }) {
                 href="#"
                 onClick={(e) => e.preventDefault()}
                 className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0068FF] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0068FF] rounded-sm"
-                style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+                style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
               >
                 <Download className="w-3.5 h-3.5" /> PDF descargable
               </a>
@@ -778,7 +778,7 @@ function ComprasComoEmpezar({ onOpenTest }: { onOpenTest: () => void }) {
               </span>
               <p
                 className="text-[10px] uppercase tracking-wider text-white/40"
-                style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+                style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
               >
                 Diagnostica
               </p>
@@ -800,7 +800,7 @@ function ComprasComoEmpezar({ onOpenTest }: { onOpenTest: () => void }) {
             <p
               className="text-white/65 leading-relaxed"
               style={{
-                fontFamily: "'Source Sans 3',Arial,sans-serif",
+                fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                 fontSize: "0.9rem",
                 lineHeight: 1.65,
               }}
@@ -821,7 +821,7 @@ function ComprasComoEmpezar({ onOpenTest }: { onOpenTest: () => void }) {
               </button>
               <p
                 className="text-white/35 text-[10px] mt-3"
-                style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+                style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
               >
                 Toma alrededor de 5 minutos · Recibes el resultado al instante
               </p>
@@ -848,7 +848,7 @@ function ComprasComoEmpezar({ onOpenTest }: { onOpenTest: () => void }) {
               </span>
               <p
                 className="text-[10px] uppercase tracking-wider text-[#253D36]/40"
-                style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+                style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
               >
                 Ejecuta
               </p>
@@ -870,7 +870,7 @@ function ComprasComoEmpezar({ onOpenTest }: { onOpenTest: () => void }) {
             <p
               className="text-[#253D36]/60 leading-relaxed"
               style={{
-                fontFamily: "'Source Sans 3',Arial,sans-serif",
+                fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                 fontSize: "0.9rem",
                 lineHeight: 1.65,
               }}
@@ -932,7 +932,7 @@ function ComprasResultados() {
           <div className="lg:col-span-6 mb-8 lg:mb-0">
             <p
               className="text-[10px] tracking-[0.28em] uppercase text-[#C0D400] mb-4"
-              style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+              style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
             >
               Bloque 3 · Resultados
             </p>
@@ -955,7 +955,7 @@ function ComprasResultados() {
             <p
               className="text-white/65 leading-relaxed mb-6"
               style={{
-                fontFamily: "'Source Sans 3',Arial,sans-serif",
+                fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                 fontSize: "1rem",
                 lineHeight: 1.7,
               }}
@@ -989,7 +989,7 @@ function ComprasResultados() {
               <span
                 className="text-white/55"
                 style={{
-                  fontFamily: "'Source Sans 3',Arial,sans-serif",
+                  fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                   fontSize: "0.8125rem",
                   lineHeight: 1.4,
                 }}
@@ -1049,7 +1049,7 @@ function ComprasMesas() {
         <div className="lg:col-span-4 mb-12 lg:mb-0">
           <p
             className="text-[10px] tracking-[0.28em] uppercase text-[#253D36]/40 mb-4"
-            style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+            style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
           >
             Bloque 4 · Mesas estratégicas
           </p>
@@ -1070,7 +1070,7 @@ function ComprasMesas() {
           <p
             className="text-[#253D36]/60 leading-relaxed"
             style={{
-              fontFamily: "'Source Sans 3',Arial,sans-serif",
+              fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
               fontSize: "0.9375rem",
               lineHeight: 1.7,
             }}
@@ -1117,7 +1117,7 @@ function ComprasMesas() {
                     <span
                       className="text-[10px] uppercase tracking-wider text-[#253D36]/40 px-2 py-0.5 rounded-[2px]"
                       style={{
-                        fontFamily: "'Source Sans 3',Arial,sans-serif",
+                        fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                         background: "rgba(37,61,54,0.07)",
                       }}
                     >
@@ -1127,7 +1127,7 @@ function ComprasMesas() {
                   <p
                     className="text-[#253D36]/55"
                     style={{
-                      fontFamily: "'Source Sans 3',Arial,sans-serif",
+                      fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                       fontSize: "0.875rem",
                       lineHeight: 1.5,
                     }}
@@ -1141,7 +1141,7 @@ function ComprasMesas() {
                   href="#"
                   onClick={(e) => e.preventDefault()}
                   className="inline-flex items-center gap-1.5 text-xs font-bold text-[#253D36]/50 hover:text-[#253D36] hover:bg-[rgba(37,61,54,0.08)] px-3 min-h-11 rounded-[3px] transition-all shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#253D36]"
-                  style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+                  style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
                   aria-label={`Descargar ${acta.label}`}
                 >
                   <Download className="w-3.5 h-3.5" /> Descargar

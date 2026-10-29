@@ -129,7 +129,7 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
   --font-display: 'Neue Haas Grotesk Display Pro', 'Neue Haas Grotesk Text Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --font-sans: 'Source Sans 3', 'Source Sans Pro', Arial, sans-serif;
+  --font-sans: 'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif;
 }
 
 @layer base {

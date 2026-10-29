@@ -156,7 +156,7 @@ function BlogBanner() {
         <div className="max-w-[680px]">
           <p
             className="text-[10px] tracking-[0.32em] uppercase font-bold mb-6"
-            style={{ color: "#C0D400", fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+            style={{ color: "#C0D400", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
           >
             Blog
           </p>
@@ -179,7 +179,7 @@ function BlogBanner() {
             ref={descRef}
             className="text-white/70"
             style={{
-              fontFamily: "'Source Sans 3',Arial,sans-serif",
+              fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
               fontSize: "1.125rem",
               lineHeight: 1.7,
               opacity: 0,
@@ -263,7 +263,7 @@ function NovaSelectionStrip() {
             >
               <span
                 className="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-wider text-[#C0D400] self-start"
-                style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+                style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
               >
                 <Sparkles className="w-3 h-3" aria-hidden="true" />
                 {article.tag}
@@ -282,13 +282,13 @@ function NovaSelectionStrip() {
               </p>
               <p
                 className="text-white/50 text-sm leading-relaxed line-clamp-2"
-                style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+                style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
               >
                 {article.excerpt}
               </p>
               <p
                 className="text-white/30 text-xs mt-auto"
-                style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+                style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
               >
                 {article.date}
               </p>
@@ -317,7 +317,7 @@ function ArticleCard({ article }: { article: BlogArticle }) {
       <span
         className="inline-flex items-center text-[10px] uppercase tracking-wider self-start px-2.5 py-1 rounded-[3px]"
         style={{
-          fontFamily: "'Source Sans 3',Arial,sans-serif",
+          fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
           background: "rgba(37,61,54,0.07)",
           color: "#253D36",
           border: "1px solid rgba(37,61,54,0.12)",
@@ -343,7 +343,7 @@ function ArticleCard({ article }: { article: BlogArticle }) {
       {/* Excerpt */}
       <p
         className="text-[#253D36]/55 text-sm leading-relaxed line-clamp-1 flex-1"
-        style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+        style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
       >
         {article.excerpt}
       </p>
@@ -352,13 +352,13 @@ function ArticleCard({ article }: { article: BlogArticle }) {
       <div className="flex flex-col gap-0.5 pt-3 border-t border-[rgba(37,61,54,0.08)]">
         <span
           className="text-[#253D36]/35 text-xs"
-          style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+          style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
         >
           {article.date}
         </span>
         <span
           className="text-[#253D36]/50 text-xs"
-          style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+          style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
         >
           {article.author}
         </span>
@@ -457,7 +457,7 @@ function BlogGrid() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               className="w-full pl-10 pr-10 py-3 text-sm text-[#253D36] placeholder:text-[#253D36]/35 bg-white border border-[rgba(37,61,54,0.15)] rounded-[4px] focus:outline-none focus:border-[#253D36] focus:ring-1 focus:ring-[#253D36] transition-all duration-200"
-              style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+              style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
               aria-label="Buscar artículos"
             />
             {query && (
@@ -513,7 +513,7 @@ function BlogGrid() {
             <p
               className="text-[#253D36]/50 max-w-[380px] leading-relaxed"
               style={{
-                fontFamily: "'Source Sans 3',Arial,sans-serif",
+                fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                 fontSize: "1rem",
                 lineHeight: 1.7,
               }}

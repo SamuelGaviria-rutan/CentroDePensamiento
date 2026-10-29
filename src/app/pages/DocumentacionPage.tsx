@@ -244,7 +244,7 @@ function VigenciaBadge({
       className="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-[3px] shrink-0"
       title={note}
       style={{
-        fontFamily: "'Source Sans 3',Arial,sans-serif",
+        fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
         background: isVigente ? "rgba(192,212,0,0.14)" : "rgba(255,76,23,0.1)",
         color: isVigente ? "#5E6A00" : "#C93800",
         border: `1px solid ${isVigente ? "rgba(192,212,0,0.3)" : "rgba(255,76,23,0.25)"}`,
@@ -270,7 +270,7 @@ function NormTypePill({ type }: { type: NormType }) {
     <span
       className="text-[9px] uppercase tracking-wider px-2 py-0.5 rounded-[2px] whitespace-nowrap"
       style={{
-        fontFamily: "'Source Sans 3',Arial,sans-serif",
+        fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
         background: `${NORM_TYPE_COLORS[type]}18`,
         color: darkColors[type],
         border: `1px solid ${NORM_TYPE_COLORS[type]}40`,
@@ -323,7 +323,7 @@ function DocBanner() {
         <div className="max-w-[760px]">
           <p
             className="text-[10px] tracking-[0.32em] uppercase font-bold mb-6"
-            style={{ color: "#C0D400", fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+            style={{ color: "#C0D400", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
           >
             Documentación
           </p>
@@ -346,7 +346,7 @@ function DocBanner() {
             <p
               className="text-white/70 mb-10 leading-relaxed"
               style={{
-                fontFamily: "'Source Sans 3',Arial,sans-serif",
+                fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                 fontSize: "1.125rem",
                 lineHeight: 1.7,
               }}
@@ -392,7 +392,7 @@ function TimelineDetailPanel({ milestone }: { milestone: TimelineMilestone }) {
         <div>
           <p
             className="text-[10px] uppercase tracking-wider text-[#253D36]/40 mb-2"
-            style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+            style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
           >
             {milestone.period}
           </p>
@@ -419,7 +419,7 @@ function TimelineDetailPanel({ milestone }: { milestone: TimelineMilestone }) {
       <p
         className="text-[#253D36]/70 mb-6 leading-relaxed"
         style={{
-          fontFamily: "'Source Sans 3',Arial,sans-serif",
+          fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
           fontSize: "1rem",
           lineHeight: 1.7,
         }}
@@ -433,7 +433,7 @@ function TimelineDetailPanel({ milestone }: { milestone: TimelineMilestone }) {
           href="#"
           onClick={(e) => e.preventDefault()}
           className="inline-flex items-center gap-1.5 text-sm font-bold text-[#0068FF] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0068FF] rounded-sm"
-          style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+          style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
         >
           Ver el texto oficial <ExternalLink className="w-3.5 h-3.5" />
         </a>
@@ -518,7 +518,7 @@ function DocCronologia() {
         <div className="mb-12">
           <p
             className="text-[10px] tracking-[0.28em] uppercase text-[#253D36]/40 mb-4"
-            style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+            style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
           >
             Bloque 1 · Cronología y evolución
           </p>
@@ -539,7 +539,7 @@ function DocCronologia() {
           <p
             className="text-[#253D36]/60 max-w-[640px] leading-relaxed"
             style={{
-              fontFamily: "'Source Sans 3',Arial,sans-serif",
+              fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
               fontSize: "1rem",
               lineHeight: 1.7,
             }}
@@ -561,7 +561,7 @@ function DocCronologia() {
               aria-pressed={activeFilter === f.value}
               className="px-4 py-2 rounded-[4px] text-xs font-bold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#253D36]"
               style={{
-                fontFamily: "'Source Sans 3',Arial,sans-serif",
+                fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                 background:
                   activeFilter === f.value ? "#253D36" : "rgba(37,61,54,0.08)",
                 color: activeFilter === f.value ? "#C0D400" : "#253D36",
@@ -647,7 +647,7 @@ function DocCronologia() {
                       <span
                         className="text-center px-1 leading-tight"
                         style={{
-                          fontFamily: "'Source Sans 3',Arial,sans-serif",
+                          fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                           fontSize: "0.6rem",
                           color: "rgba(37,61,54,0.45)",
                           lineHeight: 1.3,
@@ -671,7 +671,7 @@ function DocCronologia() {
 
           <p
             className="text-[10px] text-[#253D36]/35 mt-5"
-            style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+            style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
           >
             Avanza por la línea o salta directo a un año
           </p>
@@ -746,7 +746,7 @@ function DocCronologia() {
                     <p
                       className="text-[#253D36]/55"
                       style={{
-                        fontFamily: "'Source Sans 3',Arial,sans-serif",
+                        fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                         fontSize: "0.875rem",
                         lineHeight: 1.55,
                       }}
@@ -764,7 +764,7 @@ function DocCronologia() {
                           href="#"
                           onClick={(e) => e.preventDefault()}
                           className="inline-flex items-center gap-1 text-xs font-bold text-[#0068FF] hover:underline"
-                          style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+                          style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
                         >
                           Ver el texto oficial <ExternalLink className="w-3 h-3" />
                         </a>
@@ -812,7 +812,7 @@ function DocRutaNMarco() {
         <div className="mb-12">
           <p
             className="text-[10px] tracking-[0.28em] uppercase text-[#253D36]/40 mb-4"
-            style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+            style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
           >
             Bloque 2 · Ruta N en el marco normativo
           </p>
@@ -833,7 +833,7 @@ function DocRutaNMarco() {
           <p
             className="text-[#253D36]/60 max-w-[640px] leading-relaxed mb-8"
             style={{
-              fontFamily: "'Source Sans 3',Arial,sans-serif",
+              fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
               fontSize: "1rem",
               lineHeight: 1.7,
             }}
@@ -863,7 +863,7 @@ function DocRutaNMarco() {
             <div
               key={label}
               className={`${cols} text-[10px] uppercase tracking-[0.2em] text-[#253D36]/50 font-bold`}
-              style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+              style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
             >
               {label}
             </div>
@@ -876,7 +876,7 @@ function DocRutaNMarco() {
             <p
               className="text-[#253D36]/40"
               style={{
-                fontFamily: "'Source Sans 3',Arial,sans-serif",
+                fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                 fontSize: "0.9375rem",
               }}
             >
@@ -912,7 +912,7 @@ function DocRutaNMarco() {
                       <span
                         className="text-[#253D36]/70"
                         style={{
-                          fontFamily: "'Source Sans 3',Arial,sans-serif",
+                          fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                           fontSize: "0.9rem",
                           lineHeight: 1.5,
                         }}
@@ -924,7 +924,7 @@ function DocRutaNMarco() {
                       <span
                         className="text-[#253D36]/70"
                         style={{
-                          fontFamily: "'Source Sans 3',Arial,sans-serif",
+                          fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                           fontSize: "0.9rem",
                           lineHeight: 1.55,
                         }}
@@ -970,14 +970,14 @@ function DocRutaNMarco() {
                         <div>
                           <p
                             className="text-[9px] uppercase tracking-wider text-[#253D36]/40 mb-1"
-                            style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+                            style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
                           >
                             Se articula con
                           </p>
                           <p
                             className="text-[#253D36]/65"
                             style={{
-                              fontFamily: "'Source Sans 3',Arial,sans-serif",
+                              fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                               fontSize: "0.875rem",
                               lineHeight: 1.5,
                             }}
@@ -988,14 +988,14 @@ function DocRutaNMarco() {
                         <div>
                           <p
                             className="text-[9px] uppercase tracking-wider text-[#253D36]/40 mb-1"
-                            style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+                            style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
                           >
                             Rol de Ruta N
                           </p>
                           <p
                             className="text-[#253D36]/65"
                             style={{
-                              fontFamily: "'Source Sans 3',Arial,sans-serif",
+                              fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                               fontSize: "0.875rem",
                               lineHeight: 1.55,
                             }}
@@ -1049,7 +1049,7 @@ function RepositoryCard({ doc }: { doc: RepositoryDoc }) {
         <div
           className="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-wider px-2.5 py-1 rounded-[3px]"
           style={{
-            fontFamily: "'Source Sans 3',Arial,sans-serif",
+            fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
             background: `${meta.color}14`,
             color: meta.color,
             border: `1px solid ${meta.color}30`,
@@ -1060,7 +1060,7 @@ function RepositoryCard({ doc }: { doc: RepositoryDoc }) {
         </div>
         <span
           className="text-xs text-[#253D36]/40"
-          style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+          style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
         >
           {doc.year}
         </span>
@@ -1084,7 +1084,7 @@ function RepositoryCard({ doc }: { doc: RepositoryDoc }) {
       <p
         className="text-[#253D36]/55"
         style={{
-          fontFamily: "'Source Sans 3',Arial,sans-serif",
+          fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
           fontSize: "0.8125rem",
           lineHeight: 1.6,
         }}
@@ -1096,7 +1096,7 @@ function RepositoryCard({ doc }: { doc: RepositoryDoc }) {
       <div
         className="text-[9px] uppercase tracking-wider text-[#253D36]/40 px-2 py-1 rounded-[2px] self-start"
         style={{
-          fontFamily: "'Source Sans 3',Arial,sans-serif",
+          fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
           background: "rgba(37,61,54,0.06)",
         }}
       >
@@ -1108,7 +1108,7 @@ function RepositoryCard({ doc }: { doc: RepositoryDoc }) {
         href="#"
         onClick={(e) => e.preventDefault()}
         className="inline-flex items-center gap-1.5 text-sm font-bold text-[#0068FF] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0068FF] rounded-sm mt-auto"
-        style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+        style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
         aria-label={`Ver el texto oficial de ${doc.title}`}
       >
         Ver el texto oficial <ExternalLink className="w-3.5 h-3.5" />
@@ -1169,7 +1169,7 @@ function DocRepositorio() {
         <div className="mb-12">
           <p
             className="text-[10px] tracking-[0.28em] uppercase text-[#253D36]/40 mb-4"
-            style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+            style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
           >
             Bloque 3 · Repositorio y seguimiento
           </p>
@@ -1190,7 +1190,7 @@ function DocRepositorio() {
           <p
             className="text-[#253D36]/60 max-w-[640px] leading-relaxed mb-8"
             style={{
-              fontFamily: "'Source Sans 3',Arial,sans-serif",
+              fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
               fontSize: "1rem",
               lineHeight: 1.7,
             }}
@@ -1213,7 +1213,7 @@ function DocRepositorio() {
                 placeholder="Busca por número de norma, año o tema…"
                 className="w-full pl-11 pr-4 py-3 border border-[rgba(37,61,54,0.18)] rounded-[4px] bg-white text-[#253D36] focus:outline-none focus:ring-2 focus:ring-[#253D36] focus:border-transparent"
                 style={{
-                  fontFamily: "'Source Sans 3',Arial,sans-serif",
+                  fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                   fontSize: "0.875rem",
                 }}
                 aria-label="Buscar documentos por norma, año o tema"
@@ -1233,7 +1233,7 @@ function DocRepositorio() {
                   aria-pressed={activeType === t}
                   className="px-3 py-2 rounded-[4px] text-xs font-bold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#253D36]"
                   style={{
-                    fontFamily: "'Source Sans 3',Arial,sans-serif",
+                    fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                     background: activeType === t ? "#253D36" : "white",
                     color: activeType === t ? "#C0D400" : "#253D36",
                     border: "1px solid rgba(37,61,54,0.18)",
@@ -1255,7 +1255,7 @@ function DocRepositorio() {
                   aria-pressed={activeYear === y}
                   className="px-3 py-2 rounded-[4px] text-xs font-bold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#253D36]"
                   style={{
-                    fontFamily: "'Source Sans 3',Arial,sans-serif",
+                    fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                     background: activeYear === y ? "#253D36" : "white",
                     color: activeYear === y ? "#C0D400" : "#253D36",
                     border: "1px solid rgba(37,61,54,0.18)",
@@ -1274,7 +1274,7 @@ function DocRepositorio() {
             <p
               className="text-[#253D36]/40"
               style={{
-                fontFamily: "'Source Sans 3',Arial,sans-serif",
+                fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                 fontSize: "0.9375rem",
               }}
             >

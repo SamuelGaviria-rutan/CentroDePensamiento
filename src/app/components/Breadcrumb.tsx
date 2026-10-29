@@ -9,7 +9,7 @@ export function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
   return (
     <div className="bg-[#FAFAF8] border-b border-[#253D36]/10 py-3 relative z-10">
       <div className="max-w-[1440px] mx-auto px-6 lg:px-10 xl:px-12">
-        <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-medium text-[#253D36]/60" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+        <nav aria-label="Breadcrumb" className="flex items-center flex-wrap gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-medium text-[#253D36]/60" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
           <a href="#" className="flex items-center gap-1.5 hover:text-[#0068FF] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] rounded-sm px-1">
             <Home className="w-3.5 h-3.5" aria-hidden="true" />
             <span className="sr-only sm:not-sr-only">Inicio</span>

@@ -1,7 +1,20 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { Outlet, RouterProvider, createBrowserRouter, useNavigate, useLocation } from "react-router";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {
+  Area,
+  AreaChart,
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Cell,
+  LabelList,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 import {
   ChevronDown,
   ArrowRight,
@@ -10,9 +23,6 @@ import {
   Activity,
   Globe,
   Database,
-  TrendingUp,
-  TrendingDown,
-  Info,
 } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -25,6 +35,9 @@ import { BlogPage } from "./pages/BlogPage";
 import { DataReportsSection } from "./pages/DataPage";
 import { Breadcrumb } from "./components/Breadcrumb";
 import { FloatingNav } from "./components/FloatingNav";
+import ctaLogo from "../assets/logos/cta.png";
+import metroMedellinLogo from "../assets/logos/metro-medellin.png";
+import b2chatLogo from "../assets/logos/b2chat.png";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // APP ROOT
@@ -183,7 +196,7 @@ function RadarCTIHero() {
           <div ref={contentRef} className="flex flex-col">
             <p
               className="text-[10px] tracking-[0.32em] uppercase mb-6"
-              style={{ color: "#C0D400", fontFamily: "'Source Sans 3','Source Sans Pro',Arial,sans-serif" }}
+              style={{ color: "#C0D400", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
             >
               MEDICIÓN · RADAR CTI
             </p>
@@ -210,7 +223,7 @@ function RadarCTIHero() {
               </span>
               <p 
                 className="text-sm font-semibold tracking-wide"
-                style={{ color: "#00B8A3", fontFamily: "'Source Sans 3','Source Sans Pro',Arial,sans-serif" }}
+                style={{ color: "#00B8A3", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
               >
                 Datos actualizados a [mes de año] · [N] fuentes verificadas
               </p>
@@ -218,7 +231,7 @@ function RadarCTIHero() {
 
             <p
               className="text-lg mb-10"
-              style={{ color: "rgba(255,255,255,0.75)", fontFamily: "'Source Sans 3','Source Sans Pro',Arial,sans-serif", lineHeight: 1.6 }}
+              style={{ color: "rgba(255,255,255,0.75)", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif", lineHeight: 1.6 }}
             >
               Este es el espacio del Centro de Pensamiento de Ruta N donde centralizamos los rankings, los indicadores y los tableros que muestran dónde está el ecosistema de ciencia, tecnología e innovación de Medellín, hacia dónde se mueve y qué decisiones habilita esa información.
             </p>
@@ -246,7 +259,7 @@ function RadarCTIHero() {
             {/* Microcopy de confianza */}
             <p 
               className="text-xs"
-              style={{ color: "rgba(255,255,255,0.5)", fontFamily: "'Source Sans 3','Source Sans Pro',Arial,sans-serif" }}
+              style={{ color: "rgba(255,255,255,0.5)", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
             >
               Toda la información es pública, trazable y citada en su fuente original.
             </p>
@@ -256,7 +269,7 @@ function RadarCTIHero() {
           <div ref={chartRef} className="w-full h-[320px] lg:h-[400px] bg-[#1C2E29] rounded-lg p-6 flex flex-col" style={{ border: "1px solid rgba(255,255,255,0.05)" }}>
             <div className="mb-4">
               <h3 className="text-sm font-bold text-white mb-1" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Helvetica Neue',Arial,sans-serif" }}>Serie Histórica: Evolución CTI</h3>
-              <p className="text-xs text-white/50" style={{ fontFamily: "'Source Sans 3','Source Sans Pro',Arial,sans-serif" }}>Inversión como % del PIB local</p>
+              <p className="text-xs text-white/50" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>Inversión como % del PIB local</p>
             </div>
             <div className="flex-1 w-full min-h-0 relative">
               
@@ -344,7 +357,7 @@ function RadarCTIDescription() {
           className="grid grid-cols-1 lg:grid-cols-3 gap-x-10 gap-y-6 mb-10"
           style={{
             color: "rgba(37,61,54,0.75)",
-            fontFamily: "'Source Sans 3','Source Sans Pro',Arial,sans-serif",
+            fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
             fontSize: "1.125rem",
             lineHeight: 1.65,
           }}
@@ -366,7 +379,7 @@ function RadarCTIDescription() {
           style={{
             borderColor: "rgba(37,61,54,0.12)",
             color: "rgba(37,61,54,0.75)",
-            fontFamily: "'Source Sans 3','Source Sans Pro',Arial,sans-serif",
+            fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
             fontSize: "1.125rem",
             lineHeight: 1.65,
           }}
@@ -531,7 +544,7 @@ function RadarCTIDashboards() {
               className="text-lg"
               style={{
                 color: "rgba(37,61,54,0.75)",
-                fontFamily: "'Source Sans 3','Source Sans Pro',Arial,sans-serif",
+                fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                 lineHeight: 1.6,
               }}
             >
@@ -572,10 +585,10 @@ function RadarCTIDashboards() {
                   <h3 className="text-[15px] font-bold text-[#253D36] mb-3" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Helvetica Neue',Arial,sans-serif", lineHeight: 1.3 }}>
                     {kpi.title}
                   </h3>
-                  <p className="text-sm font-semibold text-[#0068FF] mb-2" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                  <p className="text-sm font-semibold text-[#0068FF] mb-2" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                     Sin dato consolidado para este año. Consulta la serie histórica.
                   </p>
-                  <p className="text-xs text-[#253D36]/60" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                  <p className="text-xs text-[#253D36]/60" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                     {kpi.context}
                   </p>
                   <a href={`/radar-cti/indicador/${kpi.id}`} className="absolute inset-0 z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] rounded-md">
@@ -604,7 +617,7 @@ function RadarCTIDashboards() {
                     <span 
                       className="inline-flex items-center px-2 py-0.5 rounded-[2px] text-[11px] font-bold tracking-wide uppercase"
                       style={{ 
-                        fontFamily: "'Source Sans 3',Arial,sans-serif",
+                        fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                         backgroundColor: kpi.tagColor === 'positive' ? "rgba(192,212,0,0.2)" : kpi.tagColor === 'negative' ? "rgba(255,76,23,0.1)" : "rgba(37,61,54,0.06)",
                         color: kpi.tagColor === 'negative' ? "#FF4C17" : "#253D36"
                       }}
@@ -617,7 +630,7 @@ function RadarCTIDashboards() {
                     {kpi.title}
                   </h3>
                   
-                  <p className="text-sm text-[#253D36]/60 mb-6 flex-1" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif", lineHeight: 1.4 }}>
+                  <p className="text-sm text-[#253D36]/60 mb-6 flex-1" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif", lineHeight: 1.4 }}>
                     {kpi.context}
                   </p>
 
@@ -676,7 +689,7 @@ function RadarCTIDashboards() {
               </div>
 
               <div className="mt-auto pt-5" style={{ borderTop: "1px solid rgba(37,61,54,0.08)" }}>
-                <p className="text-[11px] text-[#253D36]/50" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                <p className="text-[11px] text-[#253D36]/50" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                   Fuente: Observatorio de Ciencia, Tecnología e Innovación (OCTI), Informe Anual 2024. Corte: Diciembre de 2024.
                 </p>
               </div>
@@ -718,7 +731,7 @@ function RadarCTIDashboards() {
               </div>
 
               <div className="mt-auto pt-5" style={{ borderTop: "1px solid rgba(37,61,54,0.08)" }}>
-                <p className="text-[11px] text-[#253D36]/50" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                <p className="text-[11px] text-[#253D36]/50" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                   Fuente: Global Innovation Index (WIPO), Informe de Ciudades 2024. Corte: Octubre de 2024.
                 </p>
               </div>
@@ -873,14 +886,14 @@ function RadarCTIModules() {
                 
                 <p 
                   className="text-sm font-bold mb-4"
-                  style={{ color: "#00B8A3", fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+                  style={{ color: "#00B8A3", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
                 >
                   {mod.descriptor}
                 </p>
 
                 <p 
                   className="text-[15px] flex-1 mb-8"
-                  style={{ color: "rgba(37,61,54,0.7)", fontFamily: "'Source Sans 3',Arial,sans-serif", lineHeight: 1.6 }}
+                  style={{ color: "rgba(37,61,54,0.7)", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif", lineHeight: 1.6 }}
                 >
                   {mod.paragraph}
                 </p>
@@ -888,7 +901,7 @@ function RadarCTIModules() {
                 <div className="mt-auto flex flex-col gap-4" style={{ paddingTop: 24, borderTop: "1px solid rgba(37,61,54,0.08)" }}>
                   <p 
                     className="text-xs font-semibold"
-                    style={{ color: "rgba(37,61,54,0.5)", fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+                    style={{ color: "rgba(37,61,54,0.5)", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
                   >
                     {mod.indicator}
                   </p>
@@ -971,7 +984,7 @@ function RadarCTIPulseBand() {
       >
         <p
           className="text-[10px] tracking-[0.32em] uppercase mb-6"
-          style={{ color: "#FFFFFF", fontFamily: "'Source Sans 3','Source Sans Pro',Arial,sans-serif", fontWeight: "bold" }}
+          style={{ color: "#FFFFFF", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif", fontWeight: "bold" }}
         >
           PULSO CTI · MEDICIÓN PROPIA
         </p>
@@ -994,7 +1007,7 @@ function RadarCTIPulseBand() {
           className="flex flex-col gap-5 mb-10"
           style={{
             color: "rgba(255,255,255,0.85)",
-            fontFamily: "'Source Sans 3','Source Sans Pro',Arial,sans-serif",
+            fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
             fontSize: "1.125rem",
             lineHeight: 1.6,
           }}
@@ -1015,15 +1028,15 @@ function RadarCTIPulseBand() {
           className="flex flex-wrap items-center gap-x-6 gap-y-3 mb-10 py-5"
           style={{ borderTop: "1px solid rgba(255,255,255,0.15)", borderBottom: "1px solid rgba(255,255,255,0.15)" }}
         >
-          <span className="text-sm font-bold text-white" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+          <span className="text-sm font-bold text-white" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
             [N] organizaciones participantes
           </span>
           <span className="text-white/40 hidden md:block" aria-hidden="true">•</span>
-          <span className="text-sm font-bold text-white" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+          <span className="text-sm font-bold text-white" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
             [N] preguntas
           </span>
           <span className="text-white/40 hidden md:block" aria-hidden="true">•</span>
-          <span className="text-sm font-bold text-white" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+          <span className="text-sm font-bold text-white" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
             [N] años de serie
           </span>
         </div>
@@ -1110,50 +1123,731 @@ function RedirectPulso() {
 // ─────────────────────────────────────────────────────────────────────────────
 // RANKINGS SUBPAGE
 // ─────────────────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// PULSO CTI — Ranking oficial de innovación de Medellín (vigencia 2025)
+// ─────────────────────────────────────────────────────────────────────────────
 
+const PULSO_FONT = "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif";
+const PULSO_BODY_FONT = PULSO_FONT;
+
+type PulsoReading = string[] | "reserved";
+
+interface PulsoSegment {
+  name: string;
+  color: string;
+  outlined?: boolean;
+  contribution: PulsoReading;
+  intensity: PulsoReading;
+}
+
+const PULSO_TABS = [
+  { id: "inversion", label: "Inversión", color: "#FF4C17" },
+  { id: "talento", label: "Talento", color: "#C0D400" },
+  { id: "innovacion", label: "Innovación", color: "#0068FF" },
+] as const;
+
+const PULSO_INVESTMENT: PulsoSegment[] = [
+  {
+    name: "Grupos empresariales",
+    color: "#0068FF",
+    contribution: ["BANCOLOMBIA", "POSTOBON", "SURA", "SOFASA", "EMTELCO"],
+    intensity: ["POSTOBON", "SOFASA", "SURA", "EMTELCO", "BANCOLOMBIA"],
+  },
+  {
+    name: "Empresas grandes",
+    color: "#FF4C17",
+    contribution: ["ALICO", "BIOXCELLERATOR", "WOLKVOX", "CONSTRUCTORA CAPITAL MEDELLÍN", "FONDO DE GARANTIAS"],
+    intensity: ["BIOXCELLERATOR", "CHOUCAIR CARDENAS TESTING", "WOLKVOX", "ALICO", "NEURUM"],
+  },
+  {
+    name: "Empresas medianas",
+    color: "#C0D400",
+    contribution: ["D'GROUPE", "QUIND", "NETUX", "B2CHAT", "CALDERAS J.C.T"],
+    intensity: ["D'GROUPE", "CALDERAS J.C.T", "QUIND", "NETUX", "B2CHAT"],
+  },
+  {
+    name: "Empresas pequeñas",
+    color: "#FFCA00",
+    contribution: ["CONSENTIDO HUMANO", "ALTA GAMA PROPIEDADES", "BIXU", "CONTROLT", "EDITORIAL AVANCEMOS"],
+    intensity: ["MIRACLE AI", "GRUPO EQUEX", "HIROKI 360", "CONSENTIDO HUMANO", "IANALITICS"],
+  },
+  {
+    name: "Instituciones de educación superior",
+    color: "#FFFFFF",
+    contribution: ["UNIVERSIDAD DE ANTIOQUIA", "UNIVERSIDAD EAFIT", "UNIVERSIDAD NACIONAL DE COLOMBIA - SEDE MEDELLÍN", "UNIVERSIDAD CES", "INSTITUCION UNIVERSITARIA - ITM"],
+    intensity: ["UNIVERSIDAD NACIONAL DE COLOMBIA - SEDE MEDELLÍN", "UNIVERSIDAD EAFIT", "UNIVERSIDAD CES", "UNIVERSIDAD EIA", "UNIVERSIDAD DE ANTIOQUIA"],
+  },
+  {
+    name: "Clínicas y hospitales",
+    color: "#C0D400",
+    outlined: true,
+    contribution: ["HOSPITAL ALMA MATER DE ANTIOQUIA", "CLINICA CARDIO VID"],
+    intensity: "reserved",
+  },
+  {
+    name: "Centros de investigación",
+    color: "#00B8A3",
+    contribution: ["CTA", "INSTITUTO DE CAPACITACION E INVESTIGACION DEL PLASTICO Y DEL CAUCHO", "ROCCAP", "TECNNOVA", "CRÉAME"],
+    intensity: ["INSTITUTO DE CAPACITACION E INVESTIGACION DEL PLASTICO Y DEL CAUCHO", "CTA", "TECNNOVA", "ROCCAP", "CRÉAME"],
+  },
+  {
+    name: "Conglomerado público",
+    color: "#0068FF",
+    outlined: true,
+    contribution: ["EPM", "METRO DE MEDELLÍN", "COLEGIO MAYOR DE ANTIOQUIA", "SAPIENCIA", "EMPRESA DE DESARROLLO URBANO"],
+    intensity: ["COLEGIO MAYOR DE ANTIOQUIA", "METRO DE MEDELLÍN", "EMPRESA DE DESARROLLO URBANO", "SAPIENCIA", "EPM"],
+  },
+];
+
+const PULSO_TALENT: PulsoSegment[] = [
+  {
+    name: "Grupos empresariales",
+    color: "#0068FF",
+    contribution: ["BANCOLOMBIA", "SURA", "POSTOBON", "EMTELCO", "SURENTING"],
+    intensity: ["BANCOLOMBIA", "SURA", "POSTOBON", "EMTELCO", "SURENTING"],
+  },
+  {
+    name: "Empresas grandes",
+    color: "#FF4C17",
+    contribution: ["WOLKVOX", "BIOXCELLERATOR", "ALICO", "CONSTRUCTORA CAPITAL MEDELLÍN", "CHOUCAIR CARDENAS TESTING"],
+    intensity: ["BIOXCELLERATOR", "WOLKVOX", "NEURUM", "TODO DROGAS", "CHOUCAIR CARDENAS TESTING"],
+  },
+  {
+    name: "Empresas medianas",
+    color: "#C0D400",
+    contribution: ["QUIND", "NETUX", "CONCEPT BPO", "B2CHAT", "C&S TECNOLOGIA"],
+    intensity: ["QUIND", "NETUX", "INBIOS", "B2CHAT", "INVERSIONES BOR"],
+  },
+  {
+    name: "Empresas pequeñas",
+    color: "#FFCA00",
+    contribution: ["CONTROLT", "ALTA GAMA PROPIEDADES", "DIGITAL EXPRESS", "MIRACLE AI", "CAUSA & EFECTO"],
+    intensity: ["DIGITAL EXPRESS", "VELANJO", "SUNUBE", "CONTROLT", "CAUSA & EFECTO"],
+  },
+  {
+    name: "Instituciones de educación superior",
+    color: "#FFFFFF",
+    contribution: ["UNIVERSIDAD EAFIT", "UNIVERSIDAD NACIONAL DE COLOMBIA - SEDE MEDELLÍN", "UNIVERSIDAD DE ANTIOQUIA", "UNIVERSIDAD PONTIFICIA BOLIVARIANA", "INSTITUCION UNIVERSITARIA - ITM"],
+    intensity: ["UNIVERSIDAD EAFIT", "UNIVERSIDAD DE MEDELLIN", "UNIVERSIDAD NACIONAL DE COLOMBIA - SEDE MEDELLÍN", "UNIVERSIDAD DE ANTIOQUIA", "UNIVERSIDAD CES"],
+  },
+  {
+    name: "Clínicas y hospitales",
+    color: "#C0D400",
+    outlined: true,
+    contribution: ["HOSPITAL ALMA MATER DE ANTIOQUIA", "CLINICA CARDIO VID"],
+    intensity: ["CLINICA CARDIO VID", "HOSPITAL ALMA MATER DE ANTIOQUIA"],
+  },
+  {
+    name: "Centros de investigación",
+    color: "#00B8A3",
+    contribution: ["CTA", "TECNNOVA", "INSTITUTO DE CAPACITACION E INVESTIGACION DEL PLASTICO Y DEL CAUCHO", "CRÉAME"],
+    intensity: ["TECNNOVA", "CTA", "INSTITUTO DE CAPACITACION E INVESTIGACION DEL PLASTICO Y DEL CAUCHO", "CRÉAME"],
+  },
+  {
+    name: "Conglomerado público",
+    color: "#0068FF",
+    outlined: true,
+    contribution: ["EPM", "METRO DE MEDELLÍN", "SAPIENCIA", "AEROPUERTO OLAYA HERRERA"],
+    intensity: ["AEROPUERTO OLAYA HERRERA", "SAPIENCIA", "METRO DE MEDELLÍN", "EPM"],
+  },
+];
+
+const PULSO_INNOVATION: PulsoSegment[] = [
+  {
+    name: "Grupos empresariales",
+    color: "#0068FF",
+    contribution: ["POSTOBON", "EMTELCO", "BANCOLOMBIA", "SURA", "SURENTING"],
+    intensity: ["EMTELCO", "SOFASA", "BANCOLOMBIA", "POSTOBON", "SURA"],
+  },
+  {
+    name: "Empresas grandes",
+    color: "#FF4C17",
+    contribution: ["TODO DROGAS", "NEURUM", "ALICO", "CONSTRUCTORA CAPITAL MEDELLÍN", "WOLKVOX"],
+    intensity: ["CONSTRUCTORA CAPITAL MEDELLÍN", "CHOUCAIR CARDENAS TESTING", "BIOXCELLERATOR", "WOLKVOX", "NEURUM"],
+  },
+  {
+    name: "Empresas medianas",
+    color: "#C0D400",
+    contribution: ["NETUX", "D'GROUPE", "QUIND", "INGENIERIA EN CONSTRUCCIONES CIVILES", "CONCEPT BPO"],
+    intensity: ["SERVIREFRIAIRE", "D'GROUPE", "NETUX", "QUIND", "B2CHAT"],
+  },
+  {
+    name: "Empresas pequeñas",
+    color: "#FFCA00",
+    contribution: ["INDENOX", "DIGITAL EXPRESS", "TECNOLOGIA Y SUMINISTROS", "MIRACLE AI", "GRUPO PROYECCIÓN CONTABLE"],
+    intensity: ["GRUPO PROYECCIÓN CONTABLE", "BIXU", "GRUPO EQUEX", "CAUSA & EFECTO", "DATABIZ"],
+  },
+  {
+    name: "Instituciones de educación superior",
+    color: "#FFFFFF",
+    contribution: ["UNIVERSIDAD EAFIT", "UNIVERSIDAD DE ANTIOQUIA", "UNIVERSIDAD PONTIFICIA BOLIVARIANA", "UNIVERSIDAD DE MEDELLIN", "UNIVERSIDAD NACIONAL DE COLOMBIA - SEDE MEDELLÍN"],
+    intensity: ["INSTITUCION UNIVERSITARIA - ITM", "UNIVERSIDAD EIA", "UNIVERSIDAD CES", "UNIVERSIDAD DE ANTIOQUIA", "UNIVERSIDAD EAFIT"],
+  },
+  {
+    name: "Clínicas y hospitales",
+    color: "#C0D400",
+    outlined: true,
+    contribution: ["HOSPITAL ALMA MATER DE ANTIOQUIA", "CLINICA CARDIO VID"],
+    intensity: "reserved",
+  },
+  {
+    name: "Centros de investigación",
+    color: "#00B8A3",
+    contribution: ["ROCCAP", "CTA", "CRÉAME"],
+    intensity: ["CRÉAME", "ROCCAP", "INSTITUTO DE CAPACITACION E INVESTIGACION DEL PLASTICO Y DEL CAUCHO"],
+  },
+  {
+    name: "Conglomerado público",
+    color: "#0068FF",
+    outlined: true,
+    contribution: ["METRO DE MEDELLÍN", "EPM", "COLEGIO MAYOR DE ANTIOQUIA", "EMPRESA DE DESARROLLO URBANO"],
+    intensity: ["COLEGIO MAYOR DE ANTIOQUIA", "EPM", "METRO DE MEDELLÍN", "EMPRESA DE DESARROLLO URBANO"],
+  },
+];
+
+const PULSO_RANKINGS: Record<(typeof PULSO_TABS)[number]["id"], PulsoSegment[]> = {
+  inversion: PULSO_INVESTMENT,
+  talento: PULSO_TALENT,
+  innovacion: PULSO_INNOVATION,
+};
+
+function PulsoMarker({ color, outlined = false }: { color: string; outlined?: boolean }) {
+  return (
+    <span
+      aria-hidden="true"
+      className="mt-1 block h-2.5 w-2.5 shrink-0 rounded-[2px]"
+      style={outlined ? { border: `2px solid ${color}` } : { backgroundColor: color }}
+    />
+  );
+}
+
+function PulsoReadingList({ reading, segment }: { reading: PulsoReading; segment: PulsoSegment }) {
+  if (reading === "reserved") {
+    return (
+      <div className="flex min-h-28 flex-col justify-center">
+        <p className="text-xs font-bold uppercase tracking-[0.24em] text-white/60">Reservado</p>
+        <p className="mt-2 text-xs leading-relaxed text-white/60">
+          Ninguna organización supera el umbral de denominador.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <ul className="space-y-2.5">
+      {reading.map((organization) => (
+        <li key={organization} className="flex items-start gap-2.5 text-xs font-bold uppercase leading-snug text-white">
+          <PulsoMarker color={segment.color} outlined={segment.outlined} />
+          <span>{organization}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+// ─── Org logo placeholder card ────────────────────────────────────────────────
+
+const BRAND_ACCENT_COLORS = ['#C0D400', '#FF4C17', '#0068FF', '#00B8A3', '#FFCA00'] as const;
+
+const ORG_LOGOS: Record<string, string> = {
+  CTA: ctaLogo,
+  "METRO DE MEDELLÍN": metroMedellinLogo,
+  B2CHAT: b2chatLogo,
+};
+
+function orgAccentColor(name: string): string {
+  const sum = name.split('').reduce((acc, c) => acc + c.charCodeAt(0), 0);
+  return BRAND_ACCENT_COLORS[sum % BRAND_ACCENT_COLORS.length];
+}
+
+function OrgLogoCard({ name }: { name: string }) {
+  const color = orgAccentColor(name);
+  const logo = ORG_LOGOS[name];
+  const isMetroMedellin = name === "METRO DE MEDELLÍN";
+  const initials = (
+    name
+      .replace(/\(.*?\)/g, '')
+      .split(' ')
+      .filter(w => w.length > 2 && !/^(DE|DEL|LA|LAS|LOS|Y|E|A|EN|EL|O)$/i.test(w))
+      .slice(0, 2)
+      .map(w => w[0])
+      .join('') || name.slice(0, 2)
+  ).toUpperCase();
+
+  if (isMetroMedellin && logo) {
+    return (
+      <div
+        className="my-1.5 flex w-full shrink-0 items-center gap-4 rounded-[2px] border border-white/10 bg-white/5 p-4 transition-colors duration-150 hover:bg-white/[0.09]"
+        style={{ minHeight: 96 }}
+      >
+        <img
+          src={logo}
+          alt=""
+          className="h-14 w-11 shrink-0 object-contain"
+          loading="lazy"
+          decoding="async"
+          aria-hidden="true"
+        />
+        <p
+          className="text-[clamp(0.875rem,1.35vw,1.25rem)] font-black uppercase leading-[0.95] tracking-[-0.02em] text-white"
+          style={{ fontFamily: PULSO_FONT }}
+        >
+          Metro de Medellín
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className="my-1.5 flex w-full shrink-0 flex-col justify-between rounded-[2px] border border-white/10 bg-white/5 p-4 transition-colors duration-150 hover:bg-white/[0.09]"
+      style={{ minHeight: 96 }}
+    >
+      {logo ? (
+        <div className="flex h-10 w-full items-center justify-center rounded-[2px] bg-white p-1.5">
+          <img
+            src={logo}
+            alt=""
+            className="h-full w-full object-contain"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      ) : (
+        <div
+          className="flex h-7 w-7 items-center justify-center rounded-[2px] text-[11px] font-black text-[#111]"
+          style={{ backgroundColor: color, fontFamily: PULSO_FONT }}
+          aria-hidden="true"
+        >
+          {initials}
+        </div>
+      )}
+      <p
+        className="mt-3 text-[10px] font-bold uppercase leading-tight tracking-[0.06em] text-white/65"
+        style={{ fontFamily: PULSO_FONT }}
+      >
+        {name}
+      </p>
+    </div>
+  );
+}
+
+// ─── Info tooltip (ⓘ) ────────────────────────────────────────────────────────
+
+function InfoTooltip({ id, text }: { id: string; text: string }) {
+  const [visible, setVisible] = useState(false);
+  return (
+    <span className="relative inline-flex shrink-0">
+      <button
+        type="button"
+        aria-describedby={`tooltip-${id}`}
+        onMouseEnter={() => setVisible(true)}
+        onMouseLeave={() => setVisible(false)}
+        onFocus={() => setVisible(true)}
+        onBlur={() => setVisible(false)}
+        className="flex h-[18px] w-[18px] items-center justify-center rounded-full border border-white/25 text-[9px] font-black text-white/45 transition-colors hover:border-[#C0D400]/60 hover:text-[#C0D400] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#C0D400]"
+        style={{ fontFamily: PULSO_FONT, lineHeight: 1 }}
+        aria-label="Más información"
+      >
+        i
+      </button>
+      <span
+        role="tooltip"
+        id={`tooltip-${id}`}
+        className={`pointer-events-none absolute bottom-full left-1/2 z-50 mb-2.5 w-64 -translate-x-1/2 rounded-[2px] border border-white/15 bg-[#2c2c2c] p-3.5 text-xs leading-relaxed text-white/80 shadow-2xl transition-opacity duration-150 ${
+          visible ? 'opacity-100' : 'opacity-0'
+        }`}
+        style={{ fontFamily: PULSO_FONT }}
+        aria-hidden={!visible}
+      >
+        <span className="absolute -bottom-1.5 left-1/2 h-2.5 w-2.5 -translate-x-1/2 rotate-45 border-b border-r border-white/15 bg-[#2c2c2c]" aria-hidden="true" />
+        {text}
+      </span>
+    </span>
+  );
+}
+
+// ─── Pulso CTI section — checkboxes + infinite marquee grid ──────────────────
+
+const PULSO_COLUMN_FILTERS = [
+  {
+    id: 'contribucion',
+    label: 'Contribución al ecosistema',
+    tooltip: 'Cuánto capital, talento o innovación moviliza la organización en términos absolutos, sin ajustar por su tamaño: cuánto gasto, cuántas personas y cuántas innovaciones puso sobre la mesa en la vigencia.',
+  },
+  {
+    id: 'intensidad',
+    label: 'Intensidad de la apuesta',
+    tooltip: 'Qué proporción de sus propias capacidades destina la organización a la CTi. La lectura que revela a quienes hacen la mayor apuesta sin importar su tamaño.',
+  },
+] as const;
+
+function PulsoSection() {
+  const [activeDims, setActiveDims] = useState<Set<string>>(new Set());
+  const [activeCols, setActiveCols] = useState<Set<string>>(new Set());
+  const hasActiveFilters = activeDims.size > 0 || activeCols.size > 0;
+
+  const toggleDim = (id: string) =>
+    setActiveDims(prev => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; });
+
+  const toggleCol = (id: string) =>
+    setActiveCols(prev => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; });
+
+  const filteredOrgs = useMemo(() => {
+    const dims = (activeDims.size === 0
+      ? (['inversion', 'talento', 'innovacion'] as const)
+      : (['inversion', 'talento', 'innovacion'] as const).filter(d => activeDims.has(d)));
+    const useBoth = activeCols.size === 0;
+    const useContrib = useBoth || activeCols.has('contribucion');
+    const useIntensity = useBoth || activeCols.has('intensidad');
+    const orgs = new Set<string>();
+    for (const dim of dims) {
+      for (const seg of PULSO_RANKINGS[dim]) {
+        if (useContrib && seg.contribution !== 'reserved') {
+          for (const org of seg.contribution as string[]) orgs.add(org);
+        }
+        if (useIntensity && seg.intensity !== 'reserved') {
+          for (const org of seg.intensity as string[]) orgs.add(org);
+        }
+      }
+    }
+    return Array.from(orgs).sort();
+  }, [activeDims, activeCols]);
+
+  const ROW_COUNT = 4;
+  const rows = useMemo<string[][]>(() => {
+    const result: string[][] = Array.from({ length: ROW_COUNT }, () => []);
+    filteredOrgs.forEach((org, i) => result[i % ROW_COUNT].push(org));
+    return result;
+  }, [filteredOrgs]);
+
+  return (
+    <section id="rankings-pulso" className="relative isolate scroll-mt-24 overflow-hidden bg-[#212121] py-14 text-white lg:py-20">
+      <style>{`
+        @keyframes pulso-up {
+          from { transform: translateY(0); }
+          to   { transform: translateY(-50%); }
+        }
+        @keyframes pulso-down {
+          from { transform: translateY(-50%); }
+          to   { transform: translateY(0); }
+        }
+        .pulso-col-u { animation: pulso-up   linear infinite; }
+        .pulso-col-d { animation: pulso-down linear infinite; }
+        .pulso-col-u:hover,
+        .pulso-col-d:hover { animation-play-state: paused; }
+        @media (prefers-reduced-motion: reduce) {
+          .pulso-col-u, .pulso-col-d { animation: none; }
+        }
+      `}</style>
+
+      {/* ── Header ────────────────────────────────────────────────── */}
+      <div className="mx-auto max-w-[1440px] px-6 lg:px-10 xl:px-12">
+        <p className="mb-6 text-[11px] font-bold uppercase tracking-[0.32em] text-[#C0D400]" style={{ fontFamily: PULSO_FONT }}>
+          Ranking oficial de innovación de Medellín
+        </p>
+        <div className="grid grid-cols-1 gap-8 border-b border-white/15 pb-10 lg:grid-cols-2 lg:gap-16">
+          <h2 className="font-black" style={{ fontFamily: PULSO_FONT, fontSize: "clamp(2.25rem, 4.5vw, 4rem)", lineHeight: 1.02, letterSpacing: "-0.03em" }}>
+            Un mismo pulso,<br /><span className="text-[#FF4C17]">seis formas de escucharlo</span>
+          </h2>
+          <p className="self-end text-lg leading-relaxed text-white/75 lg:text-xl" style={{ fontFamily: PULSO_BODY_FONT }}>
+            Cada organización que se sumó a este ejercicio es parte de la historia y merece ser vista por lo que la hace única, porque la fuerza de Medellín no está en quien llega primero, sino en todos los que deciden avanzar juntos.
+          </p>
+        </div>
+      </div>
+
+      {/* ── Filters ───────────────────────────────────────────────── */}
+      <div className="mx-auto max-w-[1440px] px-6 lg:px-10 xl:px-12">
+        <div className="py-8 md:py-10">
+          <p className="mb-6 text-sm leading-relaxed text-white/50" style={{ fontFamily: PULSO_BODY_FONT }}>
+            Filtra por dimensión o tipo de lectura para explorar qué organizaciones marcan el pulso. Sin filtros activos, se muestran todos los aliados del ecosistema.
+          </p>
+
+          <div className="flex flex-col gap-6 sm:flex-row sm:flex-wrap sm:items-start sm:gap-x-10 sm:gap-y-6">
+            {/* Dimension toggle buttons */}
+            <fieldset>
+              <legend className="mb-4 text-[9px] font-bold uppercase tracking-[0.32em] text-white/25" style={{ fontFamily: PULSO_FONT }}>
+                Dimensión
+              </legend>
+              <div className="flex flex-wrap gap-2.5">
+                {PULSO_TABS.map(tab => {
+                  const checked = activeDims.has(tab.id);
+                  return (
+                    <label key={tab.id} className="group relative cursor-pointer select-none" style={{ fontFamily: PULSO_FONT }}>
+                      <input type="checkbox" checked={checked} onChange={() => toggleDim(tab.id)} className="sr-only" aria-label={tab.label} />
+                      <span
+                        className="relative flex items-center gap-2.5 px-4 py-2.5 text-[11px] font-black uppercase tracking-[0.22em] transition-all duration-200"
+                        style={{
+                          border: `1px solid ${checked ? tab.color : 'rgba(255,255,255,0.1)'}`,
+                          backgroundColor: checked ? `${tab.color}18` : 'rgba(255,255,255,0.02)',
+                          color: checked ? tab.color : 'rgba(255,255,255,0.3)',
+                          boxShadow: checked
+                            ? `0 0 0 1px ${tab.color}44, 0 0 18px ${tab.color}55, inset 0 0 12px ${tab.color}18`
+                            : 'none',
+                        }}
+                      >
+                        {/* Corner brackets */}
+                        <span aria-hidden="true" className="pointer-events-none absolute -left-px -top-px h-2.5 w-2.5 transition-opacity duration-200" style={{ opacity: checked ? 1 : 0, borderTop: `2px solid ${tab.color}`, borderLeft: `2px solid ${tab.color}` }} />
+                        <span aria-hidden="true" className="pointer-events-none absolute -right-px -top-px h-2.5 w-2.5 transition-opacity duration-200" style={{ opacity: checked ? 1 : 0, borderTop: `2px solid ${tab.color}`, borderRight: `2px solid ${tab.color}` }} />
+                        <span aria-hidden="true" className="pointer-events-none absolute -bottom-px -left-px h-2.5 w-2.5 transition-opacity duration-200" style={{ opacity: checked ? 1 : 0, borderBottom: `2px solid ${tab.color}`, borderLeft: `2px solid ${tab.color}` }} />
+                        <span aria-hidden="true" className="pointer-events-none absolute -bottom-px -right-px h-2.5 w-2.5 transition-opacity duration-200" style={{ opacity: checked ? 1 : 0, borderBottom: `2px solid ${tab.color}`, borderRight: `2px solid ${tab.color}` }} />
+                        {/* LED dot */}
+                        <span
+                          aria-hidden="true"
+                          className="h-1.5 w-1.5 shrink-0 rounded-full transition-all duration-200"
+                          style={{
+                            backgroundColor: checked ? tab.color : 'rgba(255,255,255,0.18)',
+                            boxShadow: checked ? `0 0 5px ${tab.color}, 0 0 10px ${tab.color}90` : 'none',
+                          }}
+                        />
+                        {tab.label}
+                      </span>
+                    </label>
+                  );
+                })}
+              </div>
+            </fieldset>
+
+            <div className="hidden h-px w-full bg-white/8 sm:block sm:h-auto sm:w-px sm:self-stretch" aria-hidden="true" />
+
+            {/* Column toggle buttons */}
+            <fieldset>
+              <legend className="mb-4 text-[9px] font-bold uppercase tracking-[0.32em] text-white/25" style={{ fontFamily: PULSO_FONT }}>
+                Lectura
+              </legend>
+              <div className="flex flex-col gap-2.5">
+                {PULSO_COLUMN_FILTERS.map(col => {
+                  const checked = activeCols.has(col.id);
+                  const color = '#C0D400';
+                  return (
+                    <div key={col.id} className="flex items-center gap-2.5">
+                      <label className="group relative cursor-pointer select-none" style={{ fontFamily: PULSO_FONT }}>
+                        <input type="checkbox" checked={checked} onChange={() => toggleCol(col.id)} className="sr-only" aria-label={col.label} />
+                        <span
+                          className="relative flex items-center gap-2.5 px-4 py-2.5 text-[11px] font-black uppercase tracking-[0.22em] transition-all duration-200"
+                          style={{
+                            border: `1px solid ${checked ? color : 'rgba(255,255,255,0.1)'}`,
+                            backgroundColor: checked ? `${color}18` : 'rgba(255,255,255,0.02)',
+                            color: checked ? color : 'rgba(255,255,255,0.3)',
+                            boxShadow: checked
+                              ? `0 0 0 1px ${color}44, 0 0 18px ${color}55, inset 0 0 12px ${color}18`
+                              : 'none',
+                          }}
+                        >
+                          <span aria-hidden="true" className="pointer-events-none absolute -left-px -top-px h-2.5 w-2.5 transition-opacity duration-200" style={{ opacity: checked ? 1 : 0, borderTop: `2px solid ${color}`, borderLeft: `2px solid ${color}` }} />
+                          <span aria-hidden="true" className="pointer-events-none absolute -right-px -top-px h-2.5 w-2.5 transition-opacity duration-200" style={{ opacity: checked ? 1 : 0, borderTop: `2px solid ${color}`, borderRight: `2px solid ${color}` }} />
+                          <span aria-hidden="true" className="pointer-events-none absolute -bottom-px -left-px h-2.5 w-2.5 transition-opacity duration-200" style={{ opacity: checked ? 1 : 0, borderBottom: `2px solid ${color}`, borderLeft: `2px solid ${color}` }} />
+                          <span aria-hidden="true" className="pointer-events-none absolute -bottom-px -right-px h-2.5 w-2.5 transition-opacity duration-200" style={{ opacity: checked ? 1 : 0, borderBottom: `2px solid ${color}`, borderRight: `2px solid ${color}` }} />
+                          <span
+                            aria-hidden="true"
+                            className="h-1.5 w-1.5 shrink-0 rounded-full transition-all duration-200"
+                            style={{
+                              backgroundColor: checked ? color : 'rgba(255,255,255,0.18)',
+                              boxShadow: checked ? `0 0 5px ${color}, 0 0 10px ${color}90` : 'none',
+                            }}
+                          />
+                          {col.label}
+                        </span>
+                      </label>
+                      <InfoTooltip id={col.id} text={col.tooltip} />
+                    </div>
+                  );
+                })}
+              </div>
+            </fieldset>
+          </div>
+        </div>
+
+        {/* Count */}
+        <p className="mb-6 text-[11px] font-bold uppercase tracking-[0.18em] text-white/30" style={{ fontFamily: PULSO_FONT }}>
+          {filteredOrgs.length} {filteredOrgs.length === 1 ? 'organización' : 'organizaciones'} · Pulso CTI 2025
+        </p>
+      </div>
+
+      {hasActiveFilters ? (
+        /* ── Static filtered results ─────────────────────────────── */
+        <div className="grid grid-cols-2 gap-3 px-6 md:grid-cols-4 lg:px-10 xl:px-12">
+          {filteredOrgs.map(org => (
+            <OrgLogoCard key={org} name={org} />
+          ))}
+        </div>
+      ) : (
+        /* ── Infinite vertical marquee — 4 columns ──────────────── */
+        <div className="grid grid-cols-2 gap-3 overflow-hidden px-6 md:grid-cols-4 lg:px-10 xl:px-12" style={{ height: 520 }}>
+          {rows.map((colOrgs, colIndex) => {
+            if (colOrgs.length === 0) return null;
+            const doubled = [...colOrgs, ...colOrgs];
+            const isDown = colIndex % 2 === 1;
+            const speed = 28;
+            return (
+              <div key={colIndex} className="overflow-hidden">
+                <div
+                  className={isDown ? 'pulso-col-d' : 'pulso-col-u'}
+                  style={{ display: 'flex', flexDirection: 'column', animationDuration: `${speed}s` }}
+                >
+                  {doubled.map((org, i) => (
+                    <OrgLogoCard key={`${org}-${i}`} name={org} />
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {/* ── Notes & source ────────────────────────────────────────── */}
+      <div className="mx-auto max-w-[1440px] px-6 lg:px-10 xl:px-12">
+        <div className="mt-12 border-t border-white/20" style={{ fontFamily: PULSO_BODY_FONT }}>
+          <div className="border-b border-white/20 py-6 text-sm leading-relaxed text-white/60">
+            <p className="flex items-start gap-3">
+              <PulsoMarker color="#C0D400" outlined />
+              <span><strong className="text-[#C0D400]">Las clínicas y los hospitales entran por primera vez a una medición de CTi en Medellín.</strong> No son empresas ni universidades, y por eso ningún registro administrativo los contaba: la investigación clínica de la ciudad —ensayos, protocolos, desarrollo de procedimientos— ocurría sin aparecer en ninguna estadística de ciencia y tecnología. Este año tienen segmento propio y escala propia. Las casillas reservadas de esta fila no son un vacío: son la primera vez que se puede decir, con datos, dónde el umbral todavía deja al sector por fuera.</span>
+            </p>
+          </div>
+          <p className="border-b border-white/20 py-6 text-sm leading-relaxed text-white/60">
+            <strong className="text-[#C0D400]">Ruta N no se clasifica a sí misma.</strong> Si bien la Corporación aportó sus datos y hace parte del modelo estadístico que sostiene esta medición, se abstiene de figurar en el ranking, ya que como secretaría técnica de Pulso CTi no puede ser juez y parte del ejercicio que coordina.
+          </p>
+          <p className="border-b border-white/20 py-6 text-sm leading-relaxed text-white/60">
+            <strong className="text-[#C0D400]">Cada casilla es un grupo, no un podio.</strong> Dentro de la casilla las organizaciones se publican sin orden jerárquico. <strong className="text-[#C0D400]">Las filas no se comparan entre sí.</strong> Cada segmento se mide contra su propia escala y su propia misión en el ecosistema. <strong className="text-[#C0D400]">Aparecer es voluntario.</strong> La razón social se publica con consentimiento expreso de cada organización.
+          </p>
+        </div>
+        <div className="ml-auto mt-8 max-w-3xl text-left text-[10px] font-bold uppercase leading-loose tracking-[0.18em] text-white/50 md:text-right" style={{ fontFamily: PULSO_FONT }}>
+          <p>Encuesta Pulso CTI · Vigencia 2025</p>
+          <p>Umbrales: ventas ≥ 1.000 millones COP · 10 empleados</p>
+          <p>Ruta N · Alcaldía de Medellín · Exclusivo en Forbes Colombia</p>
+        </div>
+      </div>
+    </section>
+  );
+}
 function RankingsBanner() {
   return (
-    <section id="rankings-hero" className="bg-[#253D36] text-white px-6 lg:px-10 xl:px-12 relative overflow-hidden flex flex-col justify-center" style={{ minHeight: "60svh", paddingTop: 120, paddingBottom: 80 }}>
-      <div className="max-w-[1440px] mx-auto relative z-10 w-full">
-        <p className="text-[10px] tracking-[0.32em] uppercase mb-6" style={{ color: "#C0D400", fontFamily: "'Source Sans 3',Arial,sans-serif", fontWeight: "bold" }}>
+    <section id="rankings-hero" className="relative flex flex-col justify-center overflow-hidden bg-[#253D36] text-white" style={{ minHeight: "60svh", paddingTop: 120, paddingBottom: 80 }}>
+      <img
+        src="https://images.unsplash.com/photo-1715503234327-b57d32e5da0f?auto=format&fit=crop&q=85&w=2000"
+        alt="Vista panorámica de Medellín entre montañas"
+        className="absolute inset-0 h-full w-full object-cover object-center"
+        decoding="async"
+        fetchPriority="high"
+      />
+      <div className="absolute inset-0 bg-[#253D36]/80" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,#253D36_0%,rgba(37,61,54,0.92)_42%,rgba(37,61,54,0.48)_100%)]" />
+      <div className="relative z-10 mx-auto w-full max-w-[1440px] px-6 lg:px-10 xl:px-12">
+        <p className="text-[10px] tracking-[0.32em] uppercase mb-6" style={{ color: "#C0D400", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif", fontWeight: "bold" }}>
           RANKINGS
         </p>
         <h1 className="text-white mb-6 max-w-4xl" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Helvetica Neue',Arial,sans-serif", fontSize: "clamp(2.5rem, 4vw, 3.5rem)", fontWeight: 900, lineHeight: 1.1, letterSpacing: "-0.02em" }}>
           Dónde está Medellín en el mapa global de la innovación
         </h1>
-        <p className="text-lg md:text-xl max-w-3xl" style={{ color: "rgba(255,255,255,0.75)", fontFamily: "'Source Sans 3',Arial,sans-serif", lineHeight: 1.55 }}>
+        <p className="text-lg md:text-xl max-w-3xl" style={{ color: "rgba(255,255,255,0.75)", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif", lineHeight: 1.55 }}>
           Posición, evolución y lectura crítica de los índices internacionales, regionales y locales que evalúan el ecosistema. Con el contexto necesario para entender qué significa cada puesto.
         </p>
       </div>
-      {/* Decorative gradient */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(0,184,163,0.15)_0%,transparent_70%)] pointer-events-none -translate-y-1/2 translate-x-1/3" />
+      <div className="absolute bottom-0 left-0 z-10 h-1 w-full bg-[#C0D400]" />
     </section>
   );
 }
 
-function RankingsKPIs() {
-  const kpis = [
-    { title: "Global Startup Ecosystem Index", val: "Puesto 65", sub: "StartupBlink", var: "▲ +5 puestos vs 2023", pos: true },
-    { title: "Densidad del ecosistema", val: "320 startups", sub: "Participación nacional", var: "28% del total país", pos: true },
-    { title: "Inversión captada", val: "USD $150M", sub: "Venture Capital 2024", var: "▼ -2% interanual", pos: false },
-    { title: "Empleo especializado", val: "12,5%", sub: "Actividades profesionales y científicas", var: "▲ +1,2 p.p.", pos: true },
-  ];
+const RANKING_KPIS = [
+  {
+    title: "Global Startup Index",
+    value: "#130",
+    badge: "↑ Subió 28",
+    description: "Puesto global (6° en LATAM). Mayor score de negocios en LATAM hispana.",
+  },
+  {
+    title: "Densidad de Ecosistema",
+    value: "30%",
+    badge: "698 Startups",
+    description: "Concentración de startups a nivel nacional. Crecimiento anual >40%.",
+  },
+  {
+    title: "Inversión Captada",
+    value: "US$157M",
+    badge: "Ticket medio: $5.4M",
+    description: "Equivale al 18% del capital capturado en el país.",
+  },
+  {
+    title: "Empleo PTS (Antioquia)",
+    value: "8.0%",
+    badge: "Líder Nacional",
+    description: "Participación en áreas Profesionales, Técnicas y Científicas.",
+  },
+];
 
+const IBEI_DATA = [
+  { name: "Brasil", rank: 42 },
+  { name: "Uruguay", rank: 45 },
+  { name: "Puerto Rico", rank: 46 },
+  { name: "Colombia", rank: 47 },
+  { name: "Chile", rank: 57 },
+  { name: "México", rank: 58 },
+];
+
+const ICIM_DATA = [
+  { name: "Economía", rank: 130 },
+  { name: "Gobernanza", rank: 131 },
+  { name: "Planificación", rank: 131 },
+  { name: "Cap. Humano", rank: 132 },
+  { name: "Tecnología", rank: 135 },
+  { name: "Movilidad", rank: 138 },
+  { name: "Cohesión Social", rank: 151 },
+];
+
+const LASICI_DATA = [
+  { name: "Cap. Innovación", rank: 65 },
+  { name: "Rendimiento General", rank: 106 },
+  { name: "Econ. Conocimiento", rank: 121 },
+  { name: "Globalización", rank: 175 },
+];
+
+const rankingTooltipStyle = {
+  background: "#212121",
+  border: "1px solid rgba(255,255,255,0.16)",
+  borderRadius: 2,
+  color: "#FFFFFF",
+  fontFamily: PULSO_FONT,
+  fontSize: 12,
+  boxShadow: "0 8px 24px rgba(0,0,0,0.18)",
+};
+
+const rankingTooltipLabelStyle = {
+  color: "#FFFFFF",
+  fontWeight: 700,
+  marginBottom: 4,
+};
+
+const rankingTooltipItemStyle = {
+  color: "#FFFFFF",
+  fontWeight: 600,
+};
+
+function RankingsKPIs() {
   return (
-    <section id="rankings-kpis" className="relative py-8 bg-[#F2F4F0]">
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-10 xl:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {kpis.map((kpi, i) => (
-            <div key={i} className="bg-white p-6 rounded-md shadow-sm border border-[rgba(37,61,54,0.06)] flex flex-col">
-              <h3 className="text-sm font-bold text-[#253D36] mb-1" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif" }}>{kpi.title}</h3>
-              <p className="text-xs text-[#253D36]/50 mb-4" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>{kpi.sub}</p>
-              <div className="mt-auto">
-                <span className="text-3xl font-black text-[#253D36] tracking-tight block mb-2" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif" }}>{kpi.val}</span>
-                <span className={`inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-[2px] ${kpi.pos ? "bg-[rgba(192,212,0,0.2)] text-[#253D36]" : "bg-[rgba(255,76,23,0.1)] text-[#FF4C17]"}`} style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
-                  {kpi.var}
-                </span>
+    <section id="rankings-kpis" className="relative bg-white">
+      <div className="bg-[#212121] py-7 text-white">
+        <div className="mx-auto flex max-w-[1440px] flex-col gap-5 px-6 md:flex-row md:items-center md:justify-between lg:px-10 xl:px-12">
+          <div>
+            <h2 className="text-2xl font-black tracking-tight md:text-3xl">Medellín: Estado del Ecosistema de Innovación</h2>
+            <p className="mt-1 text-sm text-white/60">Análisis de Competitividad, Entorno de Negocios e Índices Globales (Perspectiva 2026)</p>
+          </div>
+          <p className="w-fit rounded-[2px] border border-[#00B8A3]/30 bg-[#00B8A3]/10 px-4 py-2 text-xs font-bold text-[#00B8A3]">
+            Sustentado en Datos Oficiales 2025-2026
+          </p>
+        </div>
+      </div>
+
+      <div className="mx-auto max-w-[1440px] px-6 py-8 lg:px-10 lg:py-10 xl:px-12">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          {RANKING_KPIS.map((kpi) => (
+            <article key={kpi.title} className="flex min-h-44 flex-col rounded-[2px] border border-[#253D36]/10 bg-white p-6 shadow-[0_8px_24px_rgba(37,61,54,0.06)]">
+              <h3 className="text-[11px] font-bold uppercase tracking-[0.08em] text-[#0068FF]/60">{kpi.title}</h3>
+              <div className="mt-3 flex flex-wrap items-center gap-2">
+                <p className="text-3xl font-black tracking-tight text-[#212121]">{kpi.value}</p>
+                <span className="rounded-[2px] bg-[#00B8A3]/10 px-2 py-1 text-xs font-bold text-[#00B8A3]">{kpi.badge}</span>
               </div>
-            </div>
+              <p className="mt-3 text-xs leading-relaxed text-[#253D36]/70">{kpi.description}</p>
+            </article>
           ))}
         </div>
       </div>
@@ -1161,170 +1855,103 @@ function RankingsKPIs() {
   );
 }
 
-function RankingsPanels() {
+function RankingChartCard({
+  title,
+  description,
+  accent,
+  wide = false,
+  children,
+}: {
+  title: string;
+  description: string;
+  accent: string;
+  wide?: boolean;
+  children: React.ReactNode;
+}) {
   return (
-    <section id="rankings-indices" className="relative py-10 bg-white">
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-10 xl:px-12">
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-          {/* IBEI */}
-          <div className="flex flex-col">
-            <h3 className="text-2xl font-bold text-[#253D36] mb-2" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif" }}>Entorno de negocios (IBEI)</h3>
-            <p className="text-sm text-[#253D36]/60 mb-6" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>Puesto global por país en América Latina</p>
-            <div className="flex flex-col gap-3 flex-1">
-              {[
-                { name: "Chile", score: 82 },
-                { name: "Uruguay", score: 78 },
-                { name: "Colombia (Medellín)", score: 71, hl: true },
-                { name: "Brasil", score: 65 },
-                { name: "México", score: 62 },
-                { name: "Puerto Rico", score: 59 },
-              ].map(c => (
-                <div key={c.name} className="flex items-center gap-3">
-                  <span className={`w-32 text-xs font-bold text-right ${c.hl ? "text-[#0068FF]" : "text-[#253D36]"}`} style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>{c.name}</span>
-                  <div className="flex-1 bg-[#F2F4F0] h-6 rounded-r-[2px] flex items-center">
-                    <div className="h-full" style={{ width: `${c.score}%`, backgroundColor: c.hl ? "#0068FF" : "#253D36" }} />
-                    <span className="text-xs font-bold ml-2 text-[#253D36]">{c.score}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* ICIM */}
-          <div className="flex flex-col">
-            <h3 className="text-2xl font-bold text-[#253D36] mb-2" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif" }}>Dimensiones de ciudad (ICIM)</h3>
-            <p className="text-sm text-[#253D36]/60 mb-6" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>Desempeño de Medellín por categoría</p>
-            <div className="flex flex-col gap-3 flex-1">
-              {[
-                { name: "Movilidad", score: 76 },
-                { name: "Cohesión social", score: 42 },
-                { name: "Economía", score: 68 },
-                { name: "Gobernanza", score: 85 },
-                { name: "Planeación", score: 70 },
-                { name: "Capital humano", score: 60 },
-                { name: "Tecnología", score: 88 },
-              ].sort((a,b)=>b.score-a.score).map(c => (
-                <div key={c.name} className="flex items-center gap-3">
-                  <span className="w-32 text-xs font-bold text-right text-[#253D36]" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>{c.name}</span>
-                  <div className="flex-1 bg-[#F2F4F0] h-6 rounded-r-[2px] flex items-center">
-                    <div className="h-full bg-[#00B8A3]" style={{ width: `${c.score}%` }} />
-                    <span className="text-xs font-bold ml-2 text-[#253D36]">{c.score}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* LASICI 2.0 */}
-          <div className="flex flex-col">
-            <h3 className="text-2xl font-bold text-[#253D36] mb-2" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif" }}>Pilares LASICI 2.0</h3>
-            <p className="text-sm text-[#253D36]/60 mb-6" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>Desempeño subnacional de Antioquia (Puntaje 0-100)</p>
-            <div className="bg-[#FAFAF8] border border-[rgba(37,61,54,0.08)] p-6 rounded-md flex-1 relative min-h-[240px]">
-              <svg viewBox="0 0 400 200" className="w-full h-full overflow-visible" preserveAspectRatio="none">
-                {/* Grid */}
-                {[0, 50, 100, 150, 200].map(y => <line key={y} x1="0" y1={y} x2="400" y2={y} stroke="rgba(37,61,54,0.05)" />)}
-                {/* Points: Capacidad(85), Rendimiento(70), Economia(60), Globalizacion(45) */}
-                {/* Y mapping: 100 -> 0, 0 -> 200 */}
-                <path d="M 0,30 L 133,60 L 266,80 L 400,110" fill="none" stroke="#C0D400" strokeWidth="4" />
-                <circle cx="0" cy="30" r="5" fill="#253D36" />
-                <circle cx="133" cy="60" r="5" fill="#253D36" />
-                <circle cx="266" cy="80" r="5" fill="#253D36" />
-                <circle cx="400" cy="110" r="5" fill="#253D36" />
-              </svg>
-              <div className="flex justify-between w-full mt-4 text-[10px] font-bold text-[#253D36] uppercase tracking-wider" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
-                <span>Capacidad</span>
-                <span>Rendimiento</span>
-                <span>Economía</span>
-                <span>Globalización</span>
-              </div>
-            </div>
-          </div>
-
-          {/* IMD Smart City */}
-          <div className="flex flex-col">
-            <h3 className="text-2xl font-bold text-[#253D36] mb-2" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif" }}>Matriz IMD Smart City</h3>
-            <p className="text-sm text-[#253D36]/60 mb-6" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>Principales ciudades de Colombia</p>
-            <div className="overflow-x-auto flex-1 border border-[rgba(37,61,54,0.08)] rounded-md">
-              <table className="w-full text-left border-collapse min-w-[500px]">
-                <thead>
-                  <tr className="bg-[#F2F4F0] text-[11px] uppercase tracking-wider text-[#253D36]/60" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
-                    <th className="p-4 font-bold">Ciudad</th>
-                    <th className="p-4 font-bold">Puesto</th>
-                    <th className="p-4 font-bold">Calificación</th>
-                    <th className="p-4 font-bold">Tendencia</th>
-                    <th className="p-4 font-bold">Nota Distintiva</th>
-                  </tr>
-                </thead>
-                <tbody className="text-sm text-[#253D36]" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
-                  <tr className="border-t border-[rgba(37,61,54,0.08)] bg-white">
-                    <td className="p-4 font-bold text-[#0068FF]">Medellín</td>
-                    <td className="p-4 font-black">72</td>
-                    <td className="p-4">BBB</td>
-                    <td className="p-4"><TrendingUp className="w-4 h-4 text-[#C0D400]" /></td>
-                    <td className="p-4 text-xs">Líder en movilidad integrada</td>
-                  </tr>
-                  <tr className="border-t border-[rgba(37,61,54,0.08)] bg-[#FAFAF8]">
-                    <td className="p-4 font-bold">Bogotá</td>
-                    <td className="p-4 font-black">98</td>
-                    <td className="p-4">BB</td>
-                    <td className="p-4"><TrendingUp className="w-4 h-4 text-[#C0D400]" /></td>
-                    <td className="p-4 text-xs">Hub corporativo nacional</td>
-                  </tr>
-                  <tr className="border-t border-[rgba(37,61,54,0.08)] bg-white">
-                    <td className="p-4 font-bold">Cali</td>
-                    <td className="p-4 font-black">112</td>
-                    <td className="p-4">B</td>
-                    <td className="p-4"><TrendingDown className="w-4 h-4 text-[#FF4C17]" /></td>
-                    <td className="p-4 text-xs">Crecimiento en bioeconomía</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        {/* Index Explanation Accordion */}
-        <div className="mt-10 bg-[#FAFAF8] border border-[rgba(37,61,54,0.08)] rounded-md p-6">
-          <details className="group cursor-pointer">
-            <summary className="flex items-center justify-between font-bold text-[#253D36] text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] rounded-sm list-none" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif" }}>
-              <span className="flex items-center gap-2"><Info className="w-4 h-4" /> Qué mide este índice ↓</span>
-            </summary>
-            <p className="mt-4 text-sm text-[#253D36]/70 leading-relaxed" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
-              Los índices agrupados evalúan pilares estructurales: adopción tecnológica, calidad de vida urbana, apertura a los negocios, capital humano disponible y cohesión social. <a href="#metodologia" className="text-[#0068FF] font-bold hover:underline">Ver la metodología oficial completa.</a>
-            </p>
-          </details>
+    <article className={`relative flex min-w-0 flex-col overflow-hidden rounded-[2px] bg-white p-5 shadow-[0_1px_2px_rgba(37,61,54,0.06),0_16px_40px_rgba(37,61,54,0.07)] sm:p-7 ${wide ? "lg:col-span-2" : ""}`}>
+      <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1" style={{ backgroundColor: accent }} />
+      <div className="flex items-start gap-4">
+        <span aria-hidden="true" className="mt-1 h-10 w-1 shrink-0 rounded-[2px]" style={{ backgroundColor: accent }} />
+        <div>
+          <h3 className="text-lg font-black text-[#212121] sm:text-xl">{title}</h3>
+          <p className="mt-1 text-xs leading-relaxed text-[#253D36]/65">{description}</p>
         </div>
       </div>
-    </section>
+      <div className={`mt-6 w-full min-w-0 rounded-[2px] bg-[#253D36]/[0.025] p-2 sm:p-4 ${wide ? "h-80 sm:h-96" : "h-96"}`}>{children}</div>
+    </article>
   );
 }
 
-function RankingsStrengthsGaps() {
-  return (
-    <section id="rankings-fortalezas" className="relative py-10 bg-[#F2F4F0]">
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-10 xl:px-12 grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Fortalezas */}
-        <div className="bg-[#EBF2EA] p-8 lg:p-12 rounded-md" style={{ borderTop: "4px solid #00B8A3" }}>
-          <h3 className="text-2xl font-bold text-[#253D36] mb-4" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif", letterSpacing: "-0.01em" }}>
-            Fortalezas del ecosistema
-          </h3>
-          <p className="text-base text-[#253D36]/80 leading-relaxed" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
-            Lo que los índices reconocen de forma consistente: gobernanza institucional eficiente, articulación Universidad-Empresa-Estado dinamizada por Ruta N, inversión en infraestructura digital y entornos regulatorios de prueba, y servicios ciudadanos digitales.
-          </p>
-        </div>
+function RankingsPanels() {
+  const axisTick = { fill: "#253D36", fontSize: 10, fontFamily: PULSO_FONT };
+  const valueLabel = { fill: "#212121", fontSize: 11, fontWeight: 700, fontFamily: PULSO_FONT };
 
-        {/* Brechas */}
-        <div className="bg-[#FFF4E5] p-8 lg:p-12 rounded-md" style={{ borderTop: "4px solid #FFCA00" }}>
-          <h3 className="text-2xl font-bold text-[#253D36] mb-4" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif", letterSpacing: "-0.01em" }}>
-            Brechas críticas
-          </h3>
-          <p className="text-base text-[#253D36]/80 leading-relaxed" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
-            Lo que aparece de forma recurrente como factor de riesgo: rezago en cohesión social, baja cobertura de globalización, restricciones para escalar capital e indicadores urbanos de alta complejidad.
-          </p>
-        </div>
+  return (
+    <section id="rankings-indices" className="relative bg-[#F2F4F0] py-10 lg:py-14">
+      <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-5 px-6 lg:grid-cols-2 lg:gap-6 lg:px-10 xl:px-12">
+        <RankingChartCard
+          title="Entorno de Negocios IBEI 2026"
+          description="Puesto Global por País en LATAM (Menor rango indica menor fricción operativa)"
+          accent="#00B8A3"
+        >
+          <div role="img" aria-label="Ranking IBEI 2026: Brasil 42, Uruguay 45, Puerto Rico 46, Colombia 47, Chile 57 y México 58" className="h-full w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart layout="vertical" data={IBEI_DATA} margin={{ top: 6, right: 38, left: 6, bottom: 0 }}>
+                <CartesianGrid stroke="rgba(37,61,54,0.10)" horizontal={false} />
+                <XAxis type="number" domain={[0, 60]} ticks={[0, 10, 20, 30, 40, 50, 60]} tick={axisTick} axisLine={false} tickLine={false} />
+                <YAxis type="category" dataKey="name" width={82} tick={axisTick} axisLine={false} tickLine={false} />
+                <Tooltip contentStyle={rankingTooltipStyle} labelStyle={rankingTooltipLabelStyle} itemStyle={rankingTooltipItemStyle} cursor={{ fill: "rgba(37,61,54,0.04)" }} />
+                <Bar dataKey="rank" maxBarSize={24} radius={[0, 4, 4, 0]} isAnimationActive={false}>
+                  {IBEI_DATA.map((entry) => <Cell key={entry.name} fill={entry.name === "Colombia" ? "#00B8A3" : "rgba(37,61,54,0.22)"} />)}
+                  <LabelList dataKey="rank" position="right" formatter={(value: number) => `#${value}`} style={valueLabel} />
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </RankingChartCard>
+
+        <RankingChartCard
+          title="Dimensiones de Ciudad (ICIM 2026)"
+          description="Puesto de Medellín por pilar (183 ciudades evaluadas. Menor es mejor)"
+          accent="#0068FF"
+        >
+          <div role="img" aria-label="Ranking ICIM 2026: Economía 130, Gobernanza 131, Planificación 131, Capital Humano 132, Tecnología 135, Movilidad 138 y Cohesión Social 151" className="h-full w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart layout="vertical" data={ICIM_DATA} margin={{ top: 6, right: 38, left: 6, bottom: 0 }}>
+                <CartesianGrid stroke="rgba(37,61,54,0.10)" horizontal={false} />
+                <XAxis type="number" domain={[0, 160]} ticks={[0, 40, 80, 120, 160]} tick={axisTick} axisLine={false} tickLine={false} />
+                <YAxis type="category" dataKey="name" width={98} tick={axisTick} axisLine={false} tickLine={false} />
+                <Tooltip contentStyle={rankingTooltipStyle} labelStyle={rankingTooltipLabelStyle} itemStyle={rankingTooltipItemStyle} cursor={{ fill: "rgba(0,104,255,0.04)" }} />
+                <Bar dataKey="rank" maxBarSize={20} radius={[0, 4, 4, 0]} isAnimationActive={false}>
+                  {ICIM_DATA.map((entry) => <Cell key={entry.name} fill={entry.name === "Cohesión Social" ? "#FF4C17" : "#0068FF"} />)}
+                  <LabelList dataKey="rank" position="right" formatter={(value: number) => `#${value}`} style={valueLabel} />
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </RankingChartCard>
+
+        <RankingChartCard
+          title="Pilares de Innovación LASICI 2.0"
+          description="Desglose del desempeño subnacional de Antioquia (Puesto en Ranking)"
+          accent="#FF4C17"
+          wide
+        >
+          <div role="img" aria-label="Ranking LASICI 2.0: Capacidad de Innovación 65, Rendimiento General 106, Economía del Conocimiento 121 y Globalización 175" className="h-full w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={LASICI_DATA} margin={{ top: 20, right: 20, left: 0, bottom: 28 }}>
+                <CartesianGrid stroke="rgba(37,61,54,0.10)" vertical={false} strokeDasharray="4 6" />
+                <XAxis dataKey="name" interval={0} tick={axisTick} axisLine={false} tickLine={false} />
+                <YAxis reversed domain={[0, 180]} ticks={[0, 30, 60, 90, 120, 150, 180]} width={40} tick={axisTick} axisLine={false} tickLine={false} />
+                <Tooltip contentStyle={rankingTooltipStyle} labelStyle={rankingTooltipLabelStyle} itemStyle={rankingTooltipItemStyle} cursor={{ stroke: "rgba(37,61,54,0.15)" }} />
+                <Area type="monotone" dataKey="rank" stroke="#FF4C17" strokeWidth={3} fill="rgba(255,76,23,0.08)" activeDot={{ r: 6, fill: "#FF4C17", stroke: "#FFFFFF", strokeWidth: 3 }} dot={{ r: 5, fill: "#FF4C17", stroke: "#FFFFFF", strokeWidth: 2 }} isAnimationActive={false}>
+                  <LabelList dataKey="rank" position="top" formatter={(value: number) => `#${value}`} style={valueLabel} />
+                </Area>
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
+        </RankingChartCard>
       </div>
     </section>
   );
@@ -1338,7 +1965,7 @@ function RankingsEvolution() {
           <h2 className="text-4xl md:text-5xl font-black text-[#253D36] mb-4" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif", letterSpacing: "-0.02em" }}>
             Evolución en el tiempo
           </h2>
-          <p className="text-xl text-[#0068FF] font-bold" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+          <p className="text-xl text-[#0068FF] font-bold" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
             Un puesto aislado dice poco. Una trayectoria lo dice todo.
           </p>
         </div>
@@ -1356,7 +1983,7 @@ function RankingsEvolution() {
               <circle cx="400" cy="100" r="6" fill="#253D36" />
               <circle cx="800" cy="40" r="6" fill="#253D36" />
             </svg>
-            <div className="absolute inset-0 flex justify-between items-end pb-4" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+            <div className="absolute inset-0 flex justify-between items-end pb-4" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
               <div className="text-center translate-y-12">
                 <span className="block text-xl font-black text-[#253D36]">#89</span>
                 <span className="text-xs text-[#253D36]/60">2018</span>
@@ -1376,7 +2003,7 @@ function RankingsEvolution() {
             <div className="w-5 h-5 rounded-full bg-[rgba(255,76,23,0.1)] flex items-center justify-center shrink-0 mt-0.5">
               <span className="text-[10px] font-bold text-[#FF4C17]">!</span>
             </div>
-            <p className="text-xs text-[#253D36]/60 leading-relaxed" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+            <p className="text-xs text-[#253D36]/60 leading-relaxed" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
               <strong className="text-[#253D36]">Advertencia metodológica:</strong> Los índices cambian de metodología entre ediciones. Cuando eso ocurre, lo señalamos junto al dato. La serie de 2021 sufrió un ajuste en las métricas de capital humano que impide una comparación 1:1 absoluta con la edición anterior.
             </p>
           </div>
@@ -1388,9 +2015,9 @@ function RankingsEvolution() {
 
 const RANKINGS_SECTIONS = [
   { id: "rankings-hero",       label: "Inicio" },
+  { id: "rankings-pulso",      label: "Pulso CTI" },
   { id: "rankings-kpis",       label: "Indicadores" },
   { id: "rankings-indices",    label: "Índices" },
-  { id: "rankings-fortalezas", label: "Fortalezas" },
   { id: "rankings-evolucion",  label: "Evolución" },
   { id: "radar-reportes",      label: "Documentos" },
 ];
@@ -1399,14 +2026,14 @@ function RankingsPage() {
   return (
     <>
       <FloatingNav sections={RANKINGS_SECTIONS} />
-      <RankingsBanner />
       <Breadcrumb items={[
         { label: "Contenidos", href: "#contenidos" },
         { label: "Rankings" }
       ]} />
+      <RankingsBanner />
+      <PulsoSection />
       <RankingsKPIs />
       <RankingsPanels />
-      <RankingsStrengthsGaps />
       <RankingsEvolution />
       <DataReportsSection
         title="Los documentos oficiales de rankings y mediciones del ecosistema."

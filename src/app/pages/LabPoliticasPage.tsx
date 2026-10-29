@@ -63,7 +63,7 @@ function LabPoliticasHero() {
           <div ref={leftColRef} className="lg:col-span-8 flex flex-col">
             <p
               className="text-[10px] tracking-[0.32em] uppercase mb-6"
-              style={{ color: "#C0D400", fontFamily: "'Source Sans 3',Arial,sans-serif", fontWeight: "bold" }}
+              style={{ color: "#C0D400", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif", fontWeight: "bold" }}
             >
               LAB DE POLÍTICAS · NORMATIVA
             </p>
@@ -84,22 +84,22 @@ function LabPoliticasHero() {
 
             <p
               className="text-lg md:text-xl mb-6 max-w-3xl"
-              style={{ color: "rgba(255,255,255,0.75)", fontFamily: "'Source Sans 3',Arial,sans-serif", lineHeight: 1.6 }}
+              style={{ color: "rgba(255,255,255,0.75)", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif", lineHeight: 1.6 }}
             >
               Aquí el Centro de Pensamiento de Ruta N centraliza lo más relevante en política pública para el ecosistema: las normas externas que enmarcan a Medellín como Distrito CTI y las iniciativas que impulsamos y lideramos desde la organización. Conocerlas no es un trámite: es la diferencia entre esperar a que el entorno cambie y usarlo a favor.
             </p>
 
             {/* Microdatos */}
             <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-              <span className="text-sm font-bold text-[#00B8A3]" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+              <span className="text-sm font-bold text-[#00B8A3]" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                 [N] normas mapeadas
               </span>
               <span className="text-white/30 hidden md:block" aria-hidden="true">•</span>
-              <span className="text-sm font-bold text-[#C0D400]" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+              <span className="text-sm font-bold text-[#C0D400]" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                 15 años de trayectoria
               </span>
               <span className="text-white/30 hidden md:block" aria-hidden="true">•</span>
-              <span className="text-sm font-bold text-white" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+              <span className="text-sm font-bold text-white" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                 [N] herramientas descargables
               </span>
             </div>
@@ -118,7 +118,7 @@ function LabPoliticasHero() {
 
               {/* Header */}
               <div className="px-5 pt-5 pb-4" style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
-                <p className="text-[9px] uppercase tracking-[0.22em] font-bold text-white/35 mb-1" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                <p className="text-[9px] uppercase tracking-[0.22em] font-bold text-white/35 mb-1" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                   Trayectoria
                 </p>
                 <p className="text-white font-black leading-none" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif", fontSize: "1.15rem", letterSpacing: "-0.02em" }}>
@@ -143,7 +143,7 @@ function LabPoliticasHero() {
                       <div className="w-2.5 h-2.5 rounded-full ring-[3px] ring-[#111F1B]" style={{ backgroundColor: node.dot }} />
                     </div>
                     <div>
-                      <span className="block text-[10px] font-bold leading-none mb-1" style={{ color: node.c, fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                      <span className="block text-[10px] font-bold leading-none mb-1" style={{ color: node.c, fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                         {node.y}
                       </span>
                       <span className="text-[13px] font-semibold leading-tight" style={{ color: "rgba(255,255,255,0.85)", fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif" }}>
@@ -234,7 +234,7 @@ function LabPoliticasCards() {
                 <div className="w-full h-1 bg-[#253D36] mb-2 opacity-30" />
                 <div className="w-4/5 h-1 bg-[#253D36] mb-2 opacity-30" />
               </div>
-              <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 text-[10px] font-bold tracking-widest uppercase text-[#253D36] rounded-[2px]" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+              <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 text-[10px] font-bold tracking-widest uppercase text-[#253D36] rounded-[2px]" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                 NORMATIVA
               </div>
             </div>
@@ -244,20 +244,20 @@ function LabPoliticasCards() {
               <h3 className="text-2xl font-black text-[#253D36] mb-2" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif", letterSpacing: "-0.01em" }}>
                 Documentación
               </h3>
-              <p className="text-base font-bold text-[#00B8A3] mb-4" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+              <p className="text-base font-bold text-[#00B8A3] mb-4" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                 El repositorio de política pública de la organización.
               </p>
-              <p className="text-[#253D36]/70 text-sm leading-relaxed mb-6" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+              <p className="text-[#253D36]/70 text-sm leading-relaxed mb-6" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                 Toda la normativa que construyó y sostiene al Distrito CTI, reunida y explicada en un solo lugar: acuerdos del Concejo, decretos de la Alcaldía, leyes nacionales y documentos CONPES. Cada norma con su año, su contenido en una línea y el rol concreto que Ruta N cumple en ella. Del Acuerdo 024 de 2011 al Plan SDCTI 2024–2033.
               </p>
 
               <div className="mb-6">
-                <p className="text-[11px] font-bold tracking-[0.15em] uppercase text-[#253D36]/50 mb-3" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                <p className="text-[11px] font-bold tracking-[0.15em] uppercase text-[#253D36]/50 mb-3" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                   Contiene:
                 </p>
                 <ul className="grid grid-cols-2 gap-x-4 gap-y-2.5">
                   {["Cronología interactiva 2011–2026", "Ruta N en el marco normativo", "Repositorio descargable", "Seguimiento de políticas vigentes"].map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm font-semibold text-[#253D36]" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                    <li key={i} className="flex items-start gap-2 text-sm font-semibold text-[#253D36]" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                       <CheckCircle2 className="w-4 h-4 text-[#00B8A3] shrink-0 mt-0.5" />
                       {item}
                     </li>
@@ -266,7 +266,7 @@ function LabPoliticasCards() {
               </div>
 
               <div className="mt-auto">
-                <a href="/lab-de-politicas/documentacion" className="inline-flex items-center gap-2 font-bold text-sm text-[#0068FF] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] rounded-sm transition-all group-hover:gap-3" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                <a href="/lab-de-politicas/documentacion" className="inline-flex items-center gap-2 font-bold text-sm text-[#0068FF] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] rounded-sm transition-all group-hover:gap-3" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                   Entrar a Documentación <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
@@ -295,7 +295,7 @@ function LabPoliticasCards() {
                   </div>
                 </div>
               </div>
-              <div className="absolute top-4 left-4 bg-white/10 backdrop-blur-sm px-3 py-1 text-[10px] font-bold tracking-widest uppercase text-[#C0D400] rounded-[2px]" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+              <div className="absolute top-4 left-4 bg-white/10 backdrop-blur-sm px-3 py-1 text-[10px] font-bold tracking-widest uppercase text-[#C0D400] rounded-[2px]" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                 HERRAMIENTA
               </div>
             </div>
@@ -305,20 +305,20 @@ function LabPoliticasCards() {
               <h3 className="text-2xl font-black text-[#253D36] mb-2" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif", letterSpacing: "-0.01em" }}>
                 Compras Públicas Innovadoras
               </h3>
-              <p className="text-base font-bold text-[#0068FF] mb-4" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+              <p className="text-base font-bold text-[#0068FF] mb-4" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                 El Estado como primer cliente de la innovación.
               </p>
-              <p className="text-[#253D36]/70 text-sm leading-relaxed mb-6" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+              <p className="text-[#253D36]/70 text-sm leading-relaxed mb-6" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                 La compra pública para la innovación le permite a una entidad pública adquirir soluciones que todavía no existen en el mercado: en lugar de pedir un producto, plantea un reto. Aquí encuentras los mecanismos, las guías, el test de autodiagnóstico y los tableros de resultados para apropiarte de este tipo de contratación, seas comprador público o proveedor de innovación.
               </p>
 
               <div className="mb-6">
-                <p className="text-[11px] font-bold tracking-[0.15em] uppercase text-[#253D36]/50 mb-3" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                <p className="text-[11px] font-bold tracking-[0.15em] uppercase text-[#253D36]/50 mb-3" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                   Contiene:
                 </p>
                 <ul className="grid grid-cols-2 gap-x-4 gap-y-2.5">
                   {["Guía CPI", "Test de autodiagnóstico", "Plan anual e informes trimestrales", "Tablero de resultados", "Actas de las mesas estratégicas"].map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm font-semibold text-[#253D36]" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                    <li key={i} className="flex items-start gap-2 text-sm font-semibold text-[#253D36]" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                       <CheckCircle2 className="w-4 h-4 text-[#C0D400] shrink-0 mt-0.5" />
                       {item}
                     </li>
@@ -327,7 +327,7 @@ function LabPoliticasCards() {
               </div>
 
               <div className="mt-auto">
-                <a href="/lab-de-politicas/compras" className="inline-flex items-center gap-2 font-bold text-sm text-[#0068FF] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] rounded-sm transition-all group-hover:gap-3" style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                <a href="/lab-de-politicas/compras" className="inline-flex items-center gap-2 font-bold text-sm text-[#0068FF] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] rounded-sm transition-all group-hover:gap-3" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                   Entrar a Compras Públicas Innovadoras <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
@@ -490,7 +490,7 @@ function LabQueEsSection() {
             <p
               className="text-white/75 mb-6 leading-relaxed"
               style={{
-                fontFamily: "'Source Sans 3',Arial,sans-serif",
+                fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                 fontSize: "1.0625rem",
                 lineHeight: 1.7,
               }}
@@ -500,7 +500,7 @@ function LabQueEsSection() {
             <p
               className="text-white/75 leading-relaxed"
               style={{
-                fontFamily: "'Source Sans 3',Arial,sans-serif",
+                fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
                 fontSize: "1.0625rem",
                 lineHeight: 1.7,
               }}
@@ -514,7 +514,7 @@ function LabQueEsSection() {
         <div ref={cardsRef}>
           <p
             className="text-[10px] tracking-[0.28em] uppercase text-white/35 mb-10"
-            style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+            style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
           >
             Los cuatro atributos
           </p>
@@ -608,7 +608,7 @@ function LabAttributeCard({ attr }: { attr: LabAttr }) {
       <p
         className="text-white/55 m-0 p-0"
         style={{
-          fontFamily: "'Source Sans 3',Arial,sans-serif",
+          fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
           fontSize: "0.9375rem",
           lineHeight: 1.65,
         }}
@@ -717,14 +717,14 @@ function TimelineNode({ event, index, isLast }: { event: TimelineEvent; index: n
             style={{
               color: event.color,
               backgroundColor: `${event.color}18`,
-              fontFamily: "'Source Sans 3',Arial,sans-serif",
+              fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
             }}
           >
             {event.type}
           </span>
           <span
             className="text-xs font-bold"
-            style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+            style={{ color: "rgba(255,255,255,0.35)", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
           >
             {event.year}
           </span>
@@ -758,7 +758,7 @@ function TimelineNode({ event, index, isLast }: { event: TimelineEvent; index: n
             className="mt-3 leading-relaxed"
             style={{
               color: "rgba(255,255,255,0.6)",
-              fontFamily: "'Source Sans 3',Arial,sans-serif",
+              fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
               fontSize: "0.9375rem",
               lineHeight: 1.65,
             }}
@@ -772,7 +772,7 @@ function TimelineNode({ event, index, isLast }: { event: TimelineEvent; index: n
             className="mt-1 text-sm leading-snug line-clamp-2"
             style={{
               color: "rgba(255,255,255,0.4)",
-              fontFamily: "'Source Sans 3',Arial,sans-serif",
+              fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif",
             }}
           >
             {event.body}

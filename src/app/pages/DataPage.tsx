@@ -228,7 +228,7 @@ function MiniChart({ d }: { d: Dashboard }) {
           <YAxis key={`yaxis-${d.id}`} hide />
           <Tooltip
             key={`tooltip-${d.id}`}
-            contentStyle={{ background: "#253D36", border: "none", borderRadius: 4, color: "#fff", fontSize: 11, fontFamily: "'Source Sans 3',sans-serif" }}
+            contentStyle={{ background: "#253D36", border: "none", borderRadius: 4, color: "#fff", fontSize: 11, fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
             formatter={(v: number) => [`${v} ${d.unit}`, ""]}
             labelStyle={{ color: "rgba(255,255,255,0.6)" }}
           />
@@ -245,7 +245,7 @@ function MiniChart({ d }: { d: Dashboard }) {
         <YAxis key={`yaxis-${d.id}`} hide />
         <Tooltip
           key={`tooltip-${d.id}`}
-          contentStyle={{ background: "#253D36", border: "none", borderRadius: 4, color: "#fff", fontSize: 11, fontFamily: "'Source Sans 3',sans-serif" }}
+          contentStyle={{ background: "#253D36", border: "none", borderRadius: 4, color: "#fff", fontSize: 11, fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
           formatter={(v: number) => [`${v} ${d.unit}`, ""]}
           labelStyle={{ color: "rgba(255,255,255,0.6)" }}
         />
@@ -261,7 +261,7 @@ function MiniChart({ d }: { d: Dashboard }) {
         <YAxis key={`yaxis-${d.id}`} hide />
         <Tooltip
           key={`tooltip-${d.id}`}
-          contentStyle={{ background: "#253D36", border: "none", borderRadius: 4, color: "#fff", fontSize: 11, fontFamily: "'Source Sans 3',sans-serif" }}
+          contentStyle={{ background: "#253D36", border: "none", borderRadius: 4, color: "#fff", fontSize: 11, fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
           formatter={(v: number) => [`${v} ${d.unit}`, ""]}
           labelStyle={{ color: "rgba(255,255,255,0.6)" }}
         />
@@ -303,7 +303,7 @@ function DataBanner() {
 
       <div className="max-w-[1440px] mx-auto relative z-10">
         <p className="data-banner-eyebrow text-[10px] tracking-[0.32em] uppercase mb-6"
-          style={{ color: "#C0D400", fontFamily: "'Source Sans 3',Arial,sans-serif", fontWeight: "bold" }}>
+          style={{ color: "#C0D400", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif", fontWeight: "bold" }}>
           Radar CTI · Data
         </p>
         <h1 className="data-banner-h1 text-white mb-6 max-w-4xl"
@@ -311,7 +311,7 @@ function DataBanner() {
           El dato crudo, disponible para todos
         </h1>
         <p className="data-banner-p text-lg md:text-xl max-w-2xl"
-          style={{ color: "rgba(255,255,255,0.7)", fontFamily: "'Source Sans 3',Arial,sans-serif", lineHeight: 1.6 }}>
+          style={{ color: "rgba(255,255,255,0.7)", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif", lineHeight: 1.6 }}>
           Tableros dinámicos, series históricas y el repositorio de reportes oficiales del ecosistema CTI. Filtra, compara, descarga y saca tus propias conclusiones: para eso publicamos.
         </p>
 
@@ -325,7 +325,7 @@ function DataBanner() {
           ].map(s => (
             <div key={s.label}>
               <p className="text-3xl font-black text-[#C0D400]" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif" }}>{s.n}</p>
-              <p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,0.55)", fontFamily: "'Source Sans 3',Arial,sans-serif" }}>{s.label}</p>
+              <p className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,0.55)", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>{s.label}</p>
             </div>
           ))}
         </div>
@@ -362,7 +362,7 @@ function DataDashboardsSection() {
         {/* Header */}
         <div className="max-w-3xl mb-14">
           <p className="text-[10px] tracking-[0.28em] uppercase font-bold mb-3"
-            style={{ color: "#00B8A3", fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+            style={{ color: "#00B8A3", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
             Tableros interactivos
           </p>
           <h2 className="text-[#253D36] mb-4"
@@ -370,7 +370,7 @@ function DataDashboardsSection() {
             Explora los datos por tema
           </h2>
           <p className="text-lg text-[#253D36]/65"
-            style={{ fontFamily: "'Source Sans 3',Arial,sans-serif", lineHeight: 1.6 }}>
+            style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif", lineHeight: 1.6 }}>
             Cada tablero reúne indicadores sobre un mismo tema, con series temporales desde 2019. Pasa el cursor por la gráfica para ver los valores exactos.
           </p>
         </div>
@@ -401,7 +401,7 @@ function DataDashboardsSection() {
                       <Icon className="w-5 h-5" style={{ color: d.color }} />
                     </div>
                     <span className="text-[11px] font-bold px-2.5 py-1 rounded-full"
-                      style={{ background: `${d.color}18`, color: d.color, fontFamily: "'Source Sans 3',sans-serif" }}>
+                      style={{ background: `${d.color}18`, color: d.color, fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                       {d.ind} indicadores
                     </span>
                   </div>
@@ -410,7 +410,7 @@ function DataDashboardsSection() {
                     {d.title}
                   </h3>
                   <p className="text-sm text-[#253D36]/55 leading-snug"
-                    style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                    style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                     {d.desc}
                   </p>
                 </div>
@@ -419,10 +419,10 @@ function DataDashboardsSection() {
                 <div className="px-6 pb-2">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-[10px] font-bold uppercase tracking-widest text-[#253D36]/35"
-                      style={{ fontFamily: "'Source Sans 3',sans-serif" }}>
+                      style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                       {d.unit} · 2019–2024
                     </span>
-                    <span className="text-xs font-bold" style={{ color: trendPct >= 0 ? "#00B8A3" : "#FF4C17", fontFamily: "'Source Sans 3',sans-serif" }}>
+                    <span className="text-xs font-bold" style={{ color: trendPct >= 0 ? "#00B8A3" : "#FF4C17", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                       {trendPct >= 0 ? "+" : ""}{trendPct}%
                     </span>
                   </div>
@@ -432,7 +432,7 @@ function DataDashboardsSection() {
                 {/* Card footer */}
                 <div className="flex items-center justify-between px-6 py-4 mt-auto"
                   style={{ borderTop: "1px solid rgba(37,61,54,0.07)" }}>
-                  <span className="text-[11px] text-[#253D36]/45" style={{ fontFamily: "'Source Sans 3',sans-serif" }}>
+                  <span className="text-[11px] text-[#253D36]/45" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                     Actualizado: {d.updated}
                   </span>
                   <button
@@ -458,11 +458,11 @@ function DataDashboardsSection() {
                 </div>
                 <div>
                   <h3 className="font-bold text-[#253D36]" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',sans-serif" }}>{activeDash.title}</h3>
-                  <p className="text-xs text-[#253D36]/50" style={{ fontFamily: "'Source Sans 3',sans-serif" }}>Serie 2019–2024 · {activeDash.ind} indicadores · Actualizado {activeDash.updated}</p>
+                  <p className="text-xs text-[#253D36]/50" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>Serie 2019–2024 · {activeDash.ind} indicadores · Actualizado {activeDash.updated}</p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <button className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0068FF] hover:underline" style={{ fontFamily: "'Source Sans 3',sans-serif" }}>
+                <button className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0068FF] hover:underline" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                   <ExternalLink className="w-3.5 h-3.5" /> Abrir en pantalla completa
                 </button>
                 <button onClick={() => setActive(null)} className="w-8 h-8 flex items-center justify-center rounded-full bg-[#F2F4F0] hover:bg-[#E4E6E0] transition-colors">
@@ -479,7 +479,7 @@ function DataDashboardsSection() {
                   { label: "Indicadores incluidos", value: `${activeDash.ind}` },
                 ].map(stat => (
                   <div key={stat.label} className="bg-white px-6 py-5">
-                    <p className="text-xs font-semibold text-[#253D36]/50 mb-1" style={{ fontFamily: "'Source Sans 3',sans-serif" }}>{stat.label}</p>
+                    <p className="text-xs font-semibold text-[#253D36]/50 mb-1" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>{stat.label}</p>
                     <p className="text-2xl font-black text-[#253D36]" style={{ fontFamily: "'Neue Haas Grotesk Display Pro',sans-serif", color: activeDash.color }}>{stat.value}</p>
                   </div>
                 ))}
@@ -490,9 +490,9 @@ function DataDashboardsSection() {
                   {activeDash.chartType === "bar" ? (
                     <BarChart data={activeDash.chartData} margin={{ top: 8, right: 8, left: 0, bottom: 8 }} barSize={32}>
                       <Bar dataKey="value" fill={activeDash.color} radius={[3, 3, 0, 0]} />
-                      <XAxis dataKey="label" tick={{ fontSize: 12, fontFamily: "'Source Sans 3',sans-serif", fill: "#253D36", opacity: 0.5 }} axisLine={false} tickLine={false} />
-                      <YAxis tick={{ fontSize: 11, fontFamily: "'Source Sans 3',sans-serif", fill: "#253D36", opacity: 0.4 }} axisLine={false} tickLine={false} width={40} />
-                      <Tooltip contentStyle={{ background: "#253D36", border: "none", borderRadius: 4, color: "#fff", fontSize: 12, fontFamily: "'Source Sans 3',sans-serif" }} formatter={(v: number) => [`${v} ${activeDash.unit}`, activeDash.title]} />
+                      <XAxis dataKey="label" tick={{ fontSize: 12, fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif", fill: "#253D36", opacity: 0.5 }} axisLine={false} tickLine={false} />
+                      <YAxis tick={{ fontSize: 11, fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif", fill: "#253D36", opacity: 0.4 }} axisLine={false} tickLine={false} width={40} />
+                      <Tooltip contentStyle={{ background: "#253D36", border: "none", borderRadius: 4, color: "#fff", fontSize: 12, fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }} formatter={(v: number) => [`${v} ${activeDash.unit}`, activeDash.title]} />
                     </BarChart>
                   ) : activeDash.chartType === "area" ? (
                     <AreaChart data={activeDash.chartData} margin={{ top: 8, right: 8, left: 0, bottom: 8 }}>
@@ -503,16 +503,16 @@ function DataDashboardsSection() {
                         </linearGradient>
                       </defs>
                       <Area type="monotone" dataKey="value" stroke={activeDash.color} strokeWidth={2.5} fill={`url(#exp-${activeDash.id})`} dot={{ r: 4, fill: activeDash.color, strokeWidth: 0 }} />
-                      <XAxis dataKey="label" tick={{ fontSize: 12, fontFamily: "'Source Sans 3',sans-serif", fill: "#253D36", opacity: 0.5 }} axisLine={false} tickLine={false} />
-                      <YAxis tick={{ fontSize: 11, fontFamily: "'Source Sans 3',sans-serif", fill: "#253D36", opacity: 0.4 }} axisLine={false} tickLine={false} width={40} />
-                      <Tooltip contentStyle={{ background: "#253D36", border: "none", borderRadius: 4, color: "#fff", fontSize: 12, fontFamily: "'Source Sans 3',sans-serif" }} formatter={(v: number) => [`${v} ${activeDash.unit}`, activeDash.title]} />
+                      <XAxis dataKey="label" tick={{ fontSize: 12, fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif", fill: "#253D36", opacity: 0.5 }} axisLine={false} tickLine={false} />
+                      <YAxis tick={{ fontSize: 11, fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif", fill: "#253D36", opacity: 0.4 }} axisLine={false} tickLine={false} width={40} />
+                      <Tooltip contentStyle={{ background: "#253D36", border: "none", borderRadius: 4, color: "#fff", fontSize: 12, fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }} formatter={(v: number) => [`${v} ${activeDash.unit}`, activeDash.title]} />
                     </AreaChart>
                   ) : (
                     <LineChart data={activeDash.chartData} margin={{ top: 8, right: 8, left: 0, bottom: 8 }}>
                       <Line type="monotone" dataKey="value" stroke={activeDash.color} strokeWidth={2.5} dot={{ r: 4, fill: activeDash.color, strokeWidth: 0 }} />
-                      <XAxis dataKey="label" tick={{ fontSize: 12, fontFamily: "'Source Sans 3',sans-serif", fill: "#253D36", opacity: 0.5 }} axisLine={false} tickLine={false} />
-                      <YAxis tick={{ fontSize: 11, fontFamily: "'Source Sans 3',sans-serif", fill: "#253D36", opacity: 0.4 }} axisLine={false} tickLine={false} width={40} />
-                      <Tooltip contentStyle={{ background: "#253D36", border: "none", borderRadius: 4, color: "#fff", fontSize: 12, fontFamily: "'Source Sans 3',sans-serif" }} formatter={(v: number) => [`${v} ${activeDash.unit}`, activeDash.title]} />
+                      <XAxis dataKey="label" tick={{ fontSize: 12, fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif", fill: "#253D36", opacity: 0.5 }} axisLine={false} tickLine={false} />
+                      <YAxis tick={{ fontSize: 11, fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif", fill: "#253D36", opacity: 0.4 }} axisLine={false} tickLine={false} width={40} />
+                      <Tooltip contentStyle={{ background: "#253D36", border: "none", borderRadius: 4, color: "#fff", fontSize: 12, fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }} formatter={(v: number) => [`${v} ${activeDash.unit}`, activeDash.title]} />
                     </LineChart>
                   )}
                 </ResponsiveContainer>
@@ -533,7 +533,7 @@ function DocTypePill({ type }: { type: string }) {
   const colors = TYPE_COLORS[type] ?? { bg: "#F2F4F0", text: "#253D36" };
   return (
     <span className="text-[10px] font-bold px-2 py-0.5 rounded"
-      style={{ background: colors.bg, color: colors.text, fontFamily: "'Source Sans 3',sans-serif", letterSpacing: "0.02em" }}>
+      style={{ background: colors.bg, color: colors.text, fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif", letterSpacing: "0.02em" }}>
       {TYPE_LABELS[type] ?? type}
     </span>
   );
@@ -584,7 +584,7 @@ export function DataReportsSection({
 
         <div className="max-w-3xl mb-6">
           <p className="text-[10px] tracking-[0.28em] uppercase font-bold mb-3"
-            style={{ color: "#0068FF", fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+            style={{ color: "#0068FF", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
             Repositorio de documentos
           </p>
           <h2 className="text-[#253D36] mb-4"
@@ -592,7 +592,7 @@ export function DataReportsSection({
             {title}
           </h2>
           <p className="text-lg text-[#253D36]/65"
-            style={{ fontFamily: "'Source Sans 3',Arial,sans-serif", lineHeight: 1.6 }}>
+            style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif", lineHeight: 1.6 }}>
             {subtitle}
           </p>
         </div>
@@ -609,7 +609,7 @@ export function DataReportsSection({
               onChange={e => setSearch(e.target.value)}
               placeholder="Buscar documento…"
               className="w-full h-9 bg-white pl-9 pr-8 rounded-sm border border-[rgba(37,61,54,0.12)] text-[#111] focus:outline-none focus:border-[#C0D400] focus:ring-1 focus:ring-[#C0D400] text-xs"
-              style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+              style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
             />
             {search && (
               <button
@@ -628,7 +628,7 @@ export function DataReportsSection({
               value={yearFilter}
               onChange={e => setYear(e.target.value)}
               className="appearance-none h-9 bg-white text-xs font-semibold text-[#253D36] border border-[rgba(37,61,54,0.12)] rounded-sm pl-3 pr-6 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#C0D400]"
-              style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}
+              style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
             >
               <option value="Todos">Año: Todos</option>
               {YEAR_OPTIONS.filter(o => o !== "Todos").map(o => (
@@ -639,7 +639,7 @@ export function DataReportsSection({
           </div>
 
           {/* Status + clear */}
-          <span className="ml-1 text-xs text-[#253D36]/45 shrink-0" style={{ fontFamily: "'Source Sans 3',sans-serif" }}>
+          <span className="ml-1 text-xs text-[#253D36]/45 shrink-0" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
             {hasFilters
               ? <><strong className="text-[#253D36] font-bold">{totalDocs}</strong> {totalDocs === 1 ? "doc." : "docs."}</>
               : <>17 disponibles</>
@@ -649,7 +649,7 @@ export function DataReportsSection({
             <button
               onClick={clearAll}
               className="ml-auto text-xs font-bold text-[#0068FF] hover:underline shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] rounded-sm"
-              style={{ fontFamily: "'Source Sans 3',sans-serif" }}
+              style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
             >
               Limpiar
             </button>
@@ -667,7 +667,7 @@ export function DataReportsSection({
               Sin resultados
             </h3>
             <p className="text-sm text-[#253D36]/55 max-w-sm mx-auto mb-6"
-              style={{ fontFamily: "'Source Sans 3',sans-serif", lineHeight: 1.6 }}>
+              style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif", lineHeight: 1.6 }}>
               No encontramos documentos con esos filtros. Prueba ampliando el año o consulta el listado completo.
             </p>
             <button onClick={clearAll}
@@ -689,12 +689,12 @@ export function DataReportsSection({
                       {source.name}
                     </h3>
                     <p className="text-sm text-[#253D36]/55"
-                      style={{ fontFamily: "'Source Sans 3',Arial,sans-serif", maxWidth: 520, lineHeight: 1.5 }}>
+                      style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif", maxWidth: 520, lineHeight: 1.5 }}>
                       {source.desc}
                     </p>
                   </div>
                   <span className="shrink-0 text-xs font-bold text-[#253D36]/40 mt-1"
-                    style={{ fontFamily: "'Source Sans 3',sans-serif" }}>
+                    style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                     {source.docs.length} {source.docs.length === 1 ? "doc." : "docs."}
                   </span>
                 </div>
@@ -718,12 +718,12 @@ export function DataReportsSection({
                           {doc.title}
                         </h4>
                         <div className="mt-3 pt-3 flex items-center justify-between" style={{ borderTop: "1px solid rgba(37,61,54,0.07)" }}>
-                          <span className="text-[10px] text-[#253D36]/45" style={{ fontFamily: "'Source Sans 3',sans-serif" }}>
+                          <span className="text-[10px] text-[#253D36]/45" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                             {doc.year} · {doc.weight}
                           </span>
                           <a href="#descargar"
                             className="inline-flex items-center gap-1 text-[11px] font-bold text-[#0050E0] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C0D400] rounded-sm relative z-10"
-                            style={{ fontFamily: "'Source Sans 3',Arial,sans-serif" }}>
+                            style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                             <Download className="w-3 h-3" /> Descargar
                           </a>
                         </div>
