@@ -1,1 +1,9 @@
 /* Neue Haas Grotesk uses the project's local/system font stack. */
+
+@font-face {
+  font-family: "Inter:Bold";
+  src: url("https://static.figma.com/font/Inter_1") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}

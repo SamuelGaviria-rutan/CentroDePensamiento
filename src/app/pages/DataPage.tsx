@@ -542,9 +542,15 @@ function DocTypePill({ type }: { type: string }) {
 export function DataReportsSection({
   title = "Reportes y documentos fuente",
   subtitle = "Los documentos oficiales de rankings y mediciones del ecosistema, organizados por fuente y año, disponibles para descarga directa.",
+  eyebrow = "Repositorio de documentos",
+  compactMobile = false,
+  backgroundClassName = "bg-white",
 }: {
   title?: string;
   subtitle?: string;
+  eyebrow?: string | null;
+  compactMobile?: boolean;
+  backgroundClassName?: string;
 } = {}) {
   const sectionRef = useRef<HTMLElement>(null);
   const [search, setSearch] = useState("");
@@ -579,14 +585,16 @@ export function DataReportsSection({
   }, []);
 
   return (
-    <section ref={sectionRef} id="radar-reportes" className="py-12 bg-white relative">
+    <section ref={sectionRef} id="radar-reportes" className={`${compactMobile ? "py-10 sm:py-12" : "py-12"} ${backgroundClassName} relative`}>
       <div className="max-w-[1440px] mx-auto px-6 lg:px-10 xl:px-12">
 
         <div className="max-w-3xl mb-6">
-          <p className="text-[10px] tracking-[0.28em] uppercase font-bold mb-3"
-            style={{ color: "#0068FF", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
-            Repositorio de documentos
-          </p>
+          {eyebrow && (
+            <p className="text-[10px] tracking-[0.28em] uppercase font-bold mb-3"
+              style={{ color: "#0068FF", fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
+              {eyebrow}
+            </p>
+          )}
           <h2 className="text-[#253D36] mb-4"
             style={{ fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif", fontSize: "clamp(1.85rem,3vw,2.5rem)", fontWeight: 900, letterSpacing: "-0.02em" }}>
             {title}
@@ -599,16 +607,16 @@ export function DataReportsSection({
 
         {/* Filter bar */}
         {/* Filter bar — single compact row */}
-        <div className="flex items-center gap-2 mb-6">
+        <div className="mb-6 flex flex-wrap items-center gap-2">
           {/* Search */}
-          <div className="relative" style={{ maxWidth: 280 }}>
+          <div className="relative w-full sm:max-w-[280px] sm:flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[#253D36]/35 pointer-events-none" />
             <input
               type="search"
               value={search}
               onChange={e => setSearch(e.target.value)}
               placeholder="Buscar documento…"
-              className="w-full h-9 bg-white pl-9 pr-8 rounded-sm border border-[rgba(37,61,54,0.12)] text-[#111] focus:outline-none focus:border-[#C0D400] focus:ring-1 focus:ring-[#C0D400] text-xs"
+              className={`w-full bg-white pl-9 pr-8 rounded-sm border border-[rgba(37,61,54,0.12)] text-[#111] focus:outline-none focus:border-[#C0D400] focus:ring-1 focus:ring-[#C0D400] text-xs ${compactMobile ? "h-11 sm:h-9" : "h-9"}`}
               style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
             />
             {search && (
@@ -627,7 +635,7 @@ export function DataReportsSection({
             <select
               value={yearFilter}
               onChange={e => setYear(e.target.value)}
-              className="appearance-none h-9 bg-white text-xs font-semibold text-[#253D36] border border-[rgba(37,61,54,0.12)] rounded-sm pl-3 pr-6 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#C0D400]"
+              className={`appearance-none bg-white text-xs font-semibold text-[#253D36] border border-[rgba(37,61,54,0.12)] rounded-sm pl-3 pr-6 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#C0D400] ${compactMobile ? "h-11 sm:h-9" : "h-9"}`}
               style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}
             >
               <option value="Todos">Año: Todos</option>
@@ -677,11 +685,11 @@ export function DataReportsSection({
             </button>
           </div>
         ) : (
-          <div className="flex flex-col gap-14">
+          <div className={`flex flex-col ${compactMobile ? "gap-10 sm:gap-14" : "gap-14"}`}>
             {filtered.map((source, idx) => (
               <div key={idx} className="report-source-block">
                 {/* Source header */}
-                <div className="flex items-start justify-between mb-6 pb-5">
+                <div className={`flex items-start justify-between ${compactMobile ? "mb-4 pb-3 sm:mb-6 sm:pb-5" : "mb-6 pb-5"}`}>
                   <div>
                     <div className="h-[3px] w-10 rounded-full mb-3" style={{ backgroundColor: source.color }} aria-hidden="true" />
                     <h3 className="text-2xl font-black mb-1"
@@ -700,10 +708,13 @@ export function DataReportsSection({
                 </div>
 
                 {/* Doc cards */}
-                <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3">
+                <div className={compactMobile
+                  ? "mobile-swipe-rail -mx-6 flex snap-x snap-mandatory gap-3 overflow-x-auto px-6 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 md:grid-cols-3 xl:grid-cols-4"
+                  : "grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4"
+                }>
                   {source.docs.map((doc, dIdx) => (
                     <div key={dIdx}
-                      className="group flex flex-col rounded-[4px] bg-white overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(37,61,54,0.08)]"
+                      className={`group flex flex-col rounded-[4px] bg-white overflow-hidden transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(37,61,54,0.08)] ${compactMobile ? "mobile-swipe-item sm:min-w-0" : ""}`}
                       style={{ border: "1px solid rgba(37,61,54,0.09)" }}
                       onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(37,61,54,0.3)"; }}
                       onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(37,61,54,0.09)"; }}
@@ -717,7 +728,7 @@ export function DataReportsSection({
                           style={{ color: "#253D36", fontFamily: "'Neue Haas Grotesk Display Pro',Arial,sans-serif", letterSpacing: "-0.01em" }}>
                           {doc.title}
                         </h4>
-                        <div className="mt-3 pt-3 flex items-center justify-between" style={{ borderTop: "1px solid rgba(37,61,54,0.07)" }}>
+                        <div className="mt-3 flex flex-wrap items-center justify-between gap-2 pt-3" style={{ borderTop: "1px solid rgba(37,61,54,0.07)" }}>
                           <span className="text-[10px] text-[#253D36]/45" style={{ fontFamily: "'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue',Arial,sans-serif" }}>
                             {doc.year} · {doc.weight}
                           </span>
@@ -739,4 +750,3 @@ export function DataReportsSection({
     </section>
   );
 }
-
